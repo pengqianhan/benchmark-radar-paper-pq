@@ -4,19 +4,34 @@ PYTHON ?= python3
 FIGURE_NAMES := corpus-evidence cover-metrics pipeline-evaluation search-surface source-composition
 FIGURE_PDFS := $(addprefix figures/,$(addsuffix .pdf,$(FIGURE_NAMES)))
 FIGURE_SOURCES := $(addprefix figures/,$(addsuffix .tex,$(FIGURE_NAMES)))
+# Drawn by matplotlib from the frozen classification, not by latexmk.
+TAXONOMY_FIGURES := figures/taxonomy-sankey.pdf figures/taxonomy-trends.pdf
+TAXONOMY_INPUTS := scripts/taxonomy.py scripts/classify_benchmarks.py \
+	scripts/taxonomy_trends.py scripts/plot_taxonomy.py \
+	evidence/catalog-findings.json $(wildcard evidence/taxonomy-inputs/*)
 
-.PHONY: all figures arxiv check-small-numbers clean
+.PHONY: all figures taxonomy-figures arxiv check-small-numbers clean
 
 all: check-small-numbers
 
-figures: $(FIGURE_PDFS)
+figures: $(FIGURE_PDFS) $(TAXONOMY_FIGURES)
+
+# Classify writes the per-record labels, the trend step reads them for the year
+# series, and the plot step draws both figures. The outputs are byte-identical
+# across builds, so a rebuild that changes a file means an input changed.
+taxonomy-figures: $(TAXONOMY_FIGURES)
+
+$(TAXONOMY_FIGURES): $(TAXONOMY_INPUTS)
+	$(PYTHON) scripts/classify_benchmarks.py
+	$(PYTHON) scripts/taxonomy_trends.py
+	$(PYTHON) scripts/plot_taxonomy.py
 
 figures/%.pdf: figures/%.tex figures/figure-style.tex figure-data.tex catalog-data.tex Makefile
 	cd figures && $(LATEXMK) -g -pdf -interaction=nonstopmode -halt-on-error $*.tex
 
 figures/corpus-evidence.pdf: figures/corpus-evidence-body.tex
 
-main.pdf: main.tex references.bib figure-data.tex catalog-data.tex findings-data.tex figures/corpus-evidence-body.tex $(FIGURE_PDFS) $(wildcard figures/*.png) Makefile
+main.pdf: main.tex references.bib figure-data.tex catalog-data.tex findings-data.tex taxonomy-data.tex taxonomy-trend-data.tex figures/corpus-evidence-body.tex $(FIGURE_PDFS) $(TAXONOMY_FIGURES) $(wildcard figures/*.png) Makefile
 	$(LATEXMK) -g -pdf -interaction=nonstopmode -halt-on-error main.tex
 
 # Scan rendered text and raster figures on every normal build, even if the PDF
@@ -31,8 +46,8 @@ arxiv: check-small-numbers
 	$(LATEXMK) -pdf -interaction=nonstopmode -halt-on-error main.tex
 	rm -rf build/arxiv
 	mkdir -p build/arxiv/figures
-	cp main.tex main.bbl figure-data.tex catalog-data.tex findings-data.tex build/arxiv/
-	cp $(FIGURE_PDFS) $(FIGURE_SOURCES) figures/figure-style.tex figures/corpus-evidence-body.tex figures/*.png build/arxiv/figures/
+	cp main.tex main.bbl figure-data.tex catalog-data.tex findings-data.tex taxonomy-data.tex taxonomy-trend-data.tex build/arxiv/
+	cp $(FIGURE_PDFS) $(TAXONOMY_FIGURES) $(FIGURE_SOURCES) figures/figure-style.tex figures/corpus-evidence-body.tex figures/*.png build/arxiv/figures/
 	tar -czf arxiv.tar.gz -C build/arxiv .
 
 # Keep tracked PDFs; remove only intermediates and the upload staging area.

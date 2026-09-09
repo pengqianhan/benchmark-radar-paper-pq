@@ -1,0 +1,521 @@
+{
+  "by_l1": {
+    "agentic_tool_use": 135,
+    "applied_verticals": 87,
+    "coding_se": 230,
+    "general_composite": 11,
+    "knowledge_factuality": 68,
+    "language_communication": 187,
+    "math_logic": 170,
+    "multimodal_perception": 267,
+    "other": 4,
+    "safety_security": 58,
+    "science_research": 66
+  },
+  "by_l2": {
+    "agentic_tool_use/agent_general": 33,
+    "agentic_tool_use/computer_gui_use": 6,
+    "agentic_tool_use/embodied_agent": 3,
+    "agentic_tool_use/os_terminal": 1,
+    "agentic_tool_use/tool_function_calling": 38,
+    "agentic_tool_use/web_browsing_deep_research": 23,
+    "agentic_tool_use/workflow_task_execution": 31,
+    "applied_verticals/business_productivity": 14,
+    "applied_verticals/finance_economics": 28,
+    "applied_verticals/healthcare_medical": 36,
+    "applied_verticals/legal": 8,
+    "applied_verticals/vertical_general": 1,
+    "coding_se/code_general": 169,
+    "coding_se/code_generation": 2,
+    "coding_se/code_security": 1,
+    "coding_se/competitive_programming": 12,
+    "coding_se/data_sql": 5,
+    "coding_se/frontend_ui": 6,
+    "coding_se/swe_repo_issue": 35,
+    "general_composite/general_capability": 10,
+    "general_composite/robustness_consistency": 1,
+    "knowledge_factuality/commonsense": 3,
+    "knowledge_factuality/exam_academic": 22,
+    "knowledge_factuality/factuality_hallucination": 13,
+    "knowledge_factuality/knowledge_general": 27,
+    "knowledge_factuality/world_knowledge_qa": 3,
+    "language_communication/creative_writing": 23,
+    "language_communication/dialogue_roleplay": 4,
+    "language_communication/human_preference_chat": 2,
+    "language_communication/instruction_following": 16,
+    "language_communication/language_general": 9,
+    "language_communication/long_context_text": 59,
+    "language_communication/multilingual_translation": 21,
+    "language_communication/reading_comprehension": 51,
+    "language_communication/summarization": 2,
+    "math_logic/abstract_reasoning": 25,
+    "math_logic/competition_math": 29,
+    "math_logic/formal_theorem_proving": 1,
+    "math_logic/logical_puzzle_reasoning": 94,
+    "math_logic/math_general": 20,
+    "math_logic/math_word_problems": 1,
+    "multimodal_perception/audio_speech": 16,
+    "multimodal_perception/chart_diagram": 2,
+    "multimodal_perception/cross_modal_reasoning": 34,
+    "multimodal_perception/image_understanding_vqa": 171,
+    "multimodal_perception/multimodal_general": 10,
+    "multimodal_perception/ocr_document": 4,
+    "multimodal_perception/spatial_3d": 9,
+    "multimodal_perception/video_understanding": 14,
+    "multimodal_perception/visual_generation_editing": 7,
+    "other/unclassified": 4,
+    "safety_security/cybersecurity_offensive": 13,
+    "safety_security/harmfulness_alignment": 35,
+    "safety_security/jailbreak_robustness": 1,
+    "safety_security/privacy": 2,
+    "safety_security/safety_general": 7,
+    "science_research/biology_life_science": 14,
+    "science_research/chemistry": 6,
+    "science_research/general_science_qa": 3,
+    "science_research/physics": 13,
+    "science_research/research_engineering_ml": 4,
+    "science_research/science_general": 15,
+    "science_research/scientific_reasoning": 11
+  },
+  "by_source_l1": {
+    "artificial_analysis": {
+      "agentic_tool_use": 5,
+      "applied_verticals": 5,
+      "coding_se": 5,
+      "knowledge_factuality": 3,
+      "language_communication": 2,
+      "math_logic": 2,
+      "multimodal_perception": 1,
+      "science_research": 2
+    },
+    "llm_stats": {
+      "agentic_tool_use": 73,
+      "applied_verticals": 62,
+      "coding_se": 168,
+      "general_composite": 6,
+      "knowledge_factuality": 13,
+      "language_communication": 87,
+      "math_logic": 79,
+      "multimodal_perception": 139,
+      "other": 4,
+      "safety_security": 18,
+      "science_research": 38
+    },
+    "model_reports": {
+      "agentic_tool_use": 18,
+      "applied_verticals": 7,
+      "coding_se": 20,
+      "general_composite": 1,
+      "knowledge_factuality": 6,
+      "language_communication": 12,
+      "math_logic": 15,
+      "multimodal_perception": 18,
+      "safety_security": 4,
+      "science_research": 9
+    },
+    "opencompass_hub": {
+      "agentic_tool_use": 39,
+      "applied_verticals": 13,
+      "coding_se": 37,
+      "general_composite": 4,
+      "knowledge_factuality": 46,
+      "language_communication": 86,
+      "math_logic": 74,
+      "multimodal_perception": 109,
+      "safety_security": 36,
+      "science_research": 17
+    }
+  },
+  "classified": 1283,
+  "definitions": {
+    "confidence": "Primary L1 weight over total weight. Low values mean competing evidence, not a wrong label.",
+    "evidence": "Every token that produced a label, with its source field and weight, plus tokens excluded as non-topical.",
+    "interaction": "`agentic` where the evidence names an agent loop, tool call, environment or computer use; otherwise `static`.",
+    "l1": "Single primary capability domain per record, for one flow per benchmark in a Sankey or stacked area.",
+    "l1_all": "Every L1 that received evidence, strongest first. A record can support several; only `l1` is primary.",
+    "l2": "Sub-domain under that L1; a `*_general` value means no more specific evidence was present.",
+    "modality": "Input types the evidence names. Orthogonal to L1; a text benchmark carries `text`.",
+    "needs_review": "Reasons a human should read the row: a runner-up within 20 percent, low confidence, or no evidence.",
+    "operational": "Cross-cutting properties such as long_context, tool_calling, multilingual, safety_probe. Never an L1.",
+    "population": "One row per source record in evidence/catalog-findings.json; no name merging, no surface filter.",
+    "release_date": "Carried unchanged from the census. 668 records have none and cannot enter a year trend."
+  },
+  "facet_by_l1": {
+    "interaction:agentic": {
+      "agentic_tool_use": 128,
+      "applied_verticals": 28,
+      "coding_se": 117,
+      "language_communication": 11,
+      "math_logic": 5,
+      "multimodal_perception": 29,
+      "safety_security": 16,
+      "science_research": 11
+    },
+    "interaction:static": {
+      "agentic_tool_use": 7,
+      "applied_verticals": 59,
+      "coding_se": 113,
+      "general_composite": 11,
+      "knowledge_factuality": 68,
+      "language_communication": 176,
+      "math_logic": 165,
+      "multimodal_perception": 238,
+      "other": 4,
+      "safety_security": 42,
+      "science_research": 55
+    },
+    "modality:3d": {
+      "math_logic": 4,
+      "multimodal_perception": 29
+    },
+    "modality:audio": {
+      "knowledge_factuality": 1,
+      "language_communication": 8,
+      "math_logic": 1,
+      "multimodal_perception": 22,
+      "safety_security": 5,
+      "science_research": 1
+    },
+    "modality:document": {
+      "applied_verticals": 1,
+      "coding_se": 3,
+      "math_logic": 3,
+      "multimodal_perception": 13
+    },
+    "modality:embodied": {
+      "agentic_tool_use": 3,
+      "coding_se": 1,
+      "language_communication": 3,
+      "multimodal_perception": 17,
+      "safety_security": 1,
+      "science_research": 2
+    },
+    "modality:gui": {
+      "agentic_tool_use": 9,
+      "coding_se": 3,
+      "language_communication": 1,
+      "multimodal_perception": 7,
+      "safety_security": 1
+    },
+    "modality:image": {
+      "agentic_tool_use": 10,
+      "applied_verticals": 15,
+      "coding_se": 23,
+      "knowledge_factuality": 1,
+      "language_communication": 18,
+      "math_logic": 25,
+      "multimodal_perception": 204,
+      "safety_security": 5,
+      "science_research": 6
+    },
+    "modality:multimodal": {
+      "agentic_tool_use": 21,
+      "applied_verticals": 16,
+      "coding_se": 25,
+      "knowledge_factuality": 3,
+      "language_communication": 7,
+      "math_logic": 30,
+      "multimodal_perception": 235,
+      "safety_security": 8,
+      "science_research": 8
+    },
+    "modality:text": {
+      "agentic_tool_use": 56,
+      "applied_verticals": 47,
+      "coding_se": 142,
+      "general_composite": 5,
+      "knowledge_factuality": 13,
+      "language_communication": 79,
+      "math_logic": 60,
+      "safety_security": 16,
+      "science_research": 35
+    },
+    "modality:video": {
+      "agentic_tool_use": 2,
+      "applied_verticals": 1,
+      "coding_se": 1,
+      "knowledge_factuality": 1,
+      "language_communication": 5,
+      "math_logic": 4,
+      "multimodal_perception": 58,
+      "safety_security": 1,
+      "science_research": 1
+    },
+    "operational:examination": {
+      "agentic_tool_use": 1,
+      "applied_verticals": 4,
+      "coding_se": 1,
+      "knowledge_factuality": 22,
+      "math_logic": 6,
+      "multimodal_perception": 1,
+      "safety_security": 2,
+      "science_research": 1
+    },
+    "operational:instruction_following": {
+      "agentic_tool_use": 3,
+      "coding_se": 7,
+      "general_composite": 1,
+      "language_communication": 23,
+      "math_logic": 3,
+      "multimodal_perception": 1,
+      "safety_security": 2
+    },
+    "operational:live_dynamic": {
+      "coding_se": 1,
+      "math_logic": 1
+    },
+    "operational:long_context": {
+      "agentic_tool_use": 6,
+      "coding_se": 4,
+      "language_communication": 61,
+      "multimodal_perception": 15
+    },
+    "operational:memory": {
+      "agentic_tool_use": 1,
+      "safety_security": 2
+    },
+    "operational:multilingual": {
+      "applied_verticals": 3,
+      "coding_se": 10,
+      "knowledge_factuality": 2,
+      "language_communication": 35,
+      "math_logic": 5,
+      "multimodal_perception": 9,
+      "safety_security": 1,
+      "science_research": 3
+    },
+    "operational:real_world": {
+      "language_communication": 1
+    },
+    "operational:reasoning": {
+      "agentic_tool_use": 61,
+      "applied_verticals": 48,
+      "coding_se": 84,
+      "knowledge_factuality": 18,
+      "language_communication": 63,
+      "math_logic": 142,
+      "multimodal_perception": 100,
+      "safety_security": 4,
+      "science_research": 40
+    },
+    "operational:retrieval_rag": {
+      "agentic_tool_use": 24,
+      "applied_verticals": 3,
+      "knowledge_factuality": 2,
+      "language_communication": 3,
+      "math_logic": 2,
+      "multimodal_perception": 10,
+      "science_research": 2
+    },
+    "operational:robustness": {
+      "general_composite": 1
+    },
+    "operational:safety_probe": {
+      "agentic_tool_use": 2,
+      "applied_verticals": 4,
+      "coding_se": 4,
+      "language_communication": 2,
+      "multimodal_perception": 3,
+      "safety_security": 58,
+      "science_research": 3
+    },
+    "operational:spatial": {
+      "language_communication": 3,
+      "math_logic": 4,
+      "multimodal_perception": 38
+    },
+    "operational:structured_output": {
+      "coding_se": 13
+    },
+    "operational:tool_calling": {
+      "agentic_tool_use": 41,
+      "applied_verticals": 5,
+      "coding_se": 13,
+      "math_logic": 1,
+      "multimodal_perception": 1,
+      "safety_security": 2,
+      "science_research": 1
+    }
+  },
+  "facets": {
+    "interaction": {
+      "agentic": 345,
+      "static": 938
+    },
+    "modality": {
+      "3d": 33,
+      "audio": 38,
+      "document": 20,
+      "embodied": 27,
+      "gui": 21,
+      "image": 307,
+      "multimodal": 353,
+      "text": 453,
+      "video": 74
+    },
+    "operational": {
+      "examination": 38,
+      "instruction_following": 40,
+      "live_dynamic": 2,
+      "long_context": 86,
+      "memory": 3,
+      "multilingual": 68,
+      "real_world": 1,
+      "reasoning": 560,
+      "retrieval_rag": 46,
+      "robustness": 1,
+      "safety_probe": 76,
+      "spatial": 45,
+      "structured_output": 13,
+      "tool_calling": 64
+    }
+  },
+  "field_weights": {
+    "aa.categories": 10.0,
+    "ls.categories": 6.0,
+    "mc.domain": 10.0,
+    "oc.basic_tags": 6.0,
+    "oc.card_tags": 3.0,
+    "oc.dimensions": 10.0,
+    "text.description": 2.0,
+    "text.name": 2.5
+  },
+  "generic_multiplier": 0.15,
+  "inputs_sha256": {
+    "aa": "629a3dac916e19cbb4a6ba907e607290fc4ef7f2da8efc519596d5e54c09f657",
+    "census": "a62fe8265b3640ac96ae84265fe3bd1cb0312097b5eefe33126011e733e5e914",
+    "ls": "dd19e16f23016d0db3ac76e151a283a0dfc06638ce448e71b70de0fcdf3703d0",
+    "mc": "a4e74faec2488e19e90727f7d30c5159349783f4102fde041990eb644ed68a2a",
+    "oc": "3c0f813ce74eecea42bb3ce988ca93aa26c766cc6ef4ced77191ef72cedc8e75"
+  },
+  "label_basis": {
+    "none": 4,
+    "tags": 1279
+  },
+  "population": 1283,
+  "schema_version": 1,
+  "taxonomy": {
+    "l1": {
+      "agentic_tool_use": "Agentic & Tool Use",
+      "applied_verticals": "Applied & Professional Domains",
+      "coding_se": "Coding & Software Engineering",
+      "general_composite": "General & Composite Index",
+      "knowledge_factuality": "Knowledge & Factuality",
+      "language_communication": "Language & Communication",
+      "math_logic": "Math & Logical Reasoning",
+      "multimodal_perception": "Multimodal Perception & Generation",
+      "other": "Other / Unclassified",
+      "safety_security": "Safety, Security & Alignment",
+      "science_research": "Science & Research"
+    },
+    "l1_priority": [
+      "coding_se",
+      "math_logic",
+      "science_research",
+      "applied_verticals",
+      "safety_security",
+      "agentic_tool_use",
+      "multimodal_perception",
+      "knowledge_factuality",
+      "language_communication",
+      "general_composite",
+      "other"
+    ],
+    "l2": {
+      "agentic_tool_use": [
+        "tool_function_calling",
+        "computer_gui_use",
+        "web_browsing_deep_research",
+        "os_terminal",
+        "workflow_task_execution",
+        "multi_agent_collaboration",
+        "embodied_agent",
+        "agent_general"
+      ],
+      "applied_verticals": [
+        "healthcare_medical",
+        "legal",
+        "finance_economics",
+        "business_productivity",
+        "education",
+        "vertical_general"
+      ],
+      "coding_se": [
+        "code_generation",
+        "swe_repo_issue",
+        "competitive_programming",
+        "code_reasoning_execution",
+        "frontend_ui",
+        "data_sql",
+        "code_security",
+        "hardware_eda",
+        "code_general"
+      ],
+      "general_composite": [
+        "aggregate_index",
+        "general_capability",
+        "arena_elo",
+        "robustness_consistency"
+      ],
+      "knowledge_factuality": [
+        "world_knowledge_qa",
+        "exam_academic",
+        "factuality_hallucination",
+        "commonsense",
+        "knowledge_general"
+      ],
+      "language_communication": [
+        "reading_comprehension",
+        "multilingual_translation",
+        "instruction_following",
+        "creative_writing",
+        "summarization",
+        "dialogue_roleplay",
+        "human_preference_chat",
+        "long_context_text",
+        "language_general"
+      ],
+      "math_logic": [
+        "competition_math",
+        "math_word_problems",
+        "formal_theorem_proving",
+        "logical_puzzle_reasoning",
+        "abstract_reasoning",
+        "math_general"
+      ],
+      "multimodal_perception": [
+        "image_understanding_vqa",
+        "video_understanding",
+        "audio_speech",
+        "ocr_document",
+        "chart_diagram",
+        "visual_generation_editing",
+        "spatial_3d",
+        "embodied_perception",
+        "cross_modal_reasoning",
+        "multimodal_general"
+      ],
+      "other": [
+        "unclassified"
+      ],
+      "safety_security": [
+        "harmfulness_alignment",
+        "jailbreak_robustness",
+        "cybersecurity_offensive",
+        "privacy",
+        "bias_fairness",
+        "safety_general"
+      ],
+      "science_research": [
+        "physics",
+        "chemistry",
+        "biology_life_science",
+        "general_science_qa",
+        "research_engineering_ml",
+        "scientific_reasoning",
+        "science_general"
+      ]
+    }
+  },
+  "unmapped_tokens": {}
+}

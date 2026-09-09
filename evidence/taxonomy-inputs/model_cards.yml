@@ -1,0 +1,2069 @@
+# Model Card Benchmark Registry (issue #83)
+#
+# A hand-curated list of frontier model cards, technical reports and release
+# posts, and the benchmarks each one reports. This file answers one question:
+# which benchmarks do vendors actually put in front of readers when they ship a
+# model?
+#
+# Deliberately NOT in scope here. Issue #83's first comment sketched a six-table
+# registry (per-configuration scores, reasoning budgets, pass@k, judge models,
+# comparison groups, contamination signals). That schema is right, and it is
+# also unbuildable as a first step: it needs a per-vendor PDF parser before it
+# can produce a single row. This file stores a *mention*, not a score. A mention
+# is the one fact that survives every configuration caveat in that comment -- it
+# does not matter whether GPT-5.6 ran AIME at pass@1 or consensus@64, the card
+# still chose to report AIME. Scores can be added later without invalidating
+# anything recorded here.
+#
+# Maintenance contract:
+#   * `benchmarks` lists the canonical benchmark_id, resolved against
+#     `benchmarks:` below. An id used by a card but absent from that block is a
+#     hard error, so a typo cannot quietly invent a benchmark with one adopter.
+#   * `url` must point at the card, report or release post the mentions were
+#     read from, so any row can be checked against its source.
+#   * `retrieved_at` records when that document was last curated. It is not the
+#     model's release date, and it is not automatically refreshed.
+#   * `revised` is optional, and only for a document that gained a benchmark
+#     after first publication: an arXiv report at v2+, or a living model card a
+#     vendor edits in place. It relaxes the chronology check for that one card,
+#     so it must name the real revision date rather than be used to silence a
+#     complaint. A card reporting a benchmark newer than itself with no `revised`
+#     date is a data error, and the loader rejects it.
+#
+# Adding a model card: append an entry, list its benchmark ids, run
+# `benchmark-radar rebuild`. Adding a benchmark: add it to `benchmarks:` first.
+#
+# `released` is the benchmark's own publication date, distinct from a card's
+# `published`. It exists so a reader can separate "this benchmark is newly
+# adopted" from "this benchmark is newly *published*": a 2026 card reporting
+# MMLU (2020) and a 2026 card reporting Terminal-Bench 2 (2025) are both
+# current adoptions of very differently aged instruments. Optional, because a
+# benchmark that never announced a release date should say nothing rather than
+# carry a guessed one.
+
+schema_version: 1
+
+# Canonical benchmark records. `aliases` exist so a future extractor can map
+# vendor spellings ("SWE-bench-Verified", "SWE Bench Verified") onto one id
+# without changing the ids the leaderboard is built from.
+benchmarks:
+  - id: hle
+    name: Humanity's Last Exam
+    aliases: ["HLE", "Humanity's Last Exam", "HLE-Full", "HLE-Verified"]
+    domain: reasoning
+    url: https://lastexam.ai/
+    released: 2025-01-23
+    caveat: >-
+      Tool access and test-time compute budget move this score more than model
+      capability does, so two reported figures are rarely comparable. Cards
+      increasingly report no-tools and with-tools figures as separate numbers.
+
+  - id: gpqa_diamond
+    name: GPQA Diamond
+    aliases: ["GPQA", "GPQA-Diamond", "GPQA Diamond"]
+    domain: science
+    url: https://arxiv.org/abs/2311.12022
+    released: 2023-11-20
+    caveat: >-
+      198 questions in the Diamond split, so run-to-run variance is wide and a
+      single reported number hides it. Approaching saturation at the 2026
+      frontier, where reported scores cluster in the high 80s and 90s.
+
+  - id: swe_bench_verified
+    name: SWE-bench Verified
+    aliases: ["SWE-bench Verified", "SWE-bench-Verified", "SWE Bench Verified", "SWE Verified"]
+    domain: coding_agent
+    url: https://openai.com/index/introducing-swe-bench-verified/
+    released: 2024-08-13
+    caveat: >-
+      Scaffold, tool permissions and time limit are part of the result; vendors
+      run their own harnesses.
+
+  - id: swe_bench_pro
+    name: SWE-bench Pro
+    aliases: ["SWE-bench Pro", "SWE Pro", "SWE-Bench Pro (Public)"]
+    domain: coding_agent
+    url: https://github.com/scaleapi/SWE-bench_Pro-os
+    released: 2025-09-23
+    caveat: Harness and split version must be recorded with any score.
+
+  - id: swe_bench_multilingual
+    name: SWE-bench Multilingual
+    aliases: ["SWE-bench Multilingual", "SWE Multilingual"]
+    domain: coding_agent
+    url: https://www.swebench.com/multilingual.html
+    released: 2025-04-22
+    caveat: >-
+      Per-language resolution rates differ widely, so an average hides which
+      languages the model actually handles.
+
+  - id: terminal_bench
+    name: Terminal-Bench
+    aliases:
+      - "Terminal-Bench"
+      - "Terminal Bench"
+      - "TerminalBench"
+      - "Terminal-Bench 2.0"
+      - "Terminal-Bench 2.1"
+      - "Terminal Bench 2"
+      - "TerminalBench Hard"
+      - "Terminal-Bench 3.0"
+      - "Terminal Bench 3"
+      - "Frontier-Bench"
+      - "FrontierBench"
+      - "Frontier-Bench v0.1"
+      - "FrontierSWE"
+    domain: agent
+    url: https://www.tbench.ai/
+    released: 2025-05-19
+    caveat: >-
+      Environment image, timeout and permitted commands change results
+      independently of the model. Version and harness both matter: 2.0 and 2.1
+      are different instruments, and cards report Terminus, Claude Code and
+      Codex harness numbers for the same version. Frontier-Bench is this
+      series' next version rather than a separate benchmark: frontierbench.ai
+      now bills it as "Terminal-Bench 3.0 (formerly Frontier-Bench)", built by
+      the makers of Harbor and Terminal-Bench, so its mentions are counted
+      here. Merging it did not raise this count: all three cards that named
+      Frontier-Bench (Claude Opus 5, Claude Fable 5 and Mythos 5, Kimi K3)
+      also report Terminal-Bench in the same document, and the counting unit
+      is the document, so each still adds one. Being a new version, its task
+      set is not comparable to a 2.x number. Not to be confused with
+      Cognition's FrontierCode, a separate instrument recorded separately
+      despite the shared prefix.
+
+  - id: livecodebench
+    name: LiveCodeBench
+    aliases: ["LiveCodeBench", "LCB"]
+    domain: coding
+    url: https://livecodebench.github.io/
+    released: 2024-03-12
+    caveat: >-
+      Time-sliced problem set. A score without its problem window is not
+      comparable to any other score.
+
+  - id: aime
+    name: AIME
+    aliases: ["AIME", "AIME 2024", "AIME 2025", "AIME 2026"]
+    domain: math
+    url: https://maa.org/maa-invitational-competitions/
+    released: 2024-02-01
+    caveat: >-
+      pass@k, majority vote and Python tool access each shift this by double
+      digits.
+
+  - id: mmmu
+    name: MMMU
+    aliases: ["MMMU", "MMMU-Pro"]
+    domain: multimodal
+    url: https://mmmu-benchmark.github.io/
+    released: 2023-11-27
+    caveat: Image preprocessing and chain-of-thought settings affect results.
+
+  - id: mathvista
+    name: MathVista
+    aliases: ["MathVista"]
+    domain: multimodal
+    url: https://mathvista.github.io/
+    released: 2023-10-03
+    caveat: Mixes OCR quality with visual reasoning.
+
+  - id: video_mme
+    name: Video-MME
+    aliases: ["Video-MME", "VideoMME"]
+    domain: multimodal
+    url: https://video-mme.github.io/
+    released: 2024-05-31
+    caveat: Frame sampling rate dominates long-video results.
+
+  - id: tau_bench
+    name: tau-bench
+    aliases: ["tau-bench", "τ-bench", "tau2-bench", "TAU-bench"]
+    domain: tool_use
+    url: https://github.com/sierra-research/tau-bench
+    released: 2024-06-17
+    caveat: >-
+      Depends on a simulated user and policy; the simulator model is part of
+      the measurement.
+
+  - id: browsecomp
+    name: BrowseComp
+    aliases: ["BrowseComp"]
+    domain: agent
+    url: https://openai.com/index/browsecomp/
+    released: 2025-04-10
+    caveat: >-
+      Live web. The result depends on what the internet contained on the day
+      of the run.
+
+  - id: simpleqa
+    name: SimpleQA
+    aliases: ["SimpleQA", "SimpleQA Verified"]
+    domain: factuality
+    url: https://openai.com/index/introducing-simpleqa/
+    released: 2024-10-30
+    caveat: Knowledge cutoff must be recorded alongside the score.
+
+  - id: longbench
+    name: LongBench
+    aliases: ["LongBench", "LongBench v2"]
+    domain: long_context
+    url: https://github.com/THUDM/LongBench
+    released: 2023-08-28
+    caveat: Nominal context length is not effective context length.
+
+  - id: mrcr
+    name: MRCR
+    aliases: ["MRCR", "OpenAI-MRCR", "MRCR v2"]
+    domain: long_context
+    url: https://huggingface.co/datasets/openai/mrcr
+    released: 2025-04-14
+    caveat: Needle position and generation seed change the result.
+
+  - id: mmlu_pro
+    name: MMLU-Pro
+    aliases: ["MMLU-Pro", "MMLU Pro"]
+    domain: knowledge
+    url: https://github.com/TIGER-AI-Lab/MMLU-Pro
+    released: 2024-06-03
+    caveat: Static closed-set multiple choice; contamination risk rises over time.
+
+  - id: mmlu
+    name: MMLU
+    aliases: ["MMLU"]
+    domain: knowledge
+    url: https://github.com/hendrycks/test
+    released: 2020-09-07
+    caveat: >-
+      Saturated at the frontier and heavily contaminated. Useful as a
+      historical baseline, not as a ranking signal.
+
+  - id: livebench
+    name: LiveBench
+    aliases: ["LiveBench"]
+    domain: general
+    url: https://livebench.ai/
+    released: 2024-06-06
+    caveat: Contents change by release date; each date is a different benchmark.
+
+  - id: arena_hard
+    name: Arena-Hard
+    aliases: ["Arena-Hard", "ArenaHard"]
+    domain: human_preference
+    url: https://github.com/lmarena/arena-hard-auto
+    released: 2024-04-19
+    caveat: LLM-judge dependent, with known style and length bias.
+
+  - id: chatbot_arena
+    name: Chatbot Arena
+    aliases: ["Chatbot Arena", "LMArena", "LMSYS Arena"]
+    domain: human_preference
+    url: https://lmarena.ai/
+    released: 2023-05-03
+    caveat: >-
+      Elo from real user traffic; sampling and prompt distribution are outside
+      any vendor's control.
+
+  - id: bfcl
+    name: BFCL
+    aliases: ["BFCL", "Berkeley Function Calling Leaderboard"]
+    domain: tool_use
+    url: https://gorilla.cs.berkeley.edu/leaderboard.html
+    released: 2024-02-26
+    caveat: Schema complexity and execution checking vary by version.
+
+  - id: humaneval
+    name: HumanEval
+    aliases: ["HumanEval", "HumanEval+"]
+    domain: coding
+    url: https://github.com/openai/human-eval
+    released: 2021-07-07
+    caveat: Saturated. Retained because open-weight cards still report it.
+
+  - id: math_500
+    name: MATH-500
+    aliases: ["MATH-500", "MATH 500", "MATH"]
+    domain: math
+    url: https://github.com/openai/prm800k
+    released: 2021-03-05
+    caveat: Largely saturated at the frontier.
+
+  - id: gsm8k
+    name: GSM8K
+    aliases: ["GSM8K"]
+    domain: math
+    url: https://github.com/openai/grade-school-math
+    released: 2021-10-27
+    caveat: Saturated. A legacy baseline for small open models.
+
+  - id: ifeval
+    name: IFEval
+    aliases: ["IFEval"]
+    domain: instruction_following
+    url: https://github.com/google-research/google-research/tree/master/instruction_following_eval
+    released: 2023-11-14
+    caveat: Verifiable-constraint subset only; does not measure answer quality.
+
+  - id: mbpp
+    name: MBPP
+    aliases: ["MBPP", "MBPP+"]
+    domain: coding
+    url: https://github.com/google-research/google-research/tree/master/mbpp
+    released: 2021-08-16
+    caveat: Saturated; short single-function tasks.
+
+  - id: drop
+    name: DROP
+    aliases: ["DROP"]
+    domain: reasoning
+    url: https://allenai.org/data/drop
+    released: 2019-03-01
+    caveat: Legacy reading-comprehension baseline.
+
+  - id: arc_agi
+    name: ARC-AGI
+    aliases: ["ARC-AGI", "ARC-AGI-1", "ARC-AGI-2"]
+    domain: reasoning
+    url: https://arcprize.org/
+    released: 2019-11-05
+    caveat: >-
+      Compute per task is reported alongside score by the maintainers and
+      should not be dropped.
+
+  - id: aider_polyglot
+    name: Aider Polyglot
+    aliases: ["Aider Polyglot", "Aider"]
+    domain: coding
+    url: https://aider.chat/docs/leaderboards/
+    released: 2024-12-21
+    caveat: Edit-format sensitive; whole-file and diff modes differ substantially.
+
+  - id: mmlu_redux
+    name: MMLU-Redux
+    aliases: ["MMLU-Redux"]
+    domain: knowledge
+    url: https://github.com/aryopg/mmlu-redux
+    released: 2024-06-06
+    caveat: Error-corrected MMLU subset; reported mainly by open-weight cards.
+
+  - id: gpqa
+    name: GPQA (full)
+    aliases: ["GPQA main", "GPQA full"]
+    domain: science
+    url: https://arxiv.org/abs/2311.12022
+    released: 2023-11-20
+    caveat: >-
+      The full split, distinct from the Diamond subset most frontier cards
+      report.
+
+  - id: agieval
+    name: AGIEval
+    aliases: ["AGIEval"]
+    domain: knowledge
+    url: https://github.com/ruixiangcui/AGIEval
+    released: 2023-04-13
+    caveat: Human-exam derived; overlaps heavily with MMLU-style coverage.
+
+  # ---------------------------------------------------------------------------
+  # Benchmarks that entered frontier reporting after mid-2025. These are the
+  # instruments the 2026 cards below actually lead with, and their absence was
+  # what made the registry read as a 2024-2025 snapshot: the older blocks above
+  # are still reported, but no longer carry a card's headline claim.
+  # ---------------------------------------------------------------------------
+
+  - id: arc_agi_2
+    name: ARC-AGI-2
+    aliases: ["ARC-AGI-2", "ARC-AGI 2"]
+    domain: reasoning
+    url: https://arcprize.org/arc-agi/2/
+    released: 2025-03-24
+    caveat: >-
+      Cost per task is part of the official result and is routinely dropped when
+      the score is quoted on its own.
+
+  - id: arc_agi_3
+    name: ARC-AGI-3
+    aliases: ["ARC-AGI-3", "ARC-AGI 3"]
+    domain: reasoning
+    url: https://arcprize.org/arc-agi/3/
+    released: 2026-01-15
+    caveat: >-
+      Interactive multi-step format, so the agent harness is part of the
+      measurement. Scores are low and spread wide, which makes small absolute
+      gaps look larger than they are.
+
+  - id: gdpval
+    name: GDPval
+    aliases: ["GDPval", "GDPval-AA", "GDPval-AA v2"]
+    domain: professional
+    url: https://openai.com/index/gdpval/
+    released: 2025-09-25
+    caveat: >-
+      Graded by expert human comparison against real deliverables, and the
+      "-AA" variants are run by Artificial Analysis rather than the vendor, so
+      an Elo here is not comparable to a vendor-run pass rate.
+
+  - id: mmmu_pro
+    name: MMMU-Pro
+    aliases: ["MMMU-Pro", "MMMU Pro"]
+    domain: multimodal
+    url: https://arxiv.org/abs/2409.02813
+    released: 2024-09-04
+    caveat: >-
+      Harder vision-required subset of MMMU. Input image ordering changes the
+      result, so the protocol has to travel with the number.
+
+  - id: mmmlu
+    name: MMMLU
+    aliases: ["MMMLU", "Multilingual MMLU", "MMLU-ProX"]
+    domain: multilingual
+    url: https://huggingface.co/datasets/openai/MMMLU
+    released: 2024-09-24
+    caveat: >-
+      A language-count average. Two cards reporting "MMMLU" may be averaging
+      over different language sets, so the counts must match to compare.
+
+  - id: livecodebench_pro
+    name: LiveCodeBench Pro
+    aliases: ["LiveCodeBench Pro", "LCB Pro"]
+    domain: coding
+    url: https://livecodebenchpro.com/
+    released: 2025-06-13
+    caveat: >-
+      Reported as an Elo rating against competitive-programming problems, not a
+      pass rate, so it cannot be read on the same axis as LiveCodeBench.
+
+  - id: codeforces
+    name: Codeforces
+    aliases: ["Codeforces", "Codeforces ELO", "Codeforces Rating"]
+    domain: coding
+    url: https://codeforces.com/
+    released: 2010-02-19
+    caveat: >-
+      An Elo estimate against human contestants, not a fixed dataset. The
+      problem set moves continuously and rating conversion differs by vendor.
+
+  - id: tau2_bench
+    name: tau2-bench
+    aliases: ["tau2-bench", "τ²-Bench", "TAU2-Bench", "Tau2", "τ2-bench"]
+    domain: tool_use
+    url: https://arxiv.org/abs/2506.07982
+    released: 2025-06-09
+    caveat: >-
+      Per-domain scores (Retail, Telecom, Airline) diverge sharply and several
+      cards apply the Airline domain fixes from the Claude Opus 4.5 system
+      card, so an average conceals both the domain mix and the patch level.
+
+  - id: mcp_atlas
+    name: MCP Atlas
+    aliases: ["MCP Atlas", "MCP-Atlas", "MCPAtlas", "MCP-Atlas (Public Set)"]
+    domain: tool_use
+    url: https://huggingface.co/datasets/Sierra-Research/MCP-Atlas
+    released: 2025-11-18
+    caveat: >-
+      Public and full splits are both reported under one name; the tool server
+      set is part of the measurement.
+
+  - id: mcp_mark
+    name: MCPMark
+    aliases: ["MCPMark", "MCP-Mark", "MCPMark-Verified"]
+    domain: tool_use
+    url: https://mcpmark.ai/
+    released: 2025-09-30
+    caveat: Depends on live third-party MCP servers, so runs are not reproducible over time.
+
+  - id: tool_decathlon
+    name: Tool Decathlon
+    aliases: ["Tool Decathlon", "Toolathlon", "Toolathlon-Verified"]
+    domain: tool_use
+    url: https://toolathlon.xyz/
+    released: 2025-10-28
+    caveat: Aggregates ten heterogeneous tool suites; the per-suite spread is wide.
+
+  - id: osworld
+    name: OSWorld
+    aliases: ["OSWorld", "OSWorld-Verified", "OSWorld 2.0"]
+    domain: computer_use
+    url: https://os-world.github.io/
+    released: 2024-04-11
+    caveat: >-
+      Screen resolution, OS image and action space all change results. The
+      Verified and 2.0 revisions are not comparable to the original.
+
+  - id: cursor_bench
+    name: CursorBench
+    aliases: ["CursorBench", "Cursor Bench", "CursorBench 3.2"]
+    domain: coding_agent
+    url: https://cursor.com/blog/cursor-bench
+    released: 2025-10-29
+    caveat: >-
+      Maintained by Cursor and measured inside the Cursor product, so it
+      reflects that scaffold rather than the bare model.
+
+  - id: browsecomp_zh
+    name: BrowseComp-ZH
+    aliases: ["BrowseComp-ZH", "BrowseComp-zh", "BrowseComp-Zh"]
+    domain: agent
+    url: https://arxiv.org/abs/2504.19314
+    released: 2025-04-27
+    caveat: >-
+      Chinese-language live web. Same day-to-day web drift as BrowseComp, over
+      a different index.
+
+  - id: healthbench
+    name: HealthBench
+    # "HealthBench Professional" is deliberately absent: it is a distinct
+    # harder split with its own id, and leaving it here would let an extractor
+    # resolve one spelling to two benchmarks.
+    aliases: ["HealthBench", "HealthBench Hard", "HealthBench Consensus"]
+    domain: health
+    url: https://openai.com/index/healthbench/
+    released: 2025-05-12
+    caveat: >-
+      Physician-written rubrics scored by an LLM grader, and the length-adjusted
+      variant is what recent cards report. Published by OpenAI.
+
+  - id: super_gpqa
+    name: SuperGPQA
+    aliases: ["SuperGPQA", "Super-GPQA"]
+    domain: knowledge
+    url: https://arxiv.org/abs/2502.14739
+    released: 2025-02-20
+    caveat: 285 graduate disciplines; breadth comes at the cost of per-field sample size.
+
+  - id: imo_answer_bench
+    name: IMOAnswerBench
+    aliases: ["IMOAnswerBench", "IMO AnswerBench"]
+    domain: math
+    url: https://huggingface.co/datasets/HuggingFaceH4/IMOAnswerBench
+    released: 2025-09-18
+    caveat: >-
+      Final-answer grading on olympiad problems, so it does not check whether
+      the proof reasoning was valid.
+
+  - id: hmmt
+    name: HMMT
+    aliases: ["HMMT", "HMMT Feb 25", "HMMT Nov 25", "HMMT 2026 Feb"]
+    domain: math
+    url: https://www.hmmt.org/
+    released: 2025-02-15
+    caveat: >-
+      A dated competition, not a fixed set: each sitting is a different
+      instrument and contamination rises once problems are published.
+
+  - id: ifbench
+    name: IFBench
+    aliases: ["IFBench"]
+    domain: instruction_following
+    url: https://arxiv.org/abs/2507.02833
+    released: 2025-07-03
+    caveat: Verifiable constraints on unseen instruction types; does not measure answer quality.
+
+  - id: bigbench_extra_hard
+    name: BIG-Bench Extra Hard
+    aliases: ["BigBench Extra Hard", "BBEH", "BIG-Bench Extra Hard"]
+    domain: reasoning
+    url: https://arxiv.org/abs/2502.19187
+    released: 2025-02-26
+    caveat: Successor to BBH after saturation; per-task variance is high.
+
+  - id: scicode
+    name: SciCode
+    aliases: ["SciCode"]
+    domain: science
+    url: https://scicode-bench.github.io/
+    released: 2024-07-18
+    caveat: Scientific code generation graded by test execution; subproblem context matters.
+
+  - id: vending_bench
+    name: Vending Bench
+    aliases: ["Vending Bench", "Vending Bench 2"]
+    domain: agent
+    url: https://andonlabs.com/evals/vending-bench-2
+    released: 2025-02-18
+    caveat: >-
+      Reported in simulated dollars, not a percentage, and run over long
+      horizons where a single early failure dominates the total.
+
+  - id: chartqa
+    name: ChartQA
+    aliases: ["ChartQA"]
+    domain: multimodal
+    url: https://github.com/vis-nlp/ChartQA
+    released: 2022-03-19
+    caveat: Largely saturated; relaxed-accuracy tolerance affects the reported figure.
+
+  - id: docvqa
+    name: DocVQA
+    aliases: ["DocVQA"]
+    domain: multimodal
+    url: https://www.docvqa.org/
+    released: 2020-07-01
+    caveat: Saturated at the frontier; ANLS scoring is lenient to OCR near-misses.
+
+  - id: mtob
+    name: MTOB
+    aliases: ["MTOB", "Machine Translation from One Book"]
+    domain: long_context
+    url: https://arxiv.org/abs/2309.16575
+    released: 2023-09-28
+    caveat: >-
+      Translation from a single grammar book, reported as half-book and
+      full-book variants that are not interchangeable.
+
+  - id: mathvision
+    name: MathVision
+    aliases: ["MathVision", "MATH-Vision", "MathVision (mini)"]
+    domain: multimodal
+    url: https://mathllm.github.io/mathvision/
+    released: 2024-02-22
+    caveat: >-
+      Prompt-format sensitive: vendors report boxed and unboxed variants and
+      sometimes take the higher of the two.
+
+  - id: omnidocbench
+    name: OmniDocBench
+    aliases: ["OmniDocBench", "OmniDocBench1.5", "OmniDocBench 1.5"]
+    domain: multimodal
+    url: https://github.com/opendatalab/OmniDocBench
+    released: 2024-12-10
+    caveat: >-
+      Reported as an edit distance where lower is better, so it inverts the
+      direction of every other row a card puts beside it.
+
+  - id: aa_lcr
+    name: AA-LCR
+    aliases: ["AA-LCR"]
+    domain: long_context
+    url: https://artificialanalysis.ai/evaluations/aa-lcr
+    released: 2025-09-16
+    caveat: >-
+      Run by Artificial Analysis rather than the vendor. Third-party execution
+      is the point, but it also means the vendor did not control the setup.
+
+  - id: deepsearchqa
+    name: DeepSearchQA
+    aliases: ["DeepSearchQA"]
+    domain: agent
+    url: https://huggingface.co/datasets/PokeeAI/DeepSearchQA
+    released: 2026-02-10
+    caveat: Live-web deep research; F1 grading depends on the reference answer set.
+
+  - id: apex_agents
+    name: APEX-Agents
+    aliases: ["APEX-Agents", "APEX", "Apex", "Apex Shortlist"]
+    domain: agent
+    url: https://arxiv.org/abs/2601.14242
+    released: 2026-01-20
+    caveat: Expert-authored professional tasks with rubric grading; graders are LLMs.
+
+  - id: cvebench
+    name: CVE-Bench
+    aliases: ["CVE-Bench", "CVEBench"]
+    domain: security
+    url: https://github.com/uiuc-kang-lab/cve-bench
+    released: 2025-03-21
+    caveat: >-
+      Real CVE exploitation in sandboxes. Vendors report it as a safety ceiling
+      rather than a capability to maximize.
+
+  - id: mle_bench
+    name: MLE-bench
+    aliases: ["MLE-Bench", "MLE-bench Revised", "MLE-bench Lite"]
+    domain: ai_research
+    url: https://openai.com/index/mle-bench/
+    released: 2024-10-09
+    caveat: >-
+      Kaggle-derived ML engineering tasks; wall-clock budget and hardware are
+      part of the result. Published by OpenAI.
+
+  - id: seccodebench
+    name: SecCodeBench
+    aliases: ["SecCodeBench"]
+    domain: security
+    url: https://github.com/alibaba/SecCodeBench
+    released: 2025-10-14
+    caveat: Measures secure-coding behaviour, not exploitation capability.
+
+  - id: multichallenge
+    name: MultiChallenge
+    aliases: ["MultiChallenge"]
+    domain: instruction_following
+    url: https://arxiv.org/abs/2501.17399
+    released: 2025-01-29
+    caveat: Multi-turn instruction retention, graded by an LLM judge.
+
+  - id: widesearch
+    name: WideSearch
+    aliases: ["WideSearch"]
+    domain: agent
+    url: https://widesearch-seed.github.io/
+    released: 2025-08-11
+    caveat: Wide-coverage web collection; scored on completeness of an enumerated answer set.
+
+  - id: automationbench
+    name: AutomationBench
+    aliases: ["AutomationBench", "Zapier AutomationBench", "HLEAutomationBench"]
+    domain: agent
+    url: https://github.com/zapier/automation-bench
+    released: 2026-03-10
+    caveat: >-
+      Published by Zapier over its own automation surface, and cards report
+      different task subsets of it.
+
+  - id: bankertoolbench
+    name: BankerToolBench
+    aliases: ["BankerToolBench", "Banker Tool Bench", "BTB"]
+    domain: professional
+    url: https://github.com/Handshake-AI-Research/bankertoolbench
+    caveat: >-
+      End-to-end investment-banking tasks produce spreadsheets, presentations,
+      and documents; the agent harness, financial-data tools, and rubric-grader
+      configuration are part of the score.
+
+  - id: agents_last_exam
+    name: Agents' Last Exam
+    aliases: ["Agents' Last Exam", "ALE", "Agent's Last Exam", "ALE-CLI"]
+    domain: coding_agent
+    url: https://lastexam.ai/
+    released: 2025-01-23
+    caveat: >-
+      Multi-step agentic benchmark using Claude Code harness. Tool Search
+      disabled. Scores depend on harness, reasoning effort, context length, and
+      timeout settings.
+
+  - id: nl2repo
+    name: NL2Repo
+    aliases: ["NL2Repo", "NL-to-Repo"]
+    domain: coding_agent
+    url: https://github.com/nl2repo/nl2repo
+    released: 2025-06-15
+    caveat: >-
+      Evaluates generating a repository from a natural language description.
+      Temperature=1.0, top_p=1.0, max_new_tokens=64k under 1M context.
+
+  - id: deepswe
+    name: DeepSWE
+    aliases: ["DeepSWE"]
+    domain: coding_agent
+    url: https://github.com/deepswe/deepswe
+    released: 2025-09-15
+    caveat: >-
+      Mini-swe-agent harness, temperature=0.95, top_p=1.0, max_new_tokens=64k
+      under 1M context.
+
+  - id: toolathlon_verified
+    name: Toolathlon Verified
+    aliases: ["Toolathlon Verified", "Toolathlon"]
+    domain: tool_use
+    url: https://github.com/toolathlon/toolathlon
+    released: 2025-11-01
+    caveat: >-
+      Pass@1 averaged over 3 independent runs. Official evaluation service.
+
+  - id: babyvision
+    name: BabyVision
+    aliases: ["BabyVision"]
+    domain: multimodal
+    url: https://github.com/babyvision/babyvision
+    released: 2025-12-01
+    caveat: >-
+      Multimodal vision benchmark. Temperature=1.0, top_p=0.95, max context
+      164K tokens. Images resized to shorter side at least 1.5K pixels.
+
+  - id: office_qa_pro
+    name: OfficeQA Pro
+    aliases: ["OfficeQA Pro", "OfficeQA"]
+    domain: vision
+    url: https://github.com/OfficeQA/OfficeQA-Pro
+    released: 2025-06-01
+    caveat: >-
+      Visual QA benchmark on professional document corpus (PDF without
+      embedded text). Scores depend on context length and image resolution.
+
+  - id: charxiv_reasoning
+    name: CharXiv Reasoning
+    aliases: ["CharXiv Reasoning", "CharXiv"]
+    domain: vision
+    url: https://github.com/CharXiv/CharXiv
+    released: 2025-06-01
+    caveat: >-
+      Chart reasoning benchmark with tool access. Scores depend on context
+      length and tool configuration.
+
+  - id: chartography
+    name: Chartography
+    aliases: ["Chartography"]
+    domain: vision
+    url: https://github.com/Chartography/Chartography
+    released: 2025-06-01
+    caveat: >-
+      Chart comprehension benchmark with tool access. Scores depend on context
+      length and tool configuration.
+
+  - id: mvbench
+    name: MVbench
+    aliases: ["MVbench", "MVBench"]
+    domain: vision
+    url: https://github.com/MVBench/MVBench
+    released: 2025-06-01
+    caveat: >-
+      Video understanding benchmark. For non-video-native models, uses 1 fps
+      frame extraction. Scores depend on frame sampling strategy and context
+      length.
+
+  - id: mmvu
+    name: MMVU
+    aliases: ["MMVU"]
+    domain: vision
+    url: https://github.com/MMVU/MMVU
+    released: 2025-06-01
+    caveat: >-
+      Video understanding benchmark. For non-video-native models, uses 1 fps
+      frame extraction. Scores depend on frame sampling strategy and context
+      length.
+
+  - id: critpt
+    name: CritPt
+    aliases: ["CritPt"]
+    domain: science
+    url: https://arxiv.org/abs/2509.26574
+    released: 2025-09-30
+    caveat: Research-level physics reasoning; small expert-authored set.
+
+  - id: posttrainbench
+    name: PostTrainBench
+    aliases: ["PostTrainBench", "PostTrainBench Lite"]
+    domain: ai_research
+    url: https://posttrainbench.com/
+    released: 2026-01-20
+    caveat: >-
+      Measures a model's ability to run post-training itself. Hardware differs
+      between reported runs (H100 vs H20), which moves the score.
+
+  - id: exploitbench
+    name: ExploitBench
+    aliases: ["ExploitBench", "ExploitBench (Cap%)"]
+    domain: security
+    # The benchmark's own project site. This previously pointed at the GPT-5.6
+    # preview system card, which reports scores against the instrument rather
+    # than publishing it.
+    url: https://exploitbench.ai/
+    # arXiv:2605.14153 v1, submitted 2026-05-13. Not the 2026-06-26 GPT-5.6
+    # preview date this field once carried: that records when OpenAI reported
+    # the benchmark, and Anthropic's 2026-06-09 table already measured against
+    # it, so the reporting date cannot be the release date.
+    released: 2026-05-13
+    caveat: >-
+      Offensive-security capability measured as a risk indicator against a
+      preparedness threshold, not a leaderboard to top. Reported as a
+      capability percentage. Published by Seunghyun Lee and David Brumley
+      (Carnegie Mellon; Brumley also lists Bugcrowd) as arXiv:2605.14153 with
+      code at github.com/exploitbench/exploitbench. 41 V8 N-day
+      vulnerabilities scored by 16 grader-verified capability flags; vendor
+      runs report the capability percentage without publishing per-flag
+      results, so a reported number is not reproducible from the paper alone.
+
+  # ---------------------------------------------------------------------------
+  # Instruments first observed in Anthropic's 2026-06-09 Claude Fable 5 /
+  # Mythos 5 comparison table (issue #90). That table is published as an image,
+  # so these names are absent from the page text and were missed by every
+  # text-based pass over the release.
+  #
+  # Several are vendor-internal: Anthropic names them in its own comparison
+  # table without publishing a task specification, so there is nothing to link
+  # to and nothing a third party can reproduce. They are recorded because the
+  # adoption count measures what vendors put in front of readers, and an
+  # unreproducible instrument in a headline table is exactly that. Their
+  # caveats carry the warning the missing URL would otherwise leave implicit.
+  # ---------------------------------------------------------------------------
+
+  - id: frontiercode
+    name: FrontierCode
+    aliases: ["FrontierCode", "FrontierCode (Diamond)"]
+    domain: coding_agent
+    # Its own announcement post. This previously pointed at
+    # cognition.ai/blog/frontier-bench, which 404s and is not Cognition's:
+    # Frontier-Bench is Terminal-Bench's, and is recorded under terminal_bench.
+    url: https://cognition.com/blog/frontier-code
+    released: 2026-06-08
+    caveat: >-
+      Cognition's production-standard coding evaluation, asking whether models
+      write *good* code rather than merely correct code. Unrelated to
+      Terminal-Bench's Frontier-Bench despite the shared prefix. Reported per
+      reasoning-effort setting (the Diamond subset at xhigh), so the effort
+      level has to travel with the number. First-party to a competing coding
+      agent's vendor, and revised as 1.1 on 2026-07-07, so the methodology
+      version has to travel with the number too.
+
+  - id: blueprint_bench_2
+    name: Blueprint-Bench 2
+    aliases: ["Blueprint-Bench 2", "Blueprint-Bench", "BlueprintBench 2"]
+    domain: spatial_reasoning
+    url: https://andonlabs.com/evals/blueprint-bench-2
+    # The eval page states only "released in May 2026". The day comes from Andon
+    # Labs' own launch post, x.com/andonlabs/status/2051348274666504587
+    # ("Introducing Blueprint-Bench 2", 2026-05-04, linking this eval page).
+    released: 2026-05-04
+    caveat: >-
+      Spatial-reasoning set: 50 apartments, ~20 photos each, scored by a
+      connectivity-graph grader, with a public leaderboard on the Andon Labs
+      eval page (run in-house; dataset not openly downloadable). Builds on the
+      original Blueprint-Bench paper (arXiv:2509.25229), a distinct instrument
+      released 2025-09-24 whose scores must not be compared across versions.
+
+  - id: legal_agent_benchmark
+    name: Legal Agent Benchmark
+    aliases: ["Legal Agent Benchmark"]
+    domain: legal
+    url: https://www.harvey.ai/blog/introducing-harveys-legal-agent-benchmark
+    released: 2026-05-06
+    caveat: >-
+      Open-source agent benchmark from Harvey (github.com/harveyai/harvey-
+      labs): 1,200+ tasks across 24 practice areas, all-pass LLM-judge
+      grading. Absolute scores are very low across all models (0-13%), so
+      ordering at the top is decided by a handful of tasks and small gaps are
+      noise.
+
+  - id: biomysterybench
+    name: BioMysteryBench
+    aliases: ["BioMysteryBench"]
+    domain: biology
+    # The dataset itself, not the system card that reports scores against it.
+    url: https://huggingface.co/datasets/Anthropic/BioMysteryBench-full
+    # Anthropic's own announcement post, 2026-04-29. The Fable 5 system card
+    # §8.20.1 reports it without citing this publication, which is why the
+    # entry read as unpublished until the announcement was located.
+    released: 2026-04-29
+    caveat: >-
+      Reported in two splits ("hard" and "human solved") that differ by more
+      than 35 points, so a bare score is unreadable without its split.
+      Anthropic notes its own safety refusals depress this number, which means
+      the score mixes capability with policy. First-party to Anthropic, which
+      built it and publishes the dataset. The task set was revised after an
+      answer-key audit, so the item count moved and scores are not comparable
+      across dataset versions.
+
+  - id: gdp_pdf
+    name: GDP.pdf
+    aliases: ["GDP.pdf"]
+    domain: multimodal
+    url: https://surgehq.ai/blog/gdp-pdf-can-100b-ai-models-master-the-documents-that-run-the-world
+    released: 2026-04-14
+    caveat: >-
+      Vision-based knowledge work over 100 PDFs across 10 domains, reported
+      no-tools. Published by Surge AI with a public dataset
+      (huggingface.co/datasets/surgeai/GDP.pdf), harness
+      (github.com/surge-ai/gdp-pdf) and paper (arXiv:2607.11192). The name
+      resembles GDPval but the two are separate instruments and must not be
+      merged.
+
+  - id: vibench
+    name: ViBench
+    aliases: ["ViBench"]
+    domain: coding_agent
+    url: https://vibench.ai/
+    # The CAIS '26 paper, published 2026-05-26 (doi:10.1145/3786335.3813162).
+    # The public repository's first import predates it (2026-05-13); the formal
+    # publication date is used, and the repo date is recorded here as the
+    # earliest public artifact.
+    released: 2026-05-26
+    caveat: >-
+      End-to-end vibe-coding benchmark by authors at Replit and Georgian AI
+      Lab, scoring web applications from the user's perspective. Tasks are
+      derived from anonymized Replit production traces, so the benchmark is
+      first-party to one of the agents it measures. It reaches this registry
+      through a customer testimonial in Anthropic's Claude Fable 5 / Mythos 5
+      launch post, where it is described qualitatively and never scored in the
+      comparison table. Distinct from VBench, an unrelated video-generation
+      benchmark.
+
+  - id: healthbench_professional
+    name: HealthBench Professional
+    aliases: ["HealthBench Professional"]
+    domain: health
+    url: https://cdn.openai.com/dd128428-0184-4e25-b155-3a7686c7d744/HealthBench-Professional.pdf
+    released: 2026-04-22
+    caveat: >-
+      A distinct, harder split from the HealthBench variants recorded
+      separately in this registry, so its scores are not comparable to them.
+      Published as an OpenAI paper (525 examples, 3 clinician use cases) with
+      a public dataset; released 2026-04-22 per PDF metadata. Graded by an LLM
+      against physician-written rubrics.
+
+  - id: rsi_bench
+    name: RSI-Bench
+    aliases:
+      - "RSI-Bench"
+      - "RSI Bench"
+      - "RSIBench"
+      - "Recursive Self-Improvement Benchmark"
+    domain: agent
+    url: https://www.rsi-benchmark.com/
+    released: 2026-08-07
+    caveat: >-
+      Announced by Scale AI on 2026-08-07 and still in preview: it is
+      soliciting task contributions rather than reporting results, so no model
+      card in this registry reports it and its adoption count is zero. That
+      zero is a real reading, not a gap in the crawl. Recorded now so the
+      benchmark is addressable by name before any score exists, and so the
+      first card to report it has an id to resolve against. Scores are
+      per-task against a baseline under a fixed compute budget, graded on
+      reliability, efficiency, generality and idea quality, so a single
+      headline number should not be expected. Not to be confused with the
+      llm-stats "RSI Index" record, which is a different instrument.
+
+  - id: jointavbench
+    name: JointAVBench
+    aliases: ["JointAVBench", "Joint AV-Bench"]
+    domain: multimodal
+    url: https://arxiv.org/abs/2512.12772
+    released: 2025-12-14
+    caveat: >-
+      An ICLR 2026 poster on joint audio-visual reasoning in Omni-LLMs,
+      built with strict audio-video correlation across five cognitive
+      dimensions and four audio information types. Because the question set
+      requires both modalities, vendors that only report vision-only or
+      audio-only figures are not comparable on this instrument. Automated
+      annotation pipeline; manual verification effort is not quantified.
+
+  - id: omnivideobench
+    name: OmniVideoBench
+    aliases: ["OmniVideoBench", "Omni Video-Bench"]
+    domain: multimodal
+    url: https://arxiv.org/abs/2510.10689
+    released: 2025-10-12
+    caveat: >-
+      1,000 audio-visual reasoning questions over 628 videos (seconds to 30
+      minutes long), targeting synergistic audio-visual understanding in Omni
+      MLLMs, by the NJU-LINK team; an ICLR 2026 poster. Video length and audio-video correlation
+      vary widely, so per-model results depend heavily on which subset is
+      sampled and on frame/audio chunking strategy.
+
+  - id: asi_bench
+    name: ASI-Bench
+    aliases: ["ASI-Bench", "ASI Bench"]
+    domain: science
+    url: https://arxiv.org/abs/2608.17271
+    released: 2026-08-18
+    caveat: >-
+      First benchmark that jointly evaluates general intelligence, innovation,
+      and autonomous execution, via 60 project-level scientific research tasks
+      spanning 11 domains, progressively withdrawing human guidance. Very new
+      (arXiv 2608.17271, code at github.com/apexin-ai/ASI-Bench) and intended
+      to probe superintelligence-level behaviour, so high variance across seeds
+      and scaffolds should be expected before any vendor adopts it. Only the
+      seed-31415 instances are public; the seed-42 references stay private for
+      official leaderboard scoring, so a locally computed score and a
+      leaderboard score are not the same measurement. This registry's
+      maintainer is one of the benchmark's authors.
+
+  - id: swe_bench_science
+    name: SWE-bench Science
+    aliases: ["SWE-bench Science", "SWE-Bench-Science", "SWE Bench Science"]
+    domain: coding_agent
+    url: https://arxiv.org/abs/2608.19799
+    released: 2026-08-20
+    caveat: >-
+      Repository-level scientific software engineering benchmark from the
+      OpenMOSS team (Fudan): 119 tasks across 98 GitHub repositories in 20
+      scientific domains, organized into Issue-driven, Expert-exploratory, and
+      Engineering-integration paradigms. Best reported pass@1 is below 50%
+      (Claude Code with Opus-5 max), and the paper identifies four recurring
+      failure mechanisms, so scores are highly sensitive to scientific-domain
+      knowledge and tool access, not only to coding ability.
+
+  - id: skillsbench
+    name: SkillsBench
+    aliases: ["SkillsBench", "SkillsBench V1", "Skills Bench"]
+    domain: agent
+    url: https://skillsbench.ai/
+    released: '2026-02-13'  # First paper version: https://arxiv.org/abs/2602.12670
+    caveat: >-
+      Measures whether curated Agent Skills raise agent pass rates, not raw
+      model capability; the meaningful figure is the paired no-Skills versus
+      curated-Skills gap. The release date follows the paper's first submission.
+
+  - id: swe_atlas
+    name: SWE Atlas
+    aliases: ["SWE Atlas", "SWE-Atlas"]
+    domain: coding_agent
+    url: https://github.com/scaleapi/SWE-Atlas
+    released: '2026-05-08'  # First paper version: https://arxiv.org/abs/2605.08366
+    caveat: >-
+      Reports three splits (Codebase Q&A, Test Writing, Refactoring) as
+      separate figures; the split is part of the instrument.
+
+  - id: swe_marathon
+    name: SWE-Marathon
+    aliases: ["SWE-Marathon", "SWE Marathon"]
+    domain: coding_agent
+    url: https://github.com/abundant-ai/swe-marathon
+    caveat: >-
+      Ultra long-horizon software engineering tasks; the score depends on the
+      agent's loop budget as much as on coding skill.
+
+  - id: cybergym
+    name: CyberGym
+    domain: security
+    url: https://openreview.net/forum?id=2YvbLQEdYt
+    caveat: >-
+      Real-world cybersecurity tasks; tool permissions and time limits are
+      part of the result, not incidental to it.
+
+  - id: programbench
+    name: ProgramBench
+    domain: coding
+    url: https://arxiv.org/abs/2605.03546
+    released: '2026-05-05'  # First paper version at the cited URL.
+    caveat: >-
+      Cleanroom program-rebuild tasks; most models score low, so small
+      differences sit within run-to-run noise.
+
+  - id: harbor_index
+    name: Harbor-Index
+    aliases: ["Harbor-Index", "Harbor Index"]
+    domain: coding_agent
+    url: https://github.com/harbor-framework/harbor-index
+    caveat: >-
+      Compact high-signal frontier-agent evaluation; the environment and
+      harness define the score.
+
+  - id: onemillionbench
+    name: OneMillionBench
+    aliases: ["OneMillionBench", "One Million Bench"]
+    domain: long_context
+    url: https://github.com/humanlaya/OneMillion-Bench
+    caveat: >-
+      Long-context recall and use; a "with tools" figure is not comparable to
+      a no-tools run.
+
+  - id: draco
+    name: DRACO
+    domain: long_context
+    url: https://huggingface.co/datasets/perplexity-ai/draco
+    caveat: >-
+      Deep-research style long-context agent tasks; the retrieval and tool
+      stack is part of the score.
+
+  - id: jobbench
+    name: JobBench
+    domain: professional
+    url: https://arxiv.org/abs/2605.26329
+    released: '2026-05-25'  # First paper version at the cited URL.
+    caveat: >-
+      Professional job tasks aligned with human work; rubric grading moves the
+      number beyond model capability alone.
+
+  - id: workspacebench
+    name: WorkspaceBench
+    aliases: ["Workspace-Bench", "Workspace Bench", "Workspace-Bench 1.0"]
+    domain: professional
+    url: https://arxiv.org/abs/2605.03596
+    released: '2026-05-05'  # First paper version at the cited URL.
+    caveat: >-
+      Large-scale file-workspace tasks; the environment and file dependencies
+      are part of the measurement.
+
+  - id: superchem
+    name: SUPERChem
+    domain: science
+    url: https://github.com/catalystforyou/SUPERChem_eval
+    caveat: >-
+      Multimodal chemical reasoning; image and formula parsing quality moves
+      the reported figure.
+
+  - id: arxivmath
+    name: ArXivMath
+    domain: math
+    url: https://matharena.ai/arxivmath
+    caveat: >-
+      Competition-style mathematics drawn from arXiv; test-time compute budget
+      is part of the result.
+
+  - id: horizonmath
+    name: HorizonMath
+    domain: math
+    url: https://github.com/ewang26/HorizonMath
+    caveat: >-
+      Unsolved research-level mathematics, reported at pass@4, so figures sit
+      far below conventional accuracy scales.
+
+  - id: matharena_apex_2025
+    name: MathArena Apex 2025
+    aliases: ["MathArena Apex", "MathArena Apex 2025", "Apex 2025"]
+    domain: math
+    url: https://matharena.ai/apex
+    caveat: >-
+      The hardest MathArena split; even near-ceiling models sit well below
+      typical math-benchmark numbers.
+
+  - id: brokenarxiv
+    name: BrokenArXiv
+    domain: math
+    url: https://matharena.ai/brokenarxiv
+    caveat: >-
+      arXiv proofs with planted errors; tests whether a model catches a broken
+      argument instead of reproducing it.
+
+# Model cards, technical reports and release posts.
+#
+# `organization` is the publisher of the document. `benchmarks` is the set of
+# canonical ids that document reports a result for. It is a set, not a ranking:
+# a card that reports AIME once and a card that reports it in four
+# configurations both contribute exactly one adoption.
+model_cards:
+  - id: openai_gpt_5_system_card
+    organization: OpenAI
+    model: GPT-5
+    document_type: system_card
+    published: 2025-08-07
+    url: https://openai.com/index/gpt-5-system-card/
+    retrieved_at: 2026-08-02
+    benchmarks:
+      - gpqa_diamond
+      - hle
+      - swe_bench_verified
+      - aime
+      - mmmu
+      - simpleqa
+      - browsecomp
+      - tau_bench
+      - livecodebench
+      - mrcr
+      # HealthBench (§3.10 Health) and MLE-Bench (§5.1.3.3 AI Self-Improvement)
+      # are both evaluated explicitly in this card, read from the arXiv PDF
+      # (2601.03267). Both are OpenAI-authored instruments, which is why the
+      # card is their most complete single source.
+      - healthbench
+      - mle_bench
+
+  - id: openai_o3_o4_mini_system_card
+    organization: OpenAI
+    model: o3 and o4-mini
+    document_type: system_card
+    published: 2025-04-16
+    url: https://openai.com/index/o3-o4-mini-system-card/
+    retrieved_at: 2026-08-02
+    benchmarks:
+      - gpqa_diamond
+      - aime
+      - swe_bench_verified
+      - mmmu
+      - browsecomp
+      - simpleqa
+      - arc_agi
+      - livecodebench
+
+  - id: openai_gpt_4_1
+    organization: OpenAI
+    model: GPT-4.1
+    document_type: release_post
+    published: 2025-04-14
+    url: https://openai.com/index/gpt-4-1/
+    retrieved_at: 2026-08-02
+    benchmarks:
+      - swe_bench_verified
+      - gpqa_diamond
+      - aime
+      - mmlu
+      - mmmu
+      - video_mme
+      - mrcr
+      - ifeval
+      - aider_polyglot
+
+  - id: anthropic_claude_4_system_card
+    organization: Anthropic
+    model: Claude Opus 4 and Sonnet 4
+    document_type: system_card
+    published: 2025-05-22
+    url: https://www.anthropic.com/news/claude-4
+    retrieved_at: 2026-08-02
+    benchmarks:
+      - swe_bench_verified
+      - terminal_bench
+      - gpqa_diamond
+      - aime
+      - mmmu
+      - tau_bench
+      - mmmlu
+      - mrcr
+
+  - id: anthropic_claude_3_7_sonnet
+    organization: Anthropic
+    model: Claude 3.7 Sonnet
+    document_type: system_card
+    published: 2025-02-24
+    url: https://www.anthropic.com/news/claude-3-7-sonnet
+    retrieved_at: 2026-08-02
+    benchmarks:
+      - swe_bench_verified
+      - tau_bench
+      - gpqa_diamond
+      - aime
+      - mmlu_pro
+      - mmmu
+      - math_500
+      - ifeval
+
+  - id: google_gemini_2_5_report
+    organization: Google
+    model: Gemini 2.5 Pro
+    document_type: technical_report
+    published: 2025-06-17
+    url: https://storage.googleapis.com/deepmind-media/gemini/gemini_v2_5_report.pdf
+    retrieved_at: 2026-08-02
+    benchmarks:
+      - hle
+      - gpqa_diamond
+      - aime
+      - livecodebench
+      - swe_bench_verified
+      - mmmu
+      - video_mme
+      - mrcr
+      - simpleqa
+      - arc_agi
+      - mathvista
+      # Tables 3 and 4 both print Aider Polyglot (82.2% for Gemini 2.5 Pro),
+      # and the methodology section documents it as a 3-trial pass-rate average.
+      - aider_polyglot
+
+  - id: google_gemini_1_5_report
+    organization: Google
+    model: Gemini 1.5
+    document_type: technical_report
+    published: 2024-03-08
+    url: https://arxiv.org/abs/2403.05530
+    retrieved_at: 2026-08-02
+    # No Video-MME: that benchmark was published 2024-05-31, after this report.
+    # The v1 report's long-video evaluations predate it.
+    benchmarks:
+      - mmlu
+      - gsm8k
+      - math_500
+      - humaneval
+      - mmmu
+      - mathvista
+      - drop
+      # ChartQA and DocVQA: state-of-the-art claim in the abstract and explicit
+      # zero-shot evaluations in the Charts & Documents table (Table 18), with
+      # ANLS reported for DocVQA. Read from the arXiv PDF (2403.05530).
+      - chartqa
+      - docvqa
+
+  # Benchmarks read from the Maverick instruction-tuned comparison table
+  # published in this post, not from the surrounding prose. ChartQA, DocVQA,
+  # MTOB and Multilingual MMLU come from that table's rows; the table also
+  # states 0-shot, temperature 0, no majority voting, which is why no score is
+  # recorded here.
+  #
+  # No MRCR: that table's long-context rows are MTOB (half book and full book).
+  # OpenAI open-sourced MRCR alongside GPT-4.1 on 2025-04-14, nine days after
+  # this post, so it could not have been reported here.
+  - id: meta_llama_4
+    organization: Meta
+    model: Llama 4
+    document_type: model_card
+    published: 2025-04-05
+    url: https://ai.meta.com/blog/llama-4-multimodal-intelligence/
+    retrieved_at: 2026-08-02
+    benchmarks:
+      - mmlu_pro
+      - gpqa_diamond
+      - livecodebench
+      - mmmu
+      - mathvista
+      - chatbot_arena
+      - chartqa
+      - docvqa
+      - mtob
+      - mmmlu
+
+  - id: meta_llama_3_1
+    organization: Meta
+    model: Llama 3.1 405B
+    document_type: model_card
+    published: 2024-07-23
+    url: https://ai.meta.com/blog/meta-llama-3-1/
+    retrieved_at: 2026-08-02
+    benchmarks:
+      - mmlu
+      - mmlu_pro
+      - gpqa
+      - humaneval
+      - mbpp
+      - gsm8k
+      - math_500
+      - ifeval
+      - arena_hard
+      - agieval
+      - bfcl
+      - drop
+
+  - id: qwen3_technical_report
+    organization: Qwen
+    model: Qwen3
+    document_type: technical_report
+    published: 2025-05-14
+    url: https://arxiv.org/abs/2505.09388
+    retrieved_at: 2026-08-02
+    benchmarks:
+      - mmlu_pro
+      - mmlu_redux
+      - gpqa_diamond
+      - aime
+      - livecodebench
+      - arena_hard
+      - ifeval
+      - bfcl
+      - livebench
+      - humaneval
+      # Table 11 prints "MATH-500 98.0" for Qwen3-235B-A22B (Thinking).
+      - math_500
+
+  - id: qwen2_5_coder_report
+    organization: Qwen
+    model: Qwen2.5-Coder
+    document_type: technical_report
+    published: 2024-09-18
+    url: https://arxiv.org/abs/2409.12186
+    retrieved_at: 2026-08-02
+    benchmarks:
+      - humaneval
+      - mbpp
+      - livecodebench
+      - mmlu
+      - gsm8k
+      - math_500
+
+  - id: deepseek_r1_report
+    organization: DeepSeek
+    model: DeepSeek-R1
+    document_type: technical_report
+    published: 2025-01-22
+    url: https://arxiv.org/abs/2501.12948
+    retrieved_at: 2026-08-02
+    benchmarks:
+      - aime
+      - math_500
+      - gpqa_diamond
+      - livecodebench
+      - mmlu
+      - mmlu_pro
+      - mmlu_redux
+      - simpleqa
+      - ifeval
+      - arena_hard
+      - swe_bench_verified
+      - aider_polyglot
+      # Table 8 prints "DROP (3-shot F1) 92.2" for R1.
+      - drop
+
+  - id: deepseek_v3_report
+    organization: DeepSeek
+    model: DeepSeek-V3
+    document_type: technical_report
+    published: 2024-12-27
+    url: https://arxiv.org/abs/2412.19437
+    retrieved_at: 2026-08-02
+    benchmarks:
+      - mmlu
+      - mmlu_pro
+      - mmlu_redux
+      - gpqa_diamond
+      - humaneval
+      - mbpp
+      - livecodebench
+      - gsm8k
+      - math_500
+      - aime
+      - ifeval
+      - arena_hard
+      - agieval
+      - drop
+      # Table 6 of the report also prints "SWE Verified (Resolved) 42.0" and
+      # "SimpleQA (Correct) 24.9" for V3. Both were missing here until the score
+      # layer's provenance check caught a recorded score whose source card did
+      # not list the benchmark.
+      - swe_bench_verified
+      - simpleqa
+
+  - id: mistral_large_2
+    organization: Mistral
+    model: Mistral Large 2
+    document_type: release_post
+    published: 2024-07-24
+    url: https://mistral.ai/news/mistral-large-2407/
+    retrieved_at: 2026-08-02
+    benchmarks:
+      - mmlu
+      - humaneval
+      - mbpp
+      - gsm8k
+      - math_500
+
+  - id: mistral_medium_3
+    organization: Mistral
+    model: Mistral Medium 3
+    document_type: release_post
+    published: 2025-05-07
+    url: https://mistral.ai/news/mistral-medium-3
+    retrieved_at: 2026-08-02
+    benchmarks:
+      - mmlu_pro
+      - gpqa_diamond
+      - humaneval
+      - livecodebench
+      - math_500
+      - ifeval
+      - aider_polyglot
+
+  - id: xai_grok_4_model_card
+    organization: xAI
+    model: Grok 4
+    document_type: model_card
+    published: 2025-07-09
+    url: https://x.ai/news/grok-4
+    retrieved_at: 2026-08-02
+    benchmarks:
+      - hle
+      - gpqa_diamond
+      - aime
+      - livecodebench
+      - arc_agi
+      - swe_bench_verified
+      - mmmu
+
+  # ---------------------------------------------------------------------------
+  # 2026 releases.
+  #
+  # Everything above documents models shipped in 2024-2025. The blocks below are
+  # the current frontier, and they are what makes the ranking a statement about
+  # today rather than about last year. Two things changed in how vendors report:
+  #
+  #   * The headline moved from static QA sets to agentic and harness-dependent
+  #     evaluations (Terminal-Bench, SWE-bench Pro, tau2-bench, MCP Atlas,
+  #     OSWorld, GDPval). MMLU and HumanEval still appear, but in base-model
+  #     tables, not in the lead.
+  #   * Several 2026 headline benchmarks are published by a commercial party
+  #     with a stake in the result (Cursor's CursorBench, Zapier's
+  #     AutomationBench, Artificial Analysis's -AA variants). Their
+  #     per-benchmark caveats say so; the adoption count cannot.
+  # ---------------------------------------------------------------------------
+
+  - id: anthropic_claude_opus_5_system_card
+    organization: Anthropic
+    model: Claude Opus 5
+    document_type: system_card
+    published: 2026-07-24
+    url: https://www.anthropic.com/news/claude-opus-5
+    retrieved_at: 2026-08-02
+    benchmarks:
+      - cursor_bench
+      - arc_agi_3
+      - automationbench
+      - osworld
+      - gdpval
+      - deepsearchqa
+      - swe_bench_verified
+      - swe_bench_pro
+      - terminal_bench
+
+  # The headline comparison table in this release is published as an image, so
+  # a text-only reading of the page sees only the benchmarks named in prose.
+  # The first pass recorded five entries, two of which (BrowseComp, SWE-bench
+  # Verified) appear nowhere in the release at all, and missed the thirteen
+  # instruments the table actually leads with. Issue #90 asked for the table to
+  # be read directly; the list below is transcribed from it, plus the three
+  # benchmarks named only in the surrounding prose.
+  - id: anthropic_claude_fable_5_mythos_5
+    organization: Anthropic
+    model: Claude Fable 5 and Mythos 5
+    document_type: release_post
+    published: 2026-06-09
+    url: https://www.anthropic.com/news/claude-fable-5-mythos-5
+    retrieved_at: 2026-08-02
+    benchmarks:
+      # From the comparison table, in the order it lists them.
+      - swe_bench_pro
+      - frontiercode
+      - gdpval
+      - gdp_pdf
+      - blueprint_bench_2
+      - automationbench
+      - osworld
+      - legal_agent_benchmark
+      - hle
+      - biomysterybench
+      # Frontier-Bench, named in the prose, is folded into this id.
+      - terminal_bench
+      - exploitbench
+      - healthbench_professional
+      # Named in prose rather than scored in the table.
+      - cursor_bench
+      - vibench
+
+  - id: openai_gpt_5_6_system_card
+    organization: OpenAI
+    model: GPT-5.6 (Sol, Terra, Luna)
+    document_type: system_card
+    published: 2026-07-09
+    url: https://deploymentsafety.openai.com/gpt-5-6-preview
+    retrieved_at: 2026-08-02
+    benchmarks:
+      - healthbench
+      - cvebench
+      - mle_bench
+      - posttrainbench
+      - exploitbench
+      - browsecomp
+      - terminal_bench
+
+  - id: openai_gpt_5_6_release
+    organization: OpenAI
+    model: GPT-5.6
+    document_type: release_post
+    published: 2026-06-26
+    url: https://openai.com/index/gpt-5-6/
+    retrieved_at: 2026-08-02
+    benchmarks:
+      - terminal_bench
+      - browsecomp
+      - swe_bench_verified
+      - gpqa_diamond
+      - hle
+
+  - id: google_gemini_3_1_pro_model_card
+    organization: Google
+    model: Gemini 3.1 Pro
+    document_type: model_card
+    published: 2026-02-19
+    url: https://deepmind.google/models/model-cards/gemini-3-1-pro/
+    retrieved_at: 2026-08-02
+    benchmarks:
+      - hle
+      - arc_agi_2
+      - gpqa_diamond
+      - terminal_bench
+      - swe_bench_verified
+      - swe_bench_pro
+      - livecodebench_pro
+      - scicode
+      - apex_agents
+      - tau2_bench
+      - mcp_atlas
+      - browsecomp
+      - mmmu_pro
+      - mmmlu
+      - mrcr
+
+  - id: google_gemma_4_model_card
+    organization: Google
+    model: Gemma 4 (31B)
+    document_type: model_card
+    published: 2026-03-11
+    url: https://huggingface.co/google/gemma-4-31B-it
+    retrieved_at: 2026-08-02
+    benchmarks:
+      - mmlu_pro
+      - aime
+      - livecodebench
+      - codeforces
+      - gpqa_diamond
+      - tau2_bench
+      - hle
+      - bigbench_extra_hard
+      - mmmlu
+      - mmmu_pro
+      - omnidocbench
+      - mathvision
+      - mrcr
+
+  - id: qwen3_5_model_card
+    organization: Qwen
+    model: Qwen3.5-397B-A17B
+    document_type: model_card
+    published: 2026-02-16
+    url: https://huggingface.co/Qwen/Qwen3.5-397B-A17B
+    retrieved_at: 2026-08-02
+    benchmarks:
+      - mmlu_pro
+      - mmlu_redux
+      - super_gpqa
+      - ifeval
+      - ifbench
+      - multichallenge
+      - aa_lcr
+      - longbench
+      - gpqa
+      - gpqa_diamond
+      - hle
+      - livecodebench
+      - hmmt
+      - imo_answer_bench
+      - aime
+      - bfcl
+      - tau2_bench
+      - tool_decathlon
+      - mcp_mark
+      - browsecomp
+      - browsecomp_zh
+      - widesearch
+      - mmmlu
+      - swe_bench_verified
+      - swe_bench_multilingual
+      - seccodebench
+      - terminal_bench
+      - mmmu
+      - mmmu_pro
+      - mathvision
+      - mathvista
+      - omnidocbench
+      - video_mme
+      - osworld
+
+  - id: deepseek_v4_model_card
+    organization: DeepSeek
+    model: DeepSeek-V4-Pro
+    document_type: model_card
+    published: 2026-04-22
+    url: https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro
+    retrieved_at: 2026-08-02
+    benchmarks:
+      - agieval
+      - mmlu
+      - mmlu_redux
+      - mmlu_pro
+      - mmmlu
+      - simpleqa
+      - super_gpqa
+      - drop
+      - humaneval
+      - gsm8k
+      - math_500
+      - longbench
+      - gpqa_diamond
+      - hle
+      - livecodebench
+      - codeforces
+      - hmmt
+      - imo_answer_bench
+      - apex_agents
+      - mrcr
+      - terminal_bench
+      - swe_bench_verified
+      - swe_bench_pro
+      - swe_bench_multilingual
+      - browsecomp
+      - gdpval
+      - mcp_atlas
+      - tool_decathlon
+
+  - id: deepseek_v4_technical_report
+    organization: DeepSeek
+    model: DeepSeek-V4
+    document_type: technical_report
+    published: 2026-06-25
+    url: https://arxiv.org/abs/2606.19348
+    retrieved_at: 2026-08-02
+    # Main comparison table (Table 4) reports the full DeepSeek-V4 series:
+    # DeepSeek-V4-Flash, DeepSeek-V4-Pro and DeepSeek-V4-Pro-Max. The
+    # DeepSeek-V4-Pro columns duplicate the DeepSeek-V4-Pro model card, so only
+    # DeepSeek-V4-Flash is scored from this source (see benchmark_scores.yml).
+    benchmarks:
+      - mmlu_pro
+      - simpleqa
+      - gpqa_diamond
+      - hle
+      - livecodebench
+      - codeforces
+      - hmmt
+      - imo_answer_bench
+      - apex_agents
+      - mrcr
+      - terminal_bench
+      - swe_bench_verified
+      - swe_bench_pro
+      - swe_bench_multilingual
+      - browsecomp
+      - gdpval
+      - mcp_atlas
+      - tool_decathlon
+      - longbench
+
+  - id: moonshot_kimi_k3_model_card
+    organization: Moonshot AI
+    model: Kimi K3
+    document_type: model_card
+    published: 2026-06-13
+    url: https://huggingface.co/moonshotai/Kimi-K3
+    retrieved_at: 2026-08-02
+    benchmarks:
+      - gpqa_diamond
+      - critpt
+      - aa_lcr
+      - hle
+      - terminal_bench
+      - posttrainbench
+      - scicode
+      - browsecomp
+      - deepsearchqa
+      - gdpval
+      - tool_decathlon
+      - mcp_mark
+      - mcp_atlas
+      - automationbench
+      - apex_agents
+      - osworld
+      - omnidocbench
+      - video_mme
+      - mmmu_pro
+      - mathvision
+      - swe_bench_verified
+
+  - id: zai_glm_5_model_card
+    organization: Z.ai
+    model: GLM-5
+    document_type: model_card
+    published: 2026-02-11
+    url: https://huggingface.co/zai-org/GLM-5
+    retrieved_at: 2026-08-02
+    benchmarks:
+      - hle
+      - aime
+      - hmmt
+      - imo_answer_bench
+      - gpqa_diamond
+      - swe_bench_verified
+      - swe_bench_multilingual
+      - terminal_bench
+      - browsecomp
+      - browsecomp_zh
+      - tau2_bench
+      - mcp_atlas
+      - tool_decathlon
+      - vending_bench
+
+  - id: zai_glm_5_paper
+    organization: Z.ai
+    model: GLM-5
+    document_type: technical_report
+    published: 2026-02-11
+    url: https://huggingface.co/papers/2602.15763
+    retrieved_at: 2026-08-02
+    benchmarks:
+      - hle
+      - aime
+      - gpqa_diamond
+      - swe_bench_verified
+      - terminal_bench
+      - tau2_bench
+      - browsecomp
+
+  - id: xai_grok_4_5
+    organization: xAI
+    model: Grok 4.5
+    document_type: release_post
+    published: 2026-07-08
+    url: https://x.ai/news/grok-4-5
+    retrieved_at: 2026-08-02
+    benchmarks:
+      - terminal_bench
+      - swe_bench_pro
+      - gpqa_diamond
+      - hle
+      - arc_agi_2
+
+  - id: mistral_large_3
+    organization: Mistral
+    model: Mistral Large 3 (675B)
+    document_type: model_card
+    published: 2025-11-28
+    url: https://huggingface.co/mistralai/Mistral-Large-3-675B-Instruct-2512
+    retrieved_at: 2026-08-02
+    benchmarks:
+      - mmmlu
+      - gpqa_diamond
+      - simpleqa
+      - livecodebench
+
+  - id: qwen3_8_model_card
+    organization: Qwen
+    model: Qwen3.8-27B
+    document_type: model_card
+    published: 2026-08-05
+    url: https://ollama.com/library/qwen3.8
+    retrieved_at: 2026-08-15
+    # Transcribed from the card's text-performance and VL-performance tables.
+    # The card also reports NL2Repo-Bench, DeepSWE 1.1, QwenSWEBench,
+    # CoWorkBench, JobBench, Agents' Last Exam, WebArena-Verified, AndroidWorld,
+    # RecreationBench, ClawEval-MM, SWE-MM, Vision2Web, BabyVision, CharXiv
+    # (RQ), RealWorldQA and ERQA, none of which the registry tracks.
+    benchmarks:
+      - terminal_bench
+      - swe_bench_pro
+      - ifbench
+      - gpqa_diamond
+      - hle
+      - livecodebench
+      - osworld
+      - mathvision
+      - omnidocbench
+
+  - id: zai_glm_5_1_model_card
+    organization: Z.ai
+    model: GLM-5.1
+    document_type: model_card
+    published: 2026-04-03
+    url: https://huggingface.co/zai-org/GLM-5.1
+    retrieved_at: 2026-08-15
+    # Transcribed from the card's benchmark table. The card also reports NL2Repo,
+    # CyberGym and Vending Bench 2, none of which the registry tracks.
+    benchmarks:
+      - hle
+      - aime
+      - hmmt
+      - imo_answer_bench
+      - gpqa_diamond
+      - swe_bench_pro
+      - terminal_bench
+      - browsecomp
+      - tau2_bench
+      - mcp_atlas
+      - tool_decathlon
+      - vending_bench
+
+  - id: zai_glm_5_2_model_card
+    organization: Z.ai
+    model: GLM-5.2
+    document_type: model_card
+    published: 2026-06-16
+    url: https://huggingface.co/zai-org/GLM-5.2
+    retrieved_at: 2026-08-15
+    # Transcribed from the card's benchmark table. The card also reports NL2Repo,
+    # DeepSWE, ProgramBench and SWE-Marathon, none of which the registry tracks.
+    benchmarks:
+      - hle
+      - critpt
+      - aime
+      - hmmt
+      - imo_answer_bench
+      - gpqa_diamond
+      - swe_bench_pro
+      - terminal_bench
+      - posttrainbench
+      - mcp_atlas
+      - tool_decathlon
+
+  - id: zai_glm_5_3_flash_model_card
+    organization: Z.ai
+    model: GLM-5.3-Flash
+    document_type: model_card
+    published: 2026-08-27
+    url: https://z.ai/blog/glm-5.3-flash
+    retrieved_at: 2026-08-27
+    # Transcribed from the blog SPA's embedded JS benchmark table and footnotes.
+    # 14 benchmarks tracked; scores recorded in benchmark_scores.yml.
+    benchmarks:
+      - hle
+      - agents_last_exam
+      - nl2repo
+      - deepswe
+      - terminal_bench
+      - toolathlon_verified
+      - automationbench
+      - gdpval
+      - babyvision
+      - office_qa_pro
+      - charxiv_reasoning
+      - chartography
+      - mvbench
+      - mmvu
+
+  - id: deepseek_v4_pro_0813_model_card
+    organization: DeepSeek
+    model: DeepSeek-V4-Pro-0813
+    document_type: model_card
+    published: 2026-08-13
+    url: https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-0813
+    retrieved_at: 2026-08-15
+    # Transcribed from the card's benchmark table. The card also reports NL2Repo,
+    # Cybergym, DeepSWE, Agents' Last Exam and two internal DSBench variants,
+    # none of which the registry tracks.
+    benchmarks:
+      - hle
+      - terminal_bench
+      - tool_decathlon
+      - automationbench
+
+  - id: ai2_olmo_3
+    organization: Ai2
+    model: Olmo 3 (7B and 32B)
+    document_type: release_post
+    published: 2025-11-20
+    url: https://allenai.org/blog/olmo3
+    retrieved_at: 2026-08-15
+    benchmarks:
+      - mmlu
+      - mmlu_pro
+      - gpqa
+      - agieval
+      - gsm8k
+      - aime
+      - humaneval
+      - mbpp
+      - livecodebench
+      - drop
+      - ifeval
+      - ifbench
+      - simpleqa
+      - bfcl
+
+  - id: tencent_hy4_preview
+    organization: Tencent
+    model: Hy4 preview
+    document_type: technical_report
+    published: 2026-08-28
+    url: https://hy.tencent.ai/research/hy4-preview
+    retrieved_at: 2026-08-31
+    # Transcribed from the report's benchmark table. Tencent reports 37 rows
+    # across 34 tracked benchmarks: SWE Atlas contributes three splits and HLE
+    # reports both with-tools and no-tools. Nine rows explicitly marked
+    # "Internal" in the report are not tracked.
+    benchmarks:
+      - swe_bench_multilingual
+      - swe_bench_pro
+      - deepswe
+      - swe_atlas
+      - swe_marathon
+      - terminal_bench
+      - nl2repo
+      - cybergym
+      - programbench
+      - posttrainbench
+      - harbor_index
+      - widesearch
+      - onemillionbench
+      - draco
+      - office_qa_pro
+      - mcp_atlas
+      - toolathlon_verified
+      - apex_agents
+      - skillsbench
+      - jobbench
+      - workspacebench
+      - agents_last_exam
+      - gdpval
+      - automationbench
+      - bankertoolbench
+      - biomysterybench
+      - hle
+      - critpt
+      - gpqa_diamond
+      - superchem
+      - arxivmath
+      - horizonmath
+      - matharena_apex_2025
+      - brokenarxiv

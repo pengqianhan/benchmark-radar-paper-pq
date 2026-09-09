@@ -9,3 +9,5 @@
 arxiv.tar.gz
 build/
 __pycache__/
+benchmark-radar-*
+.DS_Store

@@ -14,7 +14,10 @@ Two figures, both from `evidence/benchmark-taxonomy.jsonl`:
 Nothing is imputed and no record is dropped: a benchmark with no release date
 is absent from the year panels by necessity, and the count is printed there.
 
-Both are written as vector PDFs, which is what \includegraphics takes.
+Both are written as vector PDFs, which is what \includegraphics takes. The Sankey
+export is then finished by widening its page to the left, because matplotlib sizes
+a page from `figsize` alone and clips the longest Level 1 label; see
+`pad_left_margin`. That step needs pypdf.
 
 Usage:
     python3 scripts/plot_taxonomy.py     # write figures/taxonomy-sankey.pdf and -trends.pdf
@@ -54,6 +57,12 @@ DISCOVERY_CUTOFF = "2026-09-07"
 # prints as 7pt. Drawn wider, the same figure is scaled down and its labels fall
 # below the ~6pt that stays legible in print.
 FIG_WIDTH_IN = 484.20988 / 72
+# That same width is why the Sankey needs a page repair rather than a wider
+# canvas: its longest Level 1 label is set right-aligned and runs left of its
+# node, ending at x=-1.5pt and off the exported page. `pad_left_margin` moves the
+# page edge out by this much once the drawing is final; 8pt clears the overhang
+# with a small margin to spare.
+SANKEY_LEFT_PAD_PT = 8.0
 # Titles and provenance notes live in the LaTeX caption, not inside the figure,
 # so nothing is said twice and the drawing keeps the height.
 FS_L1, FS_L2, FS_HEAD = 8.5, 6.2, 9.0
@@ -357,9 +366,61 @@ def draw_sankey(rows, path_stem, order):
     ax.axis("off")
     # No suptitle and no in-figure note: Figure~\ref{fig:taxonomy-sankey}'s
     # caption carries the population, the provenance and the facet counts.
-    fig.savefig(path_stem.with_suffix(".pdf"))
+    written = path_stem.with_suffix(".pdf")
+    fig.savefig(written)
     plt.close(fig)
-    return {"nodes_l2": len(l2s), "total": total}
+    # The export is not the finished figure: matplotlib clips the widest label at
+    # the page edge, so the page is opened up before this returns. Doing it here
+    # rather than in a separate script means the committed PDF is whatever this
+    # function wrote, and a rerun cannot quietly undo the repair.
+    padded = pad_left_margin(written)
+    return {"nodes_l2": len(l2s), "total": total, "padded": padded}
+
+
+def pad_left_margin(path, pad_pt=SANKEY_LEFT_PAD_PT):
+    r"""Widen an exported page to the left in place, leaving the drawing untouched.
+
+    matplotlib sizes a page from `figsize` alone and does not grow it for text
+    that overhangs the axes, so the Sankey's longest Level 1 label ends at
+    x=-1.5pt and the page edge cuts it. Drawing the figure wider is not an option:
+    the manuscript includes it at `width=\textwidth`, so a wider page is scaled
+    down and every label with it, below the size this module authors them at.
+    Moving /MediaBox and /CropBox exposes the label instead and leaves the vector
+    content stream byte-for-byte unchanged, which the check below enforces.
+
+    Idempotent, and returns whether it changed anything: a page that already
+    carries the margin is left alone, so this runs safely over its own output.
+    """
+    from pypdf import PdfReader, PdfWriter
+    from pypdf.generic import RectangleObject
+
+    reader = PdfReader(path)
+    if len(reader.pages) != 1:
+        raise ValueError(f"{path.name}: expected a single-page export")
+    page = reader.pages[0]
+    media = [float(value) for value in page.mediabox]
+    if media != [float(value) for value in page.cropbox] or page.rotation:
+        raise ValueError(f"{path.name}: unexpected page bounds {media}; inspect the export")
+    if media[0] == -pad_pt:
+        return False
+    if media[0] != 0.0:
+        raise ValueError(f"{path.name}: page starts at x={media[0]}, not 0; inspect the export")
+
+    writer = PdfWriter()
+    writer.clone_document_from_reader(reader)
+    padded = RectangleObject([media[0] - pad_pt, media[1], media[2], media[3]])
+    writer.pages[0].mediabox = padded
+    writer.pages[0].cropbox = padded
+    temporary = path.with_suffix(".tmp.pdf")
+    try:
+        writer.write(temporary)
+        repaired = PdfReader(temporary).pages[0]
+        if repaired.get_contents().get_data() != page.get_contents().get_data():
+            raise ValueError(f"{path.name}: the repair must preserve the drawing unchanged")
+        temporary.replace(path)
+    finally:
+        temporary.unlink(missing_ok=True)
+    return True
 
 
 # --- Trends -------------------------------------------------------------
@@ -503,7 +564,9 @@ def main():
 
     print(f"taxonomy-sankey  : {info['total']:,} records from "
           f"{len({r['source'] for r in rows})} sources, "
-          f"{len({r['l1'] for r in rows})} L1 -> {info['nodes_l2']} L2 nodes")
+          f"{len({r['l1'] for r in rows})} L1 -> {info['nodes_l2']} L2 nodes; "
+          f"left margin {'extended' if info['padded'] else 'already'} "
+          f"{SANKEY_LEFT_PAD_PT:g}pt")
     print(f"taxonomy-trends  : {trends['dated']} dated over "
           f"{trends['years'][0]}-{trends['years'][-1]}, {trends['undated']} undated stated on the figure")
     for name in ("taxonomy-sankey", "taxonomy-trends"):

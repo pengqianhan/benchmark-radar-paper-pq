@@ -1,0 +1,5 @@
+# Validated with Python 3.11. Use a single environment for byte comparisons.
+matplotlib==3.9.0
+numpy==1.26.4
+pypdf==6.13.3
+PyYAML==6.0.1

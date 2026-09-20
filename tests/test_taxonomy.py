@@ -256,7 +256,7 @@ def test_trends_use_every_year_no_window():
 
     data = build_trends()
     rows = [json.loads(line) for line in
-            (PAPER / "evidence" / "benchmark-taxonomy.jsonl").read_text().splitlines() if line]
+            (PAPER / "evidence" / "benchmark-taxonomy-dated.jsonl").read_text().splitlines() if line]
     present = {str(release_year(r)) for r in rows if release_year(r) is not None}
     assert set(data["years"]) == present, "a release year present in the data has no series"
 
@@ -314,14 +314,17 @@ def test_figures_are_byte_reproducible():
     import subprocess
 
     figures = [PAPER / "figures" / f"taxonomy-{n}.pdf" for n in ("sankey", "trends")]
-    before = [hashlib.sha256(f.read_bytes()).hexdigest() for f in figures]
-    result = subprocess.run(
-        [sys.executable, str(PAPER / "scripts" / "plot_taxonomy.py")],
-        capture_output=True, text=True, cwd=PAPER,
-    )
-    assert result.returncode == 0, result.stdout + result.stderr
-    after = [hashlib.sha256(f.read_bytes()).hexdigest() for f in figures]
-    assert before == after, "a rebuild changed the figures without the data changing"
+    builds = []
+    # Binary serialization can differ between library/platform versions. Compare
+    # two actual renders in this environment, not a PDF authored elsewhere.
+    for _ in range(2):
+        result = subprocess.run(
+            [sys.executable, str(PAPER / "scripts" / "plot_taxonomy.py")],
+            capture_output=True, text=True, cwd=PAPER,
+        )
+        assert result.returncode == 0, result.stdout + result.stderr
+        builds.append([hashlib.sha256(f.read_bytes()).hexdigest() for f in figures])
+    assert builds[0] == builds[1], "identical inputs produced different PDF bytes"
 
 
 def test_figures_render_and_are_current():
@@ -364,12 +367,142 @@ def test_figure_labels_are_the_canonical_class_names():
     assert set(plot_taxonomy.L1_COLOR) == set(canonical), "every class needs a colour"
 
 
+def test_panel_a_periods_keep_every_record_and_a_contiguous_axis():
+    """Every bucket width must hold the whole census on a gapless axis.
+
+    Panel A's step is a reading choice, so quarter, half and year all run off the
+    same release dates: a record is in a period bucket, in the pre-window column,
+    or in the undated one, and none of the three may lose one. The axis is
+    stepped rather than read off the keys present, so a period with no releases
+    has to stay on it as a gap instead of closing up and shortening the window.
+    """
+    import plot_taxonomy
+
+    rows = [json.loads(line) for line in
+            (PAPER / "evidence" / "benchmark-taxonomy-dated.jsonl").read_text().splitlines() if line]
+    assert plot_taxonomy.PANEL_A_PERIOD in plot_taxonomy.PERIODS
+    for period, spec in plot_taxonomy.PERIODS.items():
+        months = spec["months"]
+        end = plot_taxonomy.period_key(plot_taxonomy.DISCOVERY_CUTOFF, months)
+        axis, buckets, before, undated, span = plot_taxonomy.period_axis(rows, months, end)
+
+        placed = (sum(before.values()) + sum(undated.values())
+                  + sum(sum(counts.values()) for counts in buckets.values()))
+        assert placed == len(rows), f"{period}: {placed} of {len(rows)} records placed"
+        assert set(buckets) <= set(axis), f"{period}: a bucket sits off the axis"
+        assert span[1] < plot_taxonomy.WINDOW_START_YEAR, "the left column is pre-window only"
+
+        per_year = 12 // months
+        stepped = [(year, index)
+                   for year in range(axis[0][0], axis[-1][0] + 1)
+                   for index in range(1, per_year + 1)]
+        assert axis[0] == (plot_taxonomy.WINDOW_START_YEAR, 1)
+        assert axis[-1] == end, f"{period}: the axis must run to the discovery cutoff"
+        assert axis == stepped[stepped.index(axis[0]):stepped.index(axis[-1]) + 1]
+
+
+def test_manuscript_takes_every_period_word_from_the_generated_macros():
+    """The trend granularity is a switch; the prose must not hard-code it.
+
+    `TREND_PERIOD` changes both panels and cannot change the manuscript, so a
+    switch left unattended would ship a half-year caption over a quarterly
+    figure. The paragraph and the caption therefore name the period only through
+    the generated macros, and this fails if a literal creeps back in.
+    """
+    import plot_taxonomy
+    from taxonomy_trends import PERIODS, TREND_PERIOD
+
+    manuscript = (PAPER / "main.tex").read_text(encoding="utf-8")
+    body = manuscript[manuscript.index(r"Figure~\ref{fig:taxonomy-trends} places"):
+                      manuscript.index(r"\label{fig:taxonomy-trends}")]
+    prose, caption = body.split(r"\captionof{figure}{", 1)
+    for where, text in (("paragraph", prose), ("caption", caption)):
+        assert r"\TaxonomySharePeriod" in text, f"the {where} names no period macro"
+        for literal in ("quarterly", "half-year", "six-month", "three-month"):
+            assert literal not in text, f"the {where} hard-codes {literal!r}"
+    macros = (PAPER / "taxonomy-trend-data.tex").read_text(encoding="utf-8")
+    noun = PERIODS[TREND_PERIOD]["noun"]
+    assert f"{{\\TaxonomySharePeriod}}{{{noun}}}" in macros
+    # Panel A follows the same constant, so one edit cannot desynchronise them.
+    assert plot_taxonomy.PANEL_A_PERIOD == TREND_PERIOD
+
+
+def test_panel_b_series_are_chosen_by_the_rule_and_not_by_hand():
+    """Panel B's lines must be the rule's output, and the rule auditable.
+
+    The panel used to draw a hand-picked list that had gone stale. Every
+    candidate now carries its movement and the reason it was or was not drawn,
+    the drawn ones satisfy the thresholds, and no drawn series moves less than
+    one that was passed over for movement.
+    """
+    from taxonomy_trends import (SHARE_SERIES_DRAWN, SHARE_SERIES_MAX_CONTAINMENT,
+                                 SHARE_SERIES_MIN_RECORDS, build_shares)
+
+    rows = [json.loads(line) for line in
+            (PAPER / "evidence" / "benchmark-taxonomy-dated.jsonl").read_text().splitlines() if line]
+    shares = build_shares([r for r in rows if isinstance(r.get("release_date"), str)])
+
+    selected = shares["selected"]
+    assert 0 < len(selected) <= SHARE_SERIES_DRAWN
+    assert len(selected) == len(set(selected))
+    for key, entry in shares["series"].items():
+        assert entry["reason"], f"{key}: no reason recorded"
+        assert entry["rule"] in {"drawn", "base", "rank", "containment"}, key
+        assert entry["drawn"] == (key in selected) == (entry["rule"] == "drawn")
+        assert set(entry["share"]) == set(shares["reported"])
+    for key in selected:
+        entry = shares["series"][key]
+        assert entry["records"] >= SHARE_SERIES_MIN_RECORDS, key
+    # Nothing was drawn over a larger movement that cleared the same thresholds.
+    passed_over = [entry for entry in shares["series"].values() if entry["rule"] == "rank"]
+    weakest = min(abs(shares["series"][key]["movement"]) for key in selected)
+    for entry in passed_over:
+        assert abs(entry["movement"]) <= weakest, f"{entry['key']} moved more than a drawn series"
+    assert 0 < SHARE_SERIES_MAX_CONTAINMENT <= 1
+
+
+def test_panel_b_periods_are_eligible_and_account_for_every_dated_record():
+    """A period's share is drawn only where the evidence supports it."""
+    from taxonomy_trends import MAX_MIX_DEVIATION, MIN_RELIABLE, build_shares
+
+    rows = [json.loads(line) for line in
+            (PAPER / "evidence" / "benchmark-taxonomy-dated.jsonl").read_text().splitlines() if line]
+    dated = [r for r in rows if isinstance(r.get("release_date"), str)]
+    shares = build_shares(dated)
+
+    assert sum(shares["per_period"].values()) == len(dated)
+    for period in shares["reported"]:
+        assert shares["per_period"][period] >= MIN_RELIABLE
+        assert shares["mix_deviation"][period] <= MAX_MIX_DEVIATION
+        l1_total = sum(entry["counts"][period] for entry in shares["series"].values()
+                       if entry["kind"] == "l1")
+        assert l1_total == shares["per_period"][period], f"{period}: L1 counts do not close"
+    reported = sum(shares["per_period"][p] for p in shares["reported"])
+    assert reported + shares["excluded_records"] == len(dated)
+    # The movement halves partition the reported periods, middle one dropped.
+    halves = shares["movement_halves"]
+    assert not set(halves["early"]) & set(halves["late"])
+    assert set(halves["early"]) | set(halves["late"]) <= set(shares["reported"])
+
+
+def test_every_tracked_facet_can_reach_the_figure():
+    """The rule may pick any facet, so all of them need a label and a colour."""
+    import plot_taxonomy
+    from taxonomy_trends import TRACKED_FACETS
+
+    for axis, value in TRACKED_FACETS:
+        key = f"{axis}:{value}"
+        assert key in plot_taxonomy.FACET_LABEL, key
+        assert key in plot_taxonomy.FACET_COLOR, key
+        assert plot_taxonomy.FACET_LABEL[key].endswith("(facet)"), key
+
+
 def test_figure_display_order_covers_every_class():
     """The stacking order both figures share must hold all classes, `other` last."""
     import plot_taxonomy
 
     rows = [json.loads(line) for line in
-            (PAPER / "evidence" / "benchmark-taxonomy.jsonl").read_text().splitlines() if line]
+            (PAPER / "evidence" / "benchmark-taxonomy-dated.jsonl").read_text().splitlines() if line]
     order = plot_taxonomy.display_order(rows)
     assert set(order) == {r["l1"] for r in rows}
     assert order[-1] == "other"
@@ -442,7 +575,7 @@ def test_undated_records_keep_their_classification():
 
     data = build_trends()
     rows = [json.loads(line) for line in
-            (PAPER / "evidence" / "benchmark-taxonomy.jsonl").read_text().splitlines() if line]
+            (PAPER / "evidence" / "benchmark-taxonomy-dated.jsonl").read_text().splitlines() if line]
     undated = [r for r in rows if release_year(r) is None]
     assert sum(data["undated_by_l1"].values()) == len(undated) == data["undated"]
     assert data["undated_by_l1"] == dict(Counter(r["l1"] for r in undated).most_common())

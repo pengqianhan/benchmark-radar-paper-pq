@@ -7,24 +7,35 @@ FIGURE_SOURCES := $(addprefix figures/,$(addsuffix .tex,$(FIGURE_NAMES)))
 # Drawn by matplotlib from the frozen classification, not by latexmk.
 TAXONOMY_FIGURES := figures/taxonomy-sankey.pdf figures/taxonomy-trends.pdf
 TAXONOMY_INPUTS := scripts/taxonomy.py scripts/classify_benchmarks.py \
-	scripts/taxonomy_trends.py scripts/plot_taxonomy.py \
+	scripts/supplement_taxonomy_dates.py scripts/taxonomy_trends.py scripts/plot_taxonomy.py \
+	evidence/156_from_xiaoke_all_passed_en.json \
 	evidence/catalog-findings.json $(wildcard evidence/taxonomy-inputs/*)
+TAXONOMY_OUTPUTS := $(TAXONOMY_FIGURES) taxonomy-data.tex taxonomy-trend-data.tex \
+	evidence/benchmark-taxonomy.jsonl evidence/benchmark-taxonomy-summary.json \
+	evidence/benchmark-taxonomy-dated.jsonl evidence/taxonomy-release-date-supplements.json \
+	evidence/benchmark-taxonomy-trends.json
 
-.PHONY: all figures taxonomy-figures arxiv check-small-numbers clean
+.PHONY: all figures taxonomy-figures reproduce-taxonomy check-taxonomy arxiv check-small-numbers clean
 
 all: check-small-numbers
 
 figures: $(FIGURE_PDFS) $(TAXONOMY_FIGURES)
 
-# Classify writes the per-record labels, the trend step reads them for the year
-# series, and the plot step draws both figures. The outputs are byte-identical
-# across builds, so a rebuild that changes a file means an input changed.
-taxonomy-figures: $(TAXONOMY_FIGURES)
-
-$(TAXONOMY_FIGURES): $(TAXONOMY_INPUTS)
+# One shared phony recipe also works with parallel make and missing outputs.
+# Always rebuild from evidence, including when checked-in PDFs already exist.
+taxonomy-figures: $(TAXONOMY_INPUTS)
 	$(PYTHON) scripts/classify_benchmarks.py
+	$(PYTHON) scripts/supplement_taxonomy_dates.py
 	$(PYTHON) scripts/taxonomy_trends.py
 	$(PYTHON) scripts/plot_taxonomy.py
+
+reproduce-taxonomy: taxonomy-figures
+
+check-taxonomy:
+	$(PYTHON) scripts/check_taxonomy_reproduction.py
+
+$(TAXONOMY_OUTPUTS): taxonomy-figures
+	@test -f $@
 
 figures/%.pdf: figures/%.tex figures/figure-style.tex figure-data.tex catalog-data.tex Makefile
 	cd figures && $(LATEXMK) -g -pdf -interaction=nonstopmode -halt-on-error $*.tex

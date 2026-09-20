@@ -1,0 +1,3610 @@
+{
+  "baseline_dated": 615,
+  "baseline_undated": 668,
+  "dated": 771,
+  "definition": "Retrospective verification of release or first introduction events for existing frozen source records. Event scope is retained; these are not uniformly dataset-download dates. The original census and its date coverage remain unchanged.",
+  "discovery_cutoff": "2026-09-07",
+  "input_sha256": {
+    "evidence/156_from_xiaoke_all_passed_en.json": "e3bda21e7380ae51ba2a1fc38bf8fb05f145461d99a289371fde85843966ba48",
+    "evidence/benchmark-taxonomy.jsonl": "a36e311a7b5a1198ebe2cba76deba267220fd39473d3adc303ec618ad36f9e39",
+    "evidence/catalog-findings.json": "a62fe8265b3640ac96ae84265fe3bd1cb0312097b5eefe33126011e733e5e914"
+  },
+  "population": 1283,
+  "precision_counts": {
+    "day": 143,
+    "month": 13
+  },
+  "records": [
+    {
+      "catalogKey": "artificial-analysis:aa-analystagent",
+      "checkedAt": "2026-09-18",
+      "event": "official_evaluation_launch",
+      "inputRecordIndex": 115,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "AA-AnalystAgent",
+      "originalDate": "2026-08-10",
+      "precision": "day",
+      "reason": "Artificial Analysis's official article dated 2026-08-10 explicitly releases AA-AnalystAgent.",
+      "release_date": "2026-08-10",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://artificialanalysis.ai/articles/aa-analyst-agent"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "artificial-analysis:apex-agents-aa",
+      "checkedAt": "2026-09-18",
+      "event": "aa_implementation_launch",
+      "inputRecordIndex": 155,
+      "limitation": "The date applies to the benchmark and event described above; it does not establish that every model score in the catalog uses the same evaluation protocol.",
+      "name": "APEX-Agents-AA",
+      "originalDate": "2026-01-21",
+      "precision": "day",
+      "reason": "Artificial Analysis's official announcement dated 2026-04-08 explicitly launches APEX-Agents-AA with 452 tasks and the Stirrup harness. The original January date belongs to Mercor's parent benchmark.",
+      "release_date": "2026-04-08",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://www.linkedin.com/posts/artificial-analysis_announcing-apex-agents-aa-our-latest-leaderboard-activity-7447663127007219712-QEKu"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://artificialanalysis.ai/evaluations/apex-agents-aa"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "artificial-analysis:automationbench-aa",
+      "checkedAt": "2026-09-18",
+      "event": "official_evaluation_launch",
+      "inputRecordIndex": 116,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "AutomationBench-AA",
+      "originalDate": "2026-07-06",
+      "precision": "day",
+      "reason": "Artificial Analysis released its AutomationBench-AA evaluation on 2026-07-06. This date applies to the AA evaluation release, not the initial creation of Zapier's underlying benchmark.",
+      "release_date": "2026-07-06",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://artificialanalysis.ai/articles/announcing-zapier-automationbench-aa"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "artificial-analysis:mlcr-aa",
+      "checkedAt": "2026-09-18",
+      "event": "official_evaluation_launch",
+      "inputRecordIndex": 117,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "MLCR-AA",
+      "originalDate": "2026-08-21",
+      "precision": "day",
+      "reason": "Artificial Analysis's original launch post dated 2026-08-21 introduces the 60-task Expert/Compound MLCR-AA evaluation. The date belongs to the AA implementation, not the initial release of the underlying MLCR family.",
+      "release_date": "2026-08-21",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://www.linkedin.com/posts/artificial-analysis_announcing-mlcr-aa-our-leaderboard-for-wisedocs-activity-7496602690110648322-rSP0"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:aa-lcr",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_announcement",
+      "inputRecordIndex": 1,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "AA-LCR",
+      "originalDate": "2025-08-05",
+      "precision": "day",
+      "reason": "Artificial Analysis's official announcement explicitly releases AA-LCR on 2025-08-05.",
+      "release_date": "2025-08-05",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://artificialanalysis.ai/articles/announcing-aa-lcr"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:activitynet",
+      "checkedAt": "2026-09-18",
+      "event": "introducing_conference_paper",
+      "inputRecordIndex": 2,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "ActivityNet",
+      "originalDate": "2015-06",
+      "precision": "month",
+      "reason": "The original paper information on the official ActivityNet page specifies CVPR 2015 and June. This supports month precision, 2015-06, but not an exact day or download availability date.",
+      "release_date": "2015-06",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://openaccess.thecvf.com/content_cvpr_2015/html/Heilbron_ActivityNet_A_Large-Scale_2015_CVPR_paper.html"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:aider",
+      "checkedAt": "2026-09-18",
+      "event": "official_introduction",
+      "inputRecordIndex": 3,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "Aider",
+      "originalDate": "2023-07-02",
+      "precision": "day",
+      "reason": "The Aider author's original code-editing evaluation article is dated 2023-07-02 and introduces the benchmark.",
+      "release_date": "2023-07-02",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://aider.chat/2023/07/02/benchmarks.html"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:aider-polyglot",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_announcement",
+      "inputRecordIndex": 4,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "Aider Polyglot",
+      "originalDate": "2024-12-21",
+      "precision": "day",
+      "reason": "The Aider author's release article dated 2024-12-21 introduces the new 225-task Polyglot benchmark.",
+      "release_date": "2024-12-21",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://aider.chat/2024/12/21/polyglot.html"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:aider-polyglot-edit",
+      "checkedAt": "2026-09-18",
+      "event": "benchmark_and_metric_introduction",
+      "inputRecordIndex": 119,
+      "limitation": "The date applies to the benchmark and event described above; it does not establish that every model score in the catalog uses the same evaluation protocol.",
+      "name": "Aider-Polyglot Edit",
+      "originalDate": "2024-12-21",
+      "precision": "day",
+      "reason": "Aider's original Polyglot announcement defines the percentage using the correct edit format in the same results table, resolving whether the Edit metric appeared with the original release.",
+      "release_date": "2024-12-21",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://aider.chat/2024/12/21/polyglot.html"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:androidbench",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_announcement",
+      "inputRecordIndex": 5,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "AndroidBench",
+      "originalDate": "2026-03-05",
+      "precision": "day",
+      "reason": "Google's announcement dated 2026-03-05 explicitly releases the first version of AndroidBench.",
+      "release_date": "2026-03-05",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://android-developers.googleblog.com/2026/03/elevating-ai-assisted-androi.html"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:arc-agi-v2",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_announcement",
+      "inputRecordIndex": 6,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "ARC-AGI v2",
+      "originalDate": "2025-03-24",
+      "precision": "day",
+      "reason": "ARC Prize's official announcement of 2025-03-24 releases ARC-AGI-2, distinguishing it from the original ARC.",
+      "release_date": "2025-03-24",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arcprize.org/blog/announcing-arc-agi-2-and-arc-prize-2025"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:arena-hard-v2",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_history",
+      "inputRecordIndex": 7,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "Arena-Hard v2",
+      "originalDate": "2025-04-23",
+      "precision": "day",
+      "reason": "News in the official Arena-Hard repository explicitly records the v2 release on 2025-04-23.",
+      "release_date": "2025-04-23",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://github.com/lmarena/arena-hard-auto"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:artifacts-bench",
+      "checkedAt": "2026-09-18",
+      "event": "introducing_paper_v1",
+      "inputRecordIndex": 8,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "Artifacts Bench",
+      "originalDate": "2025-07-07",
+      "precision": "day",
+      "reason": "The original paper introduces Tencent's ArtifactsBench for visual interactive code generation, distinguishing it from the AI-video Artifact-Bench. The arXiv v1 submission date is 2025-07-07, matching the input. Verification covers the original introductory paper date, without separately asserting that data files became downloadable that day.",
+      "release_date": "2025-07-07",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2507.04952"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2507.04952v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:arxivmath",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_announcement",
+      "inputRecordIndex": 9,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "ArXivMath",
+      "originalDate": "2026-02-04",
+      "precision": "day",
+      "reason": "MathArena's original article dated 2026-02-04 releases ArXivMath and introduces its first 40 research-mathematics problems.",
+      "release_date": "2026-02-04",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://matharena.ai/arxivmath/"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:automationbench-aa",
+      "checkedAt": "2026-09-18",
+      "event": "official_evaluation_launch",
+      "inputRecordIndex": 10,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "AutomationBench-AA",
+      "originalDate": "2026-07-06",
+      "precision": "day",
+      "reason": "Artificial Analysis released its AutomationBench-AA evaluation on 2026-07-06. This date applies to the AA evaluation release, not the initial creation of Zapier's underlying benchmark.",
+      "release_date": "2026-07-06",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://artificialanalysis.ai/articles/announcing-zapier-automationbench-aa"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:bc-vl",
+      "checkedAt": "2026-09-18",
+      "event": "benchmark_introduction",
+      "inputRecordIndex": 120,
+      "limitation": "The date applies to the benchmark and event described above; it does not establish that every model score in the catalog uses the same evaluation protocol.",
+      "name": "BC-VL",
+      "originalDate": "2025-08-07",
+      "precision": "day",
+      "reason": "The original WebWatcher paper constructs BrowseComp-VL and uses the abbreviation BC-VL in Table 2. The arXiv v1 date is 2025-08-07. The unrelated BiVLC found in search results is excluded.",
+      "release_date": "2025-08-07",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/abs/2508.05748v1"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/html/2508.05748v1"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:beam-128k",
+      "checkedAt": "2026-09-18",
+      "event": "co_introduced_component_or_version",
+      "inputRecordIndex": 11,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "Beam 128K",
+      "originalDate": "2025-10-31",
+      "precision": "day",
+      "reason": "The original BEAM v1 explicitly lists the 128K evaluation configuration, which appears in the original paper dated 2025-10-31. This does not establish a separate benchmark family or validate all providers' scoring configurations.",
+      "release_date": "2025-10-31",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2510.27246"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2510.27246v1"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/html/2510.27246v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:beyond-aime",
+      "checkedAt": "2026-09-18",
+      "event": "benchmark_public_introduction",
+      "inputRecordIndex": 121,
+      "limitation": "This is the date of the official initial introduction material. The article also states that the data will become public soon, so it is not the date when data files became downloadable.",
+      "name": "Beyond AIME",
+      "originalDate": "2025-06-17",
+      "precision": "day",
+      "reason": "ByteDance Seed's original April 14 article explicitly introduces BeyondAIME as a newly constructed 100-question benchmark, preceding the June data upload in the original record.",
+      "release_date": "2025-04-14",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://seed.bytedance.com/en/blog/bytedance-s-latest-thinking-model-seed-thinking-v1-5-technical-details-disclosed"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:bfcl-v3",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_announcement",
+      "inputRecordIndex": 12,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "BFCL-v3",
+      "originalDate": "2024-09-19",
+      "precision": "day",
+      "reason": "BFCL's official v3 multi-turn evaluation article explicitly gives a publication date of 2024-09-19. The v3-specific article is used instead of update dates from other blog posts in the original link.",
+      "release_date": "2024-09-19",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://gorilla.cs.berkeley.edu/blogs/13_bfcl_v3_multi_turn.html"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:bfcl-v3-multiturn",
+      "checkedAt": "2026-09-18",
+      "event": "co_introduced_component_or_version",
+      "inputRecordIndex": 13,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "BFCL_v3_MultiTurn",
+      "originalDate": "2024-09-19",
+      "precision": "day",
+      "reason": "BFCL's official v3-specific announcement introduces multi-turn tasks on 2024-09-19; MultiTurn is part of that release. This does not establish a separate benchmark family or validate all providers' scoring configurations.",
+      "release_date": "2024-09-19",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://gorilla.cs.berkeley.edu/blogs/13_bfcl_v3_multi_turn.html"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:big-bench-audio",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_announcement",
+      "inputRecordIndex": 14,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "Big Bench Audio",
+      "originalDate": "2024-12-20",
+      "precision": "day",
+      "reason": "The authors' Hugging Face launch post is dated 2024-12-20 and explicitly releases Big Bench Audio.",
+      "release_date": "2024-12-20",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://huggingface.co/blog/big-bench-audio-release"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:blueprint-bench-2",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_announcement",
+      "inputRecordIndex": 15,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "Blueprint-Bench 2",
+      "originalDate": "2026-05-04",
+      "precision": "day",
+      "reason": "The authors' original launch post is dated 2026-05-04 and explicitly introduces Blueprint-Bench 2.",
+      "release_date": "2026-05-04",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://www.linkedin.com/posts/andonlabs_introducing-blueprint-bench-2-first-signs-activity-7457122428608090113-3zg8"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:browsecomp-vl",
+      "checkedAt": "2026-09-18",
+      "event": "introducing_paper_v1",
+      "inputRecordIndex": 16,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "BrowseComp-VL",
+      "originalDate": "2025-08-07",
+      "precision": "day",
+      "reason": "The original WebWatcher paper explicitly introduces BrowseComp-VL. The arXiv v1 submission date is 2025-08-07, matching the input. Verification covers the original introductory paper date, without separately asserting that data files became downloadable that day.",
+      "release_date": "2025-08-07",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2508.05748"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2508.05748v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:ci-memories-coverage",
+      "checkedAt": "2026-09-18",
+      "event": "benchmark_and_metrics_introduction",
+      "inputRecordIndex": 122,
+      "limitation": "The metrics belong to the same CIMemories benchmark. This date does not represent separate releases of later model-report settings such as sampling counts or aggregation methods.",
+      "name": "CI Memories Coverage",
+      "originalDate": "2025-11-18",
+      "precision": "day",
+      "reason": "CIMemories v1 already defines both necessary-information coverage (completeness, also called coverage in the text) and inappropriate-information disclosure (violations). The named metrics appear with the original benchmark.",
+      "release_date": "2025-11-18",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/abs/2511.14937v1"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/html/2511.14937v1"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:ci-memories-violation",
+      "checkedAt": "2026-09-18",
+      "event": "benchmark_and_metrics_introduction",
+      "inputRecordIndex": 123,
+      "limitation": "The metrics belong to the same CIMemories benchmark. This date does not represent separate releases of later model-report settings such as sampling counts or aggregation methods.",
+      "name": "CI Memories Violation Rate",
+      "originalDate": "2025-11-18",
+      "precision": "day",
+      "reason": "CIMemories v1 already defines both necessary-information coverage (completeness, also called coverage in the text) and inappropriate-information disclosure (violations). The named metrics appear with the original benchmark.",
+      "release_date": "2025-11-18",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/abs/2511.14937v1"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/html/2511.14937v1"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:cl-bench",
+      "checkedAt": "2026-09-18",
+      "event": "introducing_paper_v1",
+      "inputRecordIndex": 17,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "CL-bench",
+      "originalDate": "2026-02-03",
+      "precision": "day",
+      "reason": "The original CL-bench paper introduces a context-learning benchmark; it should not be interpreted as a coding-only evaluation. The arXiv v1 submission date is 2026-02-03, matching the input. Verification covers the original introductory paper date, without separately asserting that data files became downloadable that day.",
+      "release_date": "2026-02-03",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2602.03587"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2602.03587v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:cloningscenarios",
+      "checkedAt": "2026-09-18",
+      "event": "co_introduced_component_or_version",
+      "inputRecordIndex": 18,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "CloningScenarios",
+      "originalDate": "2024-07-14",
+      "precision": "day",
+      "reason": "The original LAB-Bench v1 explicitly includes the CloningScenarios subtask, introduced with the paper on 2024-07-14. This does not establish a separate benchmark family or validate all providers' scoring configurations.",
+      "release_date": "2024-07-14",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2407.10362"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2407.10362v1"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/html/2407.10362v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:cluewsc",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_history",
+      "inputRecordIndex": 19,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "CLUEWSC",
+      "originalDate": "2020-03-25",
+      "precision": "day",
+      "reason": "CLUE's official dataset documentation explicitly dates the new CLUEWSC release to 2020-03-25.",
+      "release_date": "2020-03-25",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://github.com/CLUEbenchmark/CLUE"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:common-voice-15",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_announcement",
+      "inputRecordIndex": 20,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "Common Voice 15",
+      "originalDate": "2023-09",
+      "precision": "month",
+      "reason": "Mozilla's official September 2023 weekly report confirms the data release; another update later that month explicitly identifies it as v15, with a scale matching the Common Voice 15 data card. This supports month precision, 2023-09.",
+      "release_date": "2023-09",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://discourse.mozilla.org/t/weekly-update-thread-2023/111644?page=2"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://discourse.mozilla.org/t/weekly-update-thread-2023/111644.json?page=2"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://huggingface.co/datasets/mozilla-foundation/common_voice_15_0"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:community:2256e9c9-b256-4444-b639-7cc3b1855d96",
+      "checkedAt": "2026-09-18",
+      "event": "introducing_paper_v1",
+      "inputRecordIndex": 21,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "nolima",
+      "originalDate": "2025-02-07",
+      "precision": "day",
+      "reason": "The original NoLiMa paper introduces a long-context retrieval benchmark without literal matching. The arXiv v1 submission date is 2025-02-07, matching the input. Verification covers the original introductory paper date, without separately asserting that data files became downloadable that day.",
+      "release_date": "2025-02-07",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2502.05167"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2502.05167v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:corpusqa-1m",
+      "checkedAt": "2026-09-18",
+      "event": "co_introduced_component_or_version",
+      "inputRecordIndex": 22,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "CorpusQA 1M",
+      "originalDate": "2026-01-21",
+      "precision": "day",
+      "reason": "The original CorpusQA v1 explicitly lists Set 2 (1M), which appears in the original paper dated 2026-01-21. This does not establish a separate benchmark family or validate all providers' scoring configurations.",
+      "release_date": "2026-01-21",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2601.14952"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2601.14952v1"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/html/2601.14952v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:crperelation",
+      "checkedAt": "2026-09-18",
+      "event": "named_component_introduction",
+      "inputRecordIndex": 124,
+      "limitation": "The date applies to the benchmark and event described above; it does not establish that every model score in the catalog uses the same evaluation protocol.",
+      "name": "CRPErelation",
+      "originalDate": "2024-02-29",
+      "precision": "day",
+      "reason": "Reading the original v1 PDF confirms that page 3 and pages 7-8 already define the Existence, Subject, Predicate, and Object components, with the latter three measuring relation comprehension. This resolves the earlier inadequate HTML extraction.",
+      "release_date": "2024-02-29",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/abs/2402.19474v1"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/pdf/2402.19474v1"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:csimpleqa",
+      "checkedAt": "2026-09-18",
+      "event": "introducing_paper_v1",
+      "inputRecordIndex": 23,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "CSimpleQA",
+      "originalDate": "2024-11-11",
+      "precision": "day",
+      "reason": "The original paper introduces Chinese SimpleQA, corresponding to CSimpleQA. The arXiv v1 submission date is 2024-11-11, matching the input. Verification covers the original introductory paper date, without separately asserting that data files became downloadable that day.",
+      "release_date": "2024-11-11",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2411.07140"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2411.07140v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:cursorbench-3.2",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_history",
+      "inputRecordIndex": 24,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "CursorBench v3.2",
+      "originalDate": "2026-07-08",
+      "precision": "day",
+      "reason": "The history on Cursor's official CursorBench page explicitly lists CursorBench 3.2 under July 8, 2026. Verification uses the historical entry, not the current 4.0 page heading.",
+      "release_date": "2026-07-08",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://cursor.com/cursorbench"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:cyberseceval-4",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_announcement",
+      "inputRecordIndex": 25,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "CyberSecEval 4",
+      "originalDate": "2025-04-29",
+      "precision": "day",
+      "reason": "Meta's AutoPatchBench/CyberSecEval announcement dated 2025-04-29 explicitly launches CyberSecEval 4.",
+      "release_date": "2025-04-29",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://engineering.fb.com/2025/04/29/ai-research/autopatchbench-benchmark-ai-powered-security-fixes/"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:dailyomni",
+      "checkedAt": "2026-09-18",
+      "event": "introducing_paper_v1",
+      "inputRecordIndex": 26,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "DailyOmni",
+      "originalDate": "2025-05-23",
+      "precision": "day",
+      "reason": "The original paper introduces the Daily-Omni audio-video reasoning evaluation. The arXiv v1 submission date is 2025-05-23, matching the input. Verification covers the original introductory paper date, without separately asserting that data files became downloadable that day.",
+      "release_date": "2025-05-23",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2505.17862"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2505.17862v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:deepswe-1.0",
+      "checkedAt": "2026-09-18",
+      "event": "co_introduced_component_or_version",
+      "inputRecordIndex": 27,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "DeepSWE 1.0",
+      "originalDate": "2026-05-26",
+      "precision": "day",
+      "reason": "Datacurve's first official DeepSWE announcement, dated 2026-05-26, corresponds to 1.0; the later 1.1 date is not backfilled into 1.0. This does not establish a separate benchmark family or validate all providers' scoring configurations.",
+      "release_date": "2026-05-26",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://deepswe.datacurve.ai/blog/deepswe"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:deepswe-1.1",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_history",
+      "inputRecordIndex": 28,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "DeepSWE 1.1",
+      "originalDate": "2026-06-15",
+      "precision": "day",
+      "reason": "DeepSWE's official update history explicitly releases v1.1 on 2026-06-15, with 113 tasks.",
+      "release_date": "2026-06-15",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://deepswe.datacurve.ai/changelog"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:embspatialbench",
+      "checkedAt": "2026-09-18",
+      "event": "introducing_paper_v1",
+      "inputRecordIndex": 29,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "EmbSpatialBench",
+      "originalDate": "2024-06-09",
+      "precision": "day",
+      "reason": "The original paper introduces the EmbSpatial-Bench spatial-understanding evaluation. The arXiv v1 submission date is 2024-06-09, matching the input. Verification covers the original introductory paper date, without separately asserting that data files became downloadable that day.",
+      "release_date": "2024-06-09",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2406.05756"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2406.05756v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:emma",
+      "checkedAt": "2026-09-18",
+      "event": "introducing_paper_v1",
+      "inputRecordIndex": 30,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "EMMA",
+      "originalDate": "2025-01-09",
+      "precision": "day",
+      "reason": "The original paper introduces the EMMA multimodal reasoning benchmark. The arXiv v1 submission date is 2025-01-09, matching the input. Verification covers the original introductory paper date, without separately asserting that data files became downloadable that day.",
+      "release_date": "2025-01-09",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2501.05444"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2501.05444v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:erqa",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_announcement",
+      "inputRecordIndex": 31,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "ERQA",
+      "originalDate": "2025-03-12",
+      "precision": "day",
+      "reason": "Google released Gemini Robotics on 2025-03-12. The official ERQA repository states that the dataset was open-sourced with that release. Together, these primary sources connect the date to ERQA.",
+      "release_date": "2025-03-12",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://deepmind.google/discover/blog/gemini-robotics-brings-ai-into-the-physical-world/"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://github.com/embodiedreasoning/ERQA"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:figqa",
+      "checkedAt": "2026-09-18",
+      "event": "co_introduced_component_or_version",
+      "inputRecordIndex": 32,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "FigQA",
+      "originalDate": "2024-07-14",
+      "precision": "day",
+      "reason": "The original LAB-Bench v1 explicitly includes the FigQA subtask, introduced with the paper on 2024-07-14. This does not establish a separate benchmark family or validate all providers' scoring configurations.",
+      "release_date": "2024-07-14",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2407.10362"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2407.10362v1"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/html/2407.10362v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:finance-agent-v1.1",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_announcement",
+      "inputRecordIndex": 33,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "Finance Agent v1.1",
+      "originalDate": "2026-02-10",
+      "precision": "day",
+      "reason": "Vals AI's original launch post is dated 2026-02-10 and explicitly announces that Finance Agent Benchmark v1.1 has just been released.",
+      "release_date": "2026-02-10",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://www.vals.ai/"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://www.linkedin.com/posts/vals-ai_we-just-shipped-fab-v11updates-to-the-harness-activity-7427134922605228032-f7Iy"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:finance-agent-v2",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_announcement",
+      "inputRecordIndex": 34,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "Finance Agent v2",
+      "originalDate": "2026-05-12",
+      "precision": "day",
+      "reason": "Vals AI's original launch post is dated 2026-05-12 and explicitly releases Finance Agent Benchmark v2.",
+      "release_date": "2026-05-12",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://www.vals.ai/"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://www.linkedin.com/posts/vals-ai_finance-agent-benchmark-v2-is-here-finance-activity-7460037860008800256-jGkA"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:finsearchcomp-t2-t3",
+      "checkedAt": "2026-09-18",
+      "event": "co_introduced_component_or_version",
+      "inputRecordIndex": 35,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "FinSearchComp T2&T3",
+      "originalDate": "2025-09-16",
+      "precision": "day",
+      "reason": "The original FinSearchComp v1 explicitly distinguishes T2 and T3, both present in the original paper dated 2025-09-16. This does not establish a separate benchmark family or validate all providers' scoring configurations.",
+      "release_date": "2025-09-16",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2509.13160"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2509.13160v1"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/html/2509.13160v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:finsearchcomp-t3",
+      "checkedAt": "2026-09-18",
+      "event": "co_introduced_component_or_version",
+      "inputRecordIndex": 36,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "FinSearchComp-T3",
+      "originalDate": "2025-09-16",
+      "precision": "day",
+      "reason": "The original FinSearchComp v1 explicitly describes T3's complex historical investigation tasks in the paper dated 2025-09-16. This does not establish a separate benchmark family or validate all providers' scoring configurations.",
+      "release_date": "2025-09-16",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2509.13160"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2509.13160v1"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/html/2509.13160v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:frontier-bench-v0.1",
+      "checkedAt": "2026-09-18",
+      "event": "version_release",
+      "inputRecordIndex": 125,
+      "limitation": "The date applies to the benchmark and event described above; it does not establish that every model score in the catalog uses the same evaluation protocol.",
+      "name": "Frontier-Bench v0.1",
+      "originalDate": "2026-07-23",
+      "precision": "day",
+      "reason": "The authors' repository publishes the v0.1.0 release at 2026-07-23T07:04:38Z, explicitly releasing the initial Frontier-Bench version, corresponding to the catalog's v0.1.",
+      "release_date": "2026-07-23",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://github.com/harbor-framework/frontier-bench/releases/tag/v0.1.0"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:frontier-swe-impl",
+      "checkedAt": "2026-09-18",
+      "event": "co_introduced_component_or_version",
+      "inputRecordIndex": 37,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "FrontierSWE (Impl.)",
+      "originalDate": "2026-04",
+      "precision": "month",
+      "reason": "FrontierSWE's official initial release article from April 2026 explicitly includes five implementation tasks. The month-precision date directly applies to this original track. This does not establish a separate benchmark family or validate all providers' scoring configurations.",
+      "release_date": "2026-04",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://www.frontierswe.com/blog/v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:frontierscience-olympiad",
+      "checkedAt": "2026-09-18",
+      "event": "co_introduced_component_or_version",
+      "inputRecordIndex": 38,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "FrontierScience Olympiad",
+      "originalDate": "2025-12-16",
+      "precision": "day",
+      "reason": "OpenAI's original FrontierScience announcement dated 2025-12-16 explicitly introduces both the Olympiad and Research tracks. This does not establish a separate benchmark family or validate all providers' scoring configurations.",
+      "release_date": "2025-12-16",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://openai.com/index/frontierscience/"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:frontierscience-research",
+      "checkedAt": "2026-09-18",
+      "event": "co_introduced_component_or_version",
+      "inputRecordIndex": 39,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "FrontierScience Research",
+      "originalDate": "2025-12-16",
+      "precision": "day",
+      "reason": "OpenAI's original FrontierScience announcement dated 2025-12-16 explicitly introduces both the Research and Olympiad tracks. This does not establish a separate benchmark family or validate all providers' scoring configurations.",
+      "release_date": "2025-12-16",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://openai.com/index/frontierscience/"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:fullstackbench-en",
+      "checkedAt": "2026-09-18",
+      "event": "co_introduced_component_or_version",
+      "inputRecordIndex": 40,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "FullStackBench en",
+      "originalDate": "2024-11-30",
+      "precision": "day",
+      "reason": "The bilingual construction description in the original FullStackBench v1 already includes the English version in the paper dated 2024-11-30. This does not establish a separate benchmark family or validate all providers' scoring configurations.",
+      "release_date": "2024-11-30",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2412.00535"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2412.00535v1"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/html/2412.00535v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:fullstackbench-zh",
+      "checkedAt": "2026-09-18",
+      "event": "co_introduced_component_or_version",
+      "inputRecordIndex": 41,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "FullStackBench zh",
+      "originalDate": "2024-11-30",
+      "precision": "day",
+      "reason": "The bilingual construction description in the original FullStackBench v1 already includes the Chinese version in the paper dated 2024-11-30. This does not establish a separate benchmark family or validate all providers' scoring configurations.",
+      "release_date": "2024-11-30",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2412.00535"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2412.00535v1"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/html/2412.00535v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:functionalmath",
+      "checkedAt": "2026-09-18",
+      "event": "introducing_paper_v1",
+      "inputRecordIndex": 42,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "FunctionalMATH",
+      "originalDate": "2024-02-29",
+      "precision": "day",
+      "reason": "The original Functional Benchmarks paper defines functional MATH. Verification concerns the paper date for that functional variant. The arXiv v1 submission date is 2024-02-29, matching the input. Verification covers the original introductory paper date, without separately asserting that data files became downloadable that day.",
+      "release_date": "2024-02-29",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2402.19450"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2402.19450v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:gdpval-aa",
+      "checkedAt": "2026-09-18",
+      "event": "official_evaluation_launch",
+      "inputRecordIndex": 43,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "GDPval-AA",
+      "originalDate": "2025-12-10",
+      "precision": "day",
+      "reason": "Artificial Analysis's GDPval-AA launch post and Stirrup announcement are both dated 2025-12-10. This verifies the launch of the AA evaluation, not the date of OpenAI's underlying GDPval tasks.",
+      "release_date": "2025-12-10",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://artificialanalysis.ai/articles/stirrup-open-source-framework-agents"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://www.linkedin.com/posts/artificial-analysis_announcing-gdpval-aa-our-leaderboard-and-activity-7404608113624072193-Q82r"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:giantsteps-tempo",
+      "checkedAt": "2026-09-18",
+      "event": "introducing_conference_paper",
+      "inputRecordIndex": 44,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "GiantSteps Tempo",
+      "originalDate": "2015-10",
+      "precision": "month",
+      "reason": "The GiantSteps Tempo authors' repository states that the dataset was published with the ISMIR 2015 paper in October 2015, supporting month precision for the original introduction.",
+      "release_date": "2015-10",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://github.com/GiantSteps/giantsteps-tempo-dataset"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:global-mmlu-lite",
+      "checkedAt": "2026-09-18",
+      "event": "dataset_v1_release",
+      "inputRecordIndex": 126,
+      "limitation": "Only the month is confirmed. Do not expand 2024-12 to 2024-12-01 or 2024-12-04.",
+      "name": "Global-MMLU-Lite",
+      "originalDate": "2024-12-04",
+      "precision": "month",
+      "reason": "The Releases section of CohereLabs' data card explicitly lists the Global-MMLU-Lite v1.0 release in December 2024, covering 15 languages, but gives no exact day. The parent paper's December 4 date cannot be inherited.",
+      "release_date": "2024-12",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:graphwalks",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_announcement",
+      "inputRecordIndex": 45,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "GraphWalks",
+      "originalDate": "2025-04-14",
+      "precision": "day",
+      "reason": "OpenAI's GPT-4.1 announcement dated 2025-04-14 explicitly releases Graphwalks and links to the dataset.",
+      "release_date": "2025-04-14",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://openai.com/index/gpt-4-1/"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:groundui-1k",
+      "checkedAt": "2026-09-18",
+      "event": "named_subset_introduction_in_v2",
+      "inputRecordIndex": 127,
+      "limitation": "Verification covers the date when the subset first appears in the paper's version sequence; repository creation time is not treated as data availability time.",
+      "name": "GroundUI-1K",
+      "originalDate": "2024-03-26",
+      "precision": "day",
+      "reason": "AgentStudio v1 does not specify GroundUI-1K. Version 2 explicitly introduces the GPT-4o-recaptioned subset with 400/300/300 web, desktop, and mobile examples. The version history dates v2 to 2024-10-02.",
+      "release_date": "2024-10-02",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/abs/2403.17918v2"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/html/2403.17918v1"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/html/2403.17918v2"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:hallusion-bench",
+      "checkedAt": "2026-09-18",
+      "event": "introducing_paper_v1",
+      "inputRecordIndex": 46,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "Hallusion Bench",
+      "originalDate": "2023-10-23",
+      "precision": "day",
+      "reason": "The original paper introduces HallusionBench; the space in the name does not denote a different benchmark. The arXiv v1 submission date is 2023-10-23, matching the input. Verification covers the original introductory paper date, without separately asserting that data files became downloadable that day.",
+      "release_date": "2023-10-23",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2310.14566"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2310.14566v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:hr-bench-4k",
+      "checkedAt": "2026-09-18",
+      "event": "co_introduced_component_or_version",
+      "inputRecordIndex": 47,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "HR-Bench (4k)",
+      "originalDate": "2024-08-23",
+      "precision": "day",
+      "reason": "The official HR-Bench repository announces data/code availability on 2024-08-23 and explicitly includes the 4K dataset derived from 8K. This does not establish a separate benchmark family or validate all providers' scoring configurations.",
+      "release_date": "2024-08-23",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://github.com/DreamMr/HR-Bench"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:imagemining",
+      "checkedAt": "2026-09-18",
+      "event": "benchmark_introduction",
+      "inputRecordIndex": 128,
+      "limitation": "The introductory paper date is used. The original record's April 28 code commit still does not independently establish that the repository was public at that time.",
+      "name": "ImageMining",
+      "originalDate": "2026-04-28",
+      "precision": "day",
+      "reason": "GLM-5V-Turbo v1 does more than report scores: it specifically proposes ImageMining and describes its construction and 217 test cases. The arXiv v1 date is 2026-04-29 and can serve as the original introductory paper date.",
+      "release_date": "2026-04-29",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/abs/2604.26752v1"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/html/2604.26752v1"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:imo-answerbench",
+      "checkedAt": "2026-09-18",
+      "event": "co_introduced_component_or_version",
+      "inputRecordIndex": 48,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "IMOAnswerBench",
+      "originalDate": "2025-10",
+      "precision": "month",
+      "reason": "DeepMind's pinned original IMO-Bench README explicitly introduces the suite and IMO-AnswerBench in October 2025, with answerbench.csv in the same version. Verification accepts the stated release month without inferring an exact public release day from Git timestamps. This does not establish a separate benchmark family or validate all providers' scoring configurations.",
+      "release_date": "2025-10",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://api.github.com/repos/google-deepmind/superhuman/commits/92ae8c2e88dee12a3f793dd88a5e80ed76754c2a"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://raw.githubusercontent.com/google-deepmind/superhuman/92ae8c2e88dee12a3f793dd88a5e80ed76754c2a/imobench/README.md"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:imoproof-adv",
+      "checkedAt": "2026-09-18",
+      "event": "co_introduced_component_or_version",
+      "inputRecordIndex": 49,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "IMOProof-Adv",
+      "originalDate": "2025-10",
+      "precision": "month",
+      "reason": "DeepMind's pinned original IMO-Bench README explicitly introduces the suite in October 2025 and distinguishes the basic and advanced ProofBench subsets, with proofbench.csv in the same version. This supports the month for the advanced subset. It does not establish a separate benchmark family or validate all providers' scoring configurations.",
+      "release_date": "2025-10",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://api.github.com/repos/google-deepmind/superhuman/commits/92ae8c2e88dee12a3f793dd88a5e80ed76754c2a"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://raw.githubusercontent.com/google-deepmind/superhuman/92ae8c2e88dee12a3f793dd88a5e80ed76754c2a/imobench/README.md"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:include",
+      "checkedAt": "2026-09-18",
+      "event": "introducing_paper_v1",
+      "inputRecordIndex": 50,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "INCLUDE",
+      "originalDate": "2024-11-29",
+      "precision": "day",
+      "reason": "The original paper introduces the INCLUDE multilingual regional-knowledge evaluation. The arXiv v1 submission date is 2024-11-29, matching the input. Verification covers the original introductory paper date, without separately asserting that data files became downloadable that day.",
+      "release_date": "2024-11-29",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2411.19799"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2411.19799v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:kernel-bench-l3",
+      "checkedAt": "2026-09-18",
+      "event": "co_introduced_component_or_version",
+      "inputRecordIndex": 51,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "Kernel Bench L3",
+      "originalDate": "2024-12-03",
+      "precision": "day",
+      "reason": "Stanford's original KernelBench article dated 2024-12-03 explicitly introduces Level 3's 50 complete model-architecture tasks. This named level is present in the original introduction. It does not establish a separate benchmark family or validate all providers' scoring configurations.",
+      "release_date": "2024-12-03",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://scalingintelligence.stanford.edu/blogs/kernelbench/"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:kina",
+      "checkedAt": "2026-09-18",
+      "event": "introducing_paper_v1",
+      "inputRecordIndex": 52,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "KINA",
+      "originalDate": "2026-06-03",
+      "precision": "day",
+      "reason": "The original paper, Knowledge Index of Noah's Ark, corresponds to KINA. The arXiv v1 submission date is 2026-06-03, matching the input. Verification covers the original introductory paper date, without separately asserting that data files became downloadable that day.",
+      "release_date": "2026-06-03",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2606.05104"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2606.05104v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:lbpp-(v2)",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_announcement",
+      "inputRecordIndex": 53,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "LBPP (v2)",
+      "originalDate": "2025-04-04",
+      "precision": "day",
+      "reason": "In discussion 6 of the official LBPP dataset, the author explicitly announces the v2 release on 2025-04-04.",
+      "release_date": "2025-04-04",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://huggingface.co/datasets/CohereLabs/lbpp/discussions/6"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:livebench-20241125",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_history",
+      "inputRecordIndex": 54,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "LiveBench 20241125",
+      "originalDate": "2024-11-25",
+      "precision": "day",
+      "reason": "LiveBench's official update history explicitly corresponds to the named data version 2024-11-25.",
+      "release_date": "2024-11-25",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://github.com/LiveBench/LiveBench/blob/main/changelog.md"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:livesports-3k",
+      "checkedAt": "2026-09-18",
+      "event": "introducing_paper_v1",
+      "inputRecordIndex": 55,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "LiveSports-3K",
+      "originalDate": "2025-04-22",
+      "precision": "day",
+      "reason": "The original LiveCC paper explicitly introduces the LiveSports-3K evaluation dataset. The arXiv v1 submission date is 2025-04-22, matching the input. Verification covers the original introductory paper date, without separately asserting that data files became downloadable that day.",
+      "release_date": "2025-04-22",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2504.16030"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2504.16030v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:livesqlbench",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_history",
+      "inputRecordIndex": 56,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "LiveSQLBench",
+      "originalDate": "2025-09-04",
+      "precision": "day",
+      "reason": "LiveSQLBench's official history releases Base-Full v1 on 2025-09-04: 600 questions and 22 databases. The frozen catalog description explicitly identifies that version, so this date is not assigned to every LiveSQLBench version.",
+      "release_date": "2025-09-04",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://github.com/bird-bench/livesqlbench"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:lmarena-text",
+      "checkedAt": "2026-09-18",
+      "event": "official_leaderboard_launch",
+      "inputRecordIndex": 57,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "LMArena Text Leaderboard",
+      "originalDate": "2023-05-03",
+      "precision": "day",
+      "reason": "The LMSYS authors' first Elo leaderboard article, dated 2023-05-03, supports the public introduction of the LMArena Text Leaderboard. This is distinguished from the earlier start of battle-data collection.",
+      "release_date": "2023-05-03",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://lmsys.org/blog/2023-05-03-arena/"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:loca-bench-256k",
+      "checkedAt": "2026-09-18",
+      "event": "co_introduced_component_or_version",
+      "inputRecordIndex": 58,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "LOCA-Bench (256k)",
+      "originalDate": "2026-02-08",
+      "precision": "day",
+      "reason": "The original LOCA-Bench v1 explicitly includes seven length tiers from 8K to 256K. The 256K configuration appears in the original paper dated 2026-02-08. This does not establish a separate benchmark family or validate all providers' scoring configurations.",
+      "release_date": "2026-02-08",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2602.07962"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2602.07962v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:math-500",
+      "checkedAt": "2026-09-18",
+      "event": "co_introduced_component_or_version",
+      "inputRecordIndex": 59,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "MATH-500",
+      "originalDate": "2023-05-31",
+      "precision": "day",
+      "reason": "The original v1 of Let's Verify Step by Step explicitly reserves 500 MATH test problems; the MATH Splits documentation in OpenAI's prm800k repository maps these to the public test.jsonl. This supports 2023-05-31 as the original paper introduction date of the 500-problem subset. It does not establish a separate benchmark family or validate all providers' scoring configurations.",
+      "release_date": "2023-05-31",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2305.20050"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://github.com/openai/prm800k"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2305.20050v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:matharena-apex",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_announcement",
+      "inputRecordIndex": 60,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "MathArena Apex",
+      "originalDate": "2025-08-18",
+      "precision": "day",
+      "reason": "MathArena's official article dated 2025-08-18 explicitly releases MathArena Apex.",
+      "release_date": "2025-08-18",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://matharena.ai/apex/"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:mathverse-mini",
+      "checkedAt": "2026-09-18",
+      "event": "testmini_dataset_release",
+      "inputRecordIndex": 129,
+      "limitation": "The date applies to the benchmark and event described above; it does not establish that every model score in the catalog uses the same evaluation protocol.",
+      "name": "MathVerse-Mini",
+      "originalDate": "2024-03-21",
+      "precision": "day",
+      "reason": "The 2024.03.22 News entry in the official MathVerse repository explicitly announces the release of testmini, the paper, and evaluation code. The mini subset's actual release record replaces the parent paper date from the previous day.",
+      "release_date": "2024-03-22",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://github.com/ZrrSkywalker/MathVerse"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:mbpp-++-base-version",
+      "checkedAt": "2026-09-18",
+      "event": "mbpp_plus_base_scoring_release",
+      "inputRecordIndex": 130,
+      "limitation": "This corresponds to base tests on the cleaned MBPP+ problems, not the release date of the original uncleaned full MBPP dataset.",
+      "name": "MBPP ++ base version",
+      "originalDate": "2023-11-24",
+      "precision": "day",
+      "reason": "EvalPlus v0.2.0 officially releases MBPP+. Under that same fixed version tag, evaluate.py already loads MBPP+ and implements base_input, base_only, and base scores, establishing that the base view was released with this version.",
+      "release_date": "2023-11-24",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://github.com/evalplus/evalplus/releases/tag/v0.2.0"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://github.com/evalplus/evalplus/blob/v0.2.0/evalplus/evaluate.py"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:mbpp-evalplus",
+      "checkedAt": "2026-09-18",
+      "event": "co_introduced_component_or_version",
+      "inputRecordIndex": 61,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "MBPP EvalPlus",
+      "originalDate": "2023-11-24",
+      "precision": "day",
+      "reason": "The official EvalPlus v0.2.0 release explicitly releases MBPP+ on 2023-11-24. Here, MBPP EvalPlus is identified as the extended-test benchmark, excluding the separately listed base-only configuration. This does not establish a separate benchmark family or validate all providers' scoring configurations.",
+      "release_date": "2023-11-24",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://github.com/evalplus/evalplus/releases/tag/v0.2.0"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:mbpp-evalplus-(base)",
+      "checkedAt": "2026-09-18",
+      "event": "mbpp_plus_base_scoring_release",
+      "inputRecordIndex": 131,
+      "limitation": "This corresponds to base tests on the cleaned MBPP+ problems, not the release date of the original uncleaned full MBPP dataset.",
+      "name": "MBPP EvalPlus (base)",
+      "originalDate": "2023-11-24",
+      "precision": "day",
+      "reason": "EvalPlus v0.2.0 officially releases MBPP+. Under that same fixed version tag, evaluate.py already loads MBPP+ and implements base_input, base_only, and base scores, establishing that the base view was released with this version.",
+      "release_date": "2023-11-24",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://github.com/evalplus/evalplus/releases/tag/v0.2.0"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://github.com/evalplus/evalplus/blob/v0.2.0/evalplus/evaluate.py"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:mbpp-plus",
+      "checkedAt": "2026-09-18",
+      "event": "official_version_release",
+      "inputRecordIndex": 62,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "MBPP Plus",
+      "originalDate": "2023-11-24",
+      "precision": "day",
+      "reason": "The official EvalPlus v0.2.0 release has a published_at date of 2023-11-24, and its release notes explicitly add MBPP+.",
+      "release_date": "2023-11-24",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://github.com/evalplus/evalplus/releases/tag/v0.2.0"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:mcp-mark",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_announcement",
+      "inputRecordIndex": 63,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "MCP-Mark",
+      "originalDate": "2025-08-26",
+      "precision": "day",
+      "reason": "MCPMark's official announcement dated 2025-08-26 releases 127 tasks in real environments.",
+      "release_date": "2025-08-26",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://mcpmark.ai/blog/introducing-mcpmark"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:mega-mlqa",
+      "checkedAt": "2026-09-18",
+      "event": "mega_task_protocol_introduction",
+      "inputRecordIndex": 132,
+      "limitation": "The date applies to the benchmark and event described above; it does not establish that every model score in the catalog uses the same evaluation protocol.",
+      "name": "MEGA MLQA",
+      "originalDate": "2019-10-16",
+      "precision": "day",
+      "reason": "Direct inspection of the MEGA v1 PDF confirms that MLQA, TyDiQA-GoldP, and XCOPA are already included in the framework's tasks and prompting protocols. The MEGA introduction date should be used instead of each parent dataset's date.",
+      "release_date": "2023-03-22",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/abs/2303.12528v1"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/pdf/2303.12528v1"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:mega-tydi-qa",
+      "checkedAt": "2026-09-18",
+      "event": "mega_task_protocol_introduction",
+      "inputRecordIndex": 133,
+      "limitation": "The date applies to the benchmark and event described above; it does not establish that every model score in the catalog uses the same evaluation protocol.",
+      "name": "MEGA TyDi QA",
+      "originalDate": "2020-03-10",
+      "precision": "day",
+      "reason": "Direct inspection of the MEGA v1 PDF confirms that MLQA, TyDiQA-GoldP, and XCOPA are already included in the framework's tasks and prompting protocols. The MEGA introduction date should be used instead of each parent dataset's date.",
+      "release_date": "2023-03-22",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/abs/2303.12528v1"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/pdf/2303.12528v1"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:mega-udpos",
+      "checkedAt": "2026-09-18",
+      "event": "mega_task_added_in_v3",
+      "inputRecordIndex": 134,
+      "limitation": "The date refers to the introduction of these two tasks in the MEGA paper versions, not the creation of their parent datasets.",
+      "name": "MEGA UDPOS",
+      "originalDate": "2020-03-24",
+      "precision": "day",
+      "reason": "Version-by-version inspection finds neither task in MEGA v1 or v2; the v3 task table and protocols include UDPOS and XStoryCloze. The arXiv version history dates v3 to 2023-05-19.",
+      "release_date": "2023-05-19",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/abs/2303.12528v1"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/pdf/2303.12528v1"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/pdf/2303.12528v2"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/pdf/2303.12528v3"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:mega-xcopa",
+      "checkedAt": "2026-09-18",
+      "event": "mega_task_protocol_introduction",
+      "inputRecordIndex": 135,
+      "limitation": "The date applies to the benchmark and event described above; it does not establish that every model score in the catalog uses the same evaluation protocol.",
+      "name": "MEGA XCOPA",
+      "originalDate": "2020-05-01",
+      "precision": "day",
+      "reason": "Direct inspection of the MEGA v1 PDF confirms that MLQA, TyDiQA-GoldP, and XCOPA are already included in the framework's tasks and prompting protocols. The MEGA introduction date should be used instead of each parent dataset's date.",
+      "release_date": "2023-03-22",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/abs/2303.12528v1"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/pdf/2303.12528v1"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:mega-xstorycloze",
+      "checkedAt": "2026-09-18",
+      "event": "mega_task_added_in_v3",
+      "inputRecordIndex": 136,
+      "limitation": "The date refers to the introduction of these two tasks in the MEGA paper versions, not the creation of their parent datasets.",
+      "name": "MEGA XStoryCloze",
+      "originalDate": "2021-12-20",
+      "precision": "day",
+      "reason": "Version-by-version inspection finds neither task in MEGA v1 or v2; the v3 task table and protocols include UDPOS and XStoryCloze. The arXiv version history dates v3 to 2023-05-19.",
+      "release_date": "2023-05-19",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/abs/2303.12528v1"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/pdf/2303.12528v1"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/pdf/2303.12528v2"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/pdf/2303.12528v3"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:miabench",
+      "checkedAt": "2026-09-18",
+      "event": "introducing_paper_v1",
+      "inputRecordIndex": 64,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "MIABench",
+      "originalDate": "2024-07-01",
+      "precision": "day",
+      "reason": "The original paper introduces the MIA-Bench multimodal instruction-following evaluation. The arXiv v1 submission date is 2024-07-01, matching the input. Verification covers the original introductory paper date, without separately asserting that data files became downloadable that day.",
+      "release_date": "2024-07-01",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2407.01509"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2407.01509v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:mimic-cxr",
+      "checkedAt": "2026-09-18",
+      "event": "official_dataset_version_release",
+      "inputRecordIndex": 65,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "MIMIC CXR",
+      "originalDate": "2019-08-02",
+      "precision": "day",
+      "reason": "PhysioNet's MIMIC-CXR v1.0.0 page explicitly gives a publication date of 2019-08-02. This conclusion is limited to that original version and does not apply to MIMIC-CXR-JPG.",
+      "release_date": "2019-08-02",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://physionet.org/content/mimic-cxr/1.0.0/"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:mle-bench-lite",
+      "checkedAt": "2026-09-18",
+      "event": "low_complexity_subset_introduction",
+      "inputRecordIndex": 137,
+      "limitation": "This is the original paper date for the Low/Lite subset; the initial commit from the previous day is not treated as the repository's public release date.",
+      "name": "MLE-Bench Lite",
+      "originalDate": "2024-10-08",
+      "precision": "day",
+      "reason": "MLE-bench v1 already separately lists 22 Low-complexity tasks, and the authors' repository explicitly states that the Low subset is also called Lite. The original introductory paper's v1 date is 2024-10-09.",
+      "release_date": "2024-10-09",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/abs/2410.07095v1"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/html/2410.07095v1"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://github.com/openai/mle-bench"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:mls-bench-lite",
+      "checkedAt": "2026-09-18",
+      "event": "co_introduced_component_or_version",
+      "inputRecordIndex": 66,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "MLS-Bench Lite",
+      "originalDate": "2026-05-09",
+      "precision": "day",
+      "reason": "The original MLS-Bench v1 explicitly introduces Lite with 30 tasks in 12 domains. The subset appears in the paper dated 2026-05-09. This does not establish a separate benchmark family or validate all providers' scoring configurations.",
+      "release_date": "2026-05-09",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2605.08678"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2605.08678v1"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/html/2605.08678v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:mlvu-m",
+      "checkedAt": "2026-09-18",
+      "event": "multiple_choice_component_introduction",
+      "inputRecordIndex": 138,
+      "limitation": "The MLVU-M to multiple-choice M-Avg mapping follows the name and task definition; it does not imply that all later video frame-sampling and aggregation implementations were released that day.",
+      "name": "MLVU-M",
+      "originalDate": "2024-06-06",
+      "precision": "day",
+      "reason": "Table 1 of MLVU v1 already distinguishes the multiple-choice average, M-Avg, from the generation-task average, G-Avg. MLVU-M corresponds to the former, so the named task component exists in the original version.",
+      "release_date": "2024-06-06",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/abs/2406.04264v1"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/html/2406.04264v1"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:mm-mind2web",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_history",
+      "inputRecordIndex": 67,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "MM-Mind2Web",
+      "originalDate": "2024-03-18",
+      "precision": "day",
+      "reason": "The official Mind2Web repository's update dated 2024/3/18 explicitly releases Multimodal-Mind2Web with screenshots.",
+      "release_date": "2024-03-18",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://github.com/OSU-NLP-Group/Mind2Web"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:mm-mt-bench",
+      "checkedAt": "2026-09-18",
+      "event": "benchmark_public_introduction",
+      "inputRecordIndex": 139,
+      "limitation": "This is the official introduction date. The announcement states plans to open-source the benchmark, so it does not establish same-day downloadable data availability.",
+      "name": "MM-MT-Bench",
+      "originalDate": "2024-10-09",
+      "precision": "day",
+      "reason": "Mistral's original Pixtral 12B announcement is dated 2024-09-17 and explicitly proposes MM-MT-Bench, preceding the October report in the original record.",
+      "release_date": "2024-09-17",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://mistral.ai/news/pixtral-12b/"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:mmbench-v1.1",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_history",
+      "inputRecordIndex": 68,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "MMBench-V1.1",
+      "originalDate": "2024-04-28",
+      "precision": "day",
+      "reason": "A pinned historical VLMEvalKit README explicitly lists the improved MMBench V1.1 in its 2024-04-28 update, distinguishing it from the original, unversioned MMBench.",
+      "release_date": "2024-04-28",
+      "sources": [
+        {
+          "retrievalStatus": "no_readable_content_retrieved",
+          "role": "original",
+          "url": "https://github.com/open-compass/VLMEvalKit/blob/681df1159b83939ea46bf01700756dbdc5dfccd5/README.md"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://raw.githubusercontent.com/open-compass/VLMEvalKit/681df1159b83939ea46bf01700756dbdc5dfccd5/README.md"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:mmlongbench-128k",
+      "checkedAt": "2026-09-18",
+      "event": "co_introduced_component_or_version",
+      "inputRecordIndex": 69,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "MMLongBench-128K",
+      "originalDate": "2025-05-15",
+      "precision": "day",
+      "reason": "The original MMLongBench v1 explicitly includes evaluations up to 128K in the paper dated 2025-05-15. This does not establish a separate benchmark family or validate all providers' scoring configurations.",
+      "release_date": "2025-05-15",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2505.10610"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2505.10610v1"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/html/2505.10610v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:mmlu-redux-2.0",
+      "checkedAt": "2026-09-18",
+      "event": "official_dataset_version_release",
+      "inputRecordIndex": 70,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "MMLU-redux-2.0",
+      "originalDate": "2024-11-07",
+      "precision": "day",
+      "reason": "The authors' Zenodo record for MMLU-Redux-2.0 was additionally checked and explicitly gives a publication date of 2024-11-07.",
+      "release_date": "2024-11-07",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://www.research.ed.ac.uk/en/datasets/mmlu-redux-20/"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://zenodo.org/records/14051942"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:mmmlu",
+      "checkedAt": "2026-09-18",
+      "event": "official_dataset_release_month",
+      "inputRecordIndex": 71,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "MMMLU",
+      "originalDate": "2024-09",
+      "precision": "month",
+      "reason": "OpenAI's MMMLU data card announces translations into 14 languages. The data and documentation releases in the official history both fall in September 2024. A minor README edit in the original link is not sufficient release evidence by itself; only month precision is confirmed.",
+      "release_date": "2024-09",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://huggingface.co/datasets/openai/MMMLU/commits/main"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:mmsibench",
+      "checkedAt": "2026-09-18",
+      "event": "introducing_paper_v1",
+      "inputRecordIndex": 72,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "MMSIBench",
+      "originalDate": "2025-05-29",
+      "precision": "day",
+      "reason": "The original paper introduces the MMSI-Bench multi-image spatial-intelligence evaluation. The arXiv v1 submission date is 2025-05-29, matching the input. Verification covers the original introductory paper date, without separately asserting that data files became downloadable that day.",
+      "release_date": "2025-05-29",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2505.23764"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2505.23764v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:mobileminiwob++-sr",
+      "checkedAt": "2026-09-18",
+      "event": "mobile_adaptation_and_success_metric_introduction",
+      "inputRecordIndex": 140,
+      "limitation": "The date applies to the benchmark and event described above; it does not establish that every model score in the catalog uses the same evaluation protocol.",
+      "name": "MobileMiniWob++_SR",
+      "originalDate": "2024-05-23",
+      "precision": "day",
+      "reason": "AndroidWorld v1 explicitly creates the MobileMiniWoB++ mobile adaptation and reports SR in Table 3; the original desktop MiniWoB++ date is not being applied to the mobile version.",
+      "release_date": "2024-05-23",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/abs/2405.14573v1"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/html/2405.14573v1"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:mrcr",
+      "checkedAt": "2026-09-18",
+      "event": "introducing_paper_v1",
+      "inputRecordIndex": 73,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "MRCR",
+      "originalDate": "2024-09-19",
+      "precision": "day",
+      "reason": "The original Michelangelo paper introduces Google's MRCR; this date does not apply to the later OpenAI MRCR or MRCRv2. The arXiv v1 submission date is 2024-09-19, matching the input. Verification covers the original introductory paper date, without separately asserting that data files became downloadable that day.",
+      "release_date": "2024-09-19",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2409.12640"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2409.12640v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:mrcr-v2",
+      "checkedAt": "2026-09-18",
+      "event": "co_introduced_component_or_version",
+      "inputRecordIndex": 74,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "MRCRv2",
+      "originalDate": "2025-12-05",
+      "precision": "day",
+      "reason": "OpenAI MRCR's official changelog explicitly records corrections to erroneous examples on 2025-12-05. The official GPT-5.2 introduction calls this corrected version OpenAI MRCRv2, establishing the version mapping across the two sources. This does not establish a separate benchmark family or validate all providers' scoring configurations.",
+      "release_date": "2025-12-05",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://huggingface.co/datasets/openai/mrcr"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://openai.com/index/introducing-gpt-5-2/"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:mrcr-v2-(8-needle)",
+      "checkedAt": "2026-09-18",
+      "event": "co_introduced_component_or_version",
+      "inputRecordIndex": 75,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "MRCR v2 (8-needle)",
+      "originalDate": "2025-12-05",
+      "precision": "day",
+      "reason": "OpenAI MRCR's official data card explicitly includes 8-needle data and records corrections on 2025-12-05; the official GPT-5.2 description labels that corrected version MRCRv2. Only the named data version is verified, not model-scoring configurations. This does not establish a separate benchmark family or validate all providers' scoring configurations.",
+      "release_date": "2025-12-05",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://huggingface.co/datasets/openai/mrcr"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://openai.com/index/introducing-gpt-5-2/"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:multilf",
+      "checkedAt": "2026-09-18",
+      "event": "benchmark_introduction",
+      "inputRecordIndex": 141,
+      "limitation": "The name mapping is inferred by jointly matching models and scores in the original report; it does not create a new benchmark called MultiLF.",
+      "name": "MultiLF",
+      "originalDate": "2024-10-21",
+      "precision": "day",
+      "reason": "The Multi-IF rows in the original Qwen3 report include 73.0 for Qwen3-32B and 71.9 for Qwen3-235B, matching the catalog's two model records. This supports identifying MultiLF as a misspelling of Multi-IF. Multi-IF v1 is dated 2024-10-21.",
+      "release_date": "2024-10-21",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/html/2505.09388v1"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/abs/2410.15553v1"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:natural-questions",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_announcement",
+      "inputRecordIndex": 76,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "Natural Questions",
+      "originalDate": "2019-01-23",
+      "precision": "day",
+      "reason": "Google's original Natural Questions release article is explicitly dated 2019-01-23 and introduces the new corpus and evaluation challenge.",
+      "release_date": "2019-01-23",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://research.google/blog/natural-questions-a-new-corpus-and-challenge-for-question-answering-research/"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:nexus",
+      "checkedAt": "2026-09-18",
+      "event": "nexusraven_evaluation_introduction",
+      "inputRecordIndex": 142,
+      "limitation": "The date applies to the benchmark and event described above; it does not establish that every model score in the catalog uses the same evaluation protocol.",
+      "name": "Nexus",
+      "originalDate": "2023-09-28",
+      "precision": "day",
+      "reason": "The Nexus citation in the original Llama 3 report points to Srinivasan et al.'s NexusRaven, and the model scores also match the catalog. Nexusflow's announcement dated 2023-09-28 introduces that evaluation and its open-source resources, excluding December's NexusRaven-V2.",
+      "release_date": "2023-09-28",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/html/2407.21783v1"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://nexusflow.ai/blogs/introducing-nexusraven-13b"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:nova-63",
+      "checkedAt": "2026-09-18",
+      "event": "introducing_conference_paper",
+      "inputRecordIndex": 77,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "NOVA-63",
+      "originalDate": "2025-11",
+      "precision": "month",
+      "reason": "The original NOVA-63 paper's ACL Anthology metadata identifies EMNLP 2025 and November. This supports a paper publication month of 2025-11, without asserting the first file upload date.",
+      "release_date": "2025-11",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://aclanthology.org/2025.emnlp-main.364/"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:nq",
+      "checkedAt": "2026-09-18",
+      "event": "co_introduced_component_or_version",
+      "inputRecordIndex": 78,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "NQ",
+      "originalDate": "2019-01-23",
+      "precision": "day",
+      "reason": "NQ abbreviates the original Natural Questions. Google's original announcement dated 2019-01-23 introduces that dataset, not a later language or filtered variant. This does not establish a separate benchmark family or validate all providers' scoring configurations.",
+      "release_date": "2019-01-23",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://research.google/blog/natural-questions-a-new-corpus-and-challenge-for-question-answering-research/"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:octocodingbench",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_announcement",
+      "inputRecordIndex": 79,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "OctoCodingBench",
+      "originalDate": "2026-01-14",
+      "precision": "day",
+      "reason": "MiniMax's official announcement dated 2026-01-14 explicitly open-sources OctoCodingBench. Earlier model-score disclosures are distinguished from this open-source release event.",
+      "release_date": "2026-01-14",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://www.minimax.io/news/production-grade-benchmark-for-coding-agents"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:odinw",
+      "checkedAt": "2026-09-18",
+      "event": "introducing_paper_v1",
+      "inputRecordIndex": 80,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "ODinW",
+      "originalDate": "2021-12-07",
+      "precision": "day",
+      "reason": "The original ODinW in the GLIP paper evaluates 13 datasets; this conclusion does not apply to the later 35-dataset extension. The arXiv v1 submission date is 2021-12-07, matching the input. Verification covers the original introductory paper date, without separately asserting that data files became downloadable that day.",
+      "release_date": "2021-12-07",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2112.03857"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2112.03857v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:omnidocbench-1.5",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_history",
+      "inputRecordIndex": 81,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "OmniDocBench 1.5",
+      "originalDate": "2025-09-25",
+      "precision": "day",
+      "reason": "OmniDocBench's official News explicitly records the upgrade from 1.0 to 1.5 on 2025-09-25.",
+      "release_date": "2025-09-25",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://github.com/opendatalab/OmniDocBench"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:osworld-verified",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_announcement",
+      "inputRecordIndex": 82,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "OSWorld-Verified",
+      "originalDate": "2025-07-28",
+      "precision": "day",
+      "reason": "The official OSWorld-Verified page explicitly dates the release of this verified upgrade to 2025-07-28.",
+      "release_date": "2025-07-28",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://osworld-v1.xlang.ai/"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:ovbench",
+      "checkedAt": "2026-09-18",
+      "event": "introducing_paper_v1",
+      "inputRecordIndex": 83,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "OVBench",
+      "originalDate": "2024-12-31",
+      "precision": "day",
+      "reason": "The original paper introduces OVBench. Although its arXiv identifier starts with 2501, v1 was actually submitted on 2024-12-31. That date matches the input. Verification covers the original introductory paper date, without separately asserting that data files became downloadable that day.",
+      "release_date": "2024-12-31",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2501.00584"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2501.00584v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:perceptiontest",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_announcement",
+      "inputRecordIndex": 84,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "PerceptionTest",
+      "originalDate": "2022-10-12",
+      "precision": "day",
+      "reason": "DeepMind's official article dated 2022-10-12 explicitly introduces Perception Test. That original announcement date is used.",
+      "release_date": "2022-10-12",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://deepmind.google/blog/measuring-perception-in-ai-models/"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:pinchbench",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_announcement",
+      "inputRecordIndex": 85,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "PinchBench",
+      "originalDate": "2026-02-24",
+      "precision": "day",
+      "reason": "Kilo's original article dated 2026-02-24 introduces and open-sources the 23-task PinchBench.",
+      "release_date": "2026-02-24",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://blog.kilo.ai/p/kiloclaw-hosted-openclaw"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:prbench-finance",
+      "checkedAt": "2026-09-18",
+      "event": "co_introduced_component_or_version",
+      "inputRecordIndex": 86,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "PRBench-Finance",
+      "originalDate": "2025-11-14",
+      "precision": "day",
+      "reason": "The original PRBench v1 explicitly includes the Finance and Legal domains. Finance appears in the original paper dated 2025-11-14. This does not establish a separate benchmark family or validate all providers' scoring configurations.",
+      "release_date": "2025-11-14",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2511.11562"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2511.11562v1"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/html/2511.11562v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:prbench-legal",
+      "checkedAt": "2026-09-18",
+      "event": "co_introduced_component_or_version",
+      "inputRecordIndex": 87,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "PRBench-Legal",
+      "originalDate": "2025-11-14",
+      "precision": "day",
+      "reason": "The original PRBench v1 explicitly includes the Legal and Finance domains. Legal appears in the original paper dated 2025-11-14. This does not establish a separate benchmark family or validate all providers' scoring configurations.",
+      "release_date": "2025-11-14",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2511.11562"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2511.11562v1"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/html/2511.11562v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:protocolqa",
+      "checkedAt": "2026-09-18",
+      "event": "co_introduced_component_or_version",
+      "inputRecordIndex": 88,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "ProtocolQA",
+      "originalDate": "2024-07-14",
+      "precision": "day",
+      "reason": "The original LAB-Bench v1 explicitly includes the ProtocolQA subtask in the paper dated 2024-07-14. This does not establish a separate benchmark family or validate all providers' scoring configurations.",
+      "release_date": "2024-07-14",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2407.10362"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2407.10362v1"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/html/2407.10362v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:qwenclawbench",
+      "checkedAt": "2026-09-18",
+      "event": "official_introduction_month",
+      "inputRecordIndex": 89,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "QwenClawBench",
+      "originalDate": "2026-04",
+      "precision": "month",
+      "reason": "The pinned initial QwenClawBench README introduces runnable v1.1 with 100 tasks and specifies April 2026 in its citation information. Verification accepts only that stated introduction month, without treating Git author timestamps as an exact public release day.",
+      "release_date": "2026-04",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://raw.githubusercontent.com/SKYLENAGE-AI/QwenClawBench/9741e9bf22615a520684a2db603796bf86487a3b/README.md"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:refspatialbench",
+      "checkedAt": "2026-09-18",
+      "event": "introducing_paper_v1",
+      "inputRecordIndex": 90,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "RefSpatialBench",
+      "originalDate": "2025-06-04",
+      "precision": "day",
+      "reason": "The original RoboRefer paper explicitly introduces the RefSpatial-Bench evaluation set, distinguishing it from the RefSpatial training set. The arXiv v1 submission date is 2025-06-04, matching the input. Verification covers the original introductory paper date, without separately asserting that data files became downloadable that day.",
+      "release_date": "2025-06-04",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2506.04308"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2506.04308v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:robospatialhome",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_history",
+      "inputRecordIndex": 91,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "RoboSpatialHome",
+      "originalDate": "2025-04-24",
+      "precision": "day",
+      "reason": "News in the official RoboSpatial repository explicitly releases the RoboSpatial-Home data and evaluation code on 2025-04-24.",
+      "release_date": "2025-04-24",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://github.com/NVlabs/RoboSpatial"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:sat-math",
+      "checkedAt": "2026-09-18",
+      "event": "agieval_sat_math_component_introduction",
+      "inputRecordIndex": 143,
+      "limitation": "The date applies to the benchmark and event described above; it does not establish that every model score in the catalog uses the same evaluation protocol.",
+      "name": "SAT Math",
+      "originalDate": "2023-04-13",
+      "precision": "day",
+      "reason": "The frozen catalog explicitly states that SAT Math comes from AGIEval. The task table in the original v1 PDF lists 220 SAT-Math questions and evaluation results, establishing that this component appeared with the first AGIEval version.",
+      "release_date": "2023-04-13",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/abs/2304.06364v1"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/pdf/2304.06364v1"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:seal-0",
+      "checkedAt": "2026-09-18",
+      "event": "co_introduced_component_or_version",
+      "inputRecordIndex": 92,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "Seal-0",
+      "originalDate": "2025-06-01",
+      "precision": "day",
+      "reason": "The original SealQA v1 explicitly introduces the 111 questions in Seal-0. The named subset appears in the paper dated 2025-06-01. This does not establish a separate benchmark family or validate all providers' scoring configurations.",
+      "release_date": "2025-06-01",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2506.01062"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2506.01062v1"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/html/2506.01062v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:seccodebench",
+      "checkedAt": "2026-09-18",
+      "event": "official_version_release",
+      "inputRecordIndex": 93,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "SecCodeBench",
+      "originalDate": "2025-07-10",
+      "precision": "day",
+      "reason": "The official SecCodeBench v1.0.0 release has a published_at timestamp of 2025-07-10T09:51:40Z, matching the input day.",
+      "release_date": "2025-07-10",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://github.com/alibaba/sec-code-bench/releases/tag/v1.0.0"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:spreadsheetbench-v1",
+      "checkedAt": "2026-09-18",
+      "event": "introducing_paper_v1",
+      "inputRecordIndex": 94,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "SpreadSheetBench-v1",
+      "originalDate": "2024-06-21",
+      "precision": "day",
+      "reason": "The original SpreadsheetBench paper provides the v1 introduction of this benchmark. The arXiv v1 submission date is 2024-06-21, matching the input. Verification covers the original introductory paper date, without separately asserting that data files became downloadable that day.",
+      "release_date": "2024-06-21",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2406.14991"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2406.14991v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:summscreenfd",
+      "checkedAt": "2026-09-18",
+      "event": "foreverdreaming_split_introduction",
+      "inputRecordIndex": 144,
+      "limitation": "The date applies to the benchmark and event described above; it does not establish that every model score in the catalog uses the same evaluation protocol.",
+      "name": "SummScreenFD",
+      "originalDate": "2021-04-14",
+      "precision": "day",
+      "reason": "Direct inspection of the original v1 PDF confirms that the dataset construction section and tables already include ForeverDreaming (FD) and TVMegaSite. This establishes the presence of SummScreenFD in that same version.",
+      "release_date": "2021-04-14",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/abs/2104.07091v1"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/pdf/2104.07091v1"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:sunrgbd",
+      "checkedAt": "2026-09-18",
+      "event": "introducing_conference_paper",
+      "inputRecordIndex": 95,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "SUNRGBD",
+      "originalDate": "2015-06",
+      "precision": "month",
+      "reason": "The original SUN RGB-D CVPR 2015 paper information specifies June, supporting month precision, 2015-06, for the paper introduction.",
+      "release_date": "2015-06",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://openaccess.thecvf.com/content_cvpr_2015/html/Song_SUN_RGB-D_A_2015_CVPR_paper.html"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:surds",
+      "checkedAt": "2026-09-18",
+      "event": "surds_version_introduction_in_v3",
+      "inputRecordIndex": 145,
+      "limitation": "The date when the expanded SURDS version first appears in the paper's version sequence is used, rather than inheriting the earlier DriveMLLM version date.",
+      "name": "SURDS",
+      "originalDate": "2024-11-20",
+      "precision": "day",
+      "reason": "The original date, 2024-11-20, belongs to an early DriveMLLM version. The arXiv v3 uses the SURDS name and introduces the expanded dataset on 2025-05-27; the authors' repository also distinguishes the old DriveMLLM from SURDS.",
+      "release_date": "2025-05-27",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/abs/2411.13112v2"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/abs/2411.13112v3"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://github.com/xiandaguo/drive-mllm"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:swe-atlas",
+      "checkedAt": "2026-09-18",
+      "event": "suite_initial_launch",
+      "inputRecordIndex": 146,
+      "limitation": "The date refers to the initial SWE-Atlas suite release; it does not imply that every subtask was available on March 4.",
+      "name": "SWE-Atlas",
+      "originalDate": "2026-05-08",
+      "precision": "day",
+      "reason": "Scale's official announcement dated 2026-03-04 launches SWE-Atlas; all three evaluation tracks were announced as available only on 2026-05-07. For the unversioned suite record, the initial launch date is used rather than the May paper date.",
+      "release_date": "2026-03-04",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://scale.com/blog/swe-atlas"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://scale.com/blog/swe-atlas-complete"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:swe-atlas-test-writing",
+      "checkedAt": "2026-09-18",
+      "event": "official_track_launch",
+      "inputRecordIndex": 96,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "SWE Atlas - Test Writing",
+      "originalDate": "2026-03-30",
+      "precision": "day",
+      "reason": "The SWE-Atlas authors' original announcement dated 2026-03-30 explicitly releases the second track, Test Writing, distinguishing it from the suite's later paper date.",
+      "release_date": "2026-03-30",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://www.linkedin.com/posts/vbingliu_were-launching-swe-atlas-test-writing-activity-7444444341974261760-1lmH"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:swe-bench-multilingual",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_announcement",
+      "inputRecordIndex": 97,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "SWE-bench Multilingual",
+      "originalDate": "2025-05-06",
+      "precision": "day",
+      "reason": "SWE-bench author Kabir's original introduction article is dated 2025-05-06 and explicitly launches the Multilingual version.",
+      "release_date": "2025-05-06",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://kabirk.com/multilingual"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:t2-bench",
+      "checkedAt": "2026-09-18",
+      "event": "benchmark_introduction",
+      "inputRecordIndex": 147,
+      "limitation": "This is the base benchmark's introduction date. The model card describes later protocols, including airline fixes; cross-model comparability of catalog scores is not thereby certified.",
+      "name": "t2-bench",
+      "originalDate": "2025-06-09",
+      "precision": "day",
+      "reason": "The official Qwen3.5-397B-A17B model card labels the corresponding score of 86.7 as TAU2-Bench, supporting the mapping from t2-bench to tau2-bench. The original paper's v1 date is 2025-06-09.",
+      "release_date": "2025-06-09",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://huggingface.co/Qwen/Qwen3.5-397B-A17B"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/abs/2506.07982v1"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:tau3-airline",
+      "checkedAt": "2026-09-18",
+      "event": "co_introduced_component_or_version",
+      "inputRecordIndex": 98,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "Tau3 Airline",
+      "originalDate": "2026-03-18",
+      "precision": "day",
+      "reason": "Sierra's original tau3-bench announcement dated 2026-03-18 explicitly includes the updated airline domain. This does not establish a separate benchmark family or validate all providers' scoring configurations.",
+      "release_date": "2026-03-18",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://sierra.ai/uk/blog/bench-advancing-agent-benchmarking-to-knowledge-and-voice"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:tau3-banking",
+      "checkedAt": "2026-09-18",
+      "event": "co_introduced_component_or_version",
+      "inputRecordIndex": 99,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "Tau3 Banking",
+      "originalDate": "2026-03-18",
+      "precision": "day",
+      "reason": "Sierra's original tau3-bench announcement dated 2026-03-18 explicitly introduces the banking domain. This does not establish a separate benchmark family or validate all providers' scoring configurations.",
+      "release_date": "2026-03-18",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://sierra.ai/uk/blog/bench-advancing-agent-benchmarking-to-knowledge-and-voice"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:tau3-bench",
+      "checkedAt": "2026-09-18",
+      "event": "co_introduced_component_or_version",
+      "inputRecordIndex": 100,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "TAU3-Bench",
+      "originalDate": "2026-03-18",
+      "precision": "day",
+      "reason": "Sierra's original official announcement explicitly releases tau3-bench on 2026-03-18. This does not establish a separate benchmark family or validate all providers' scoring configurations.",
+      "release_date": "2026-03-18",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://sierra.ai/uk/blog/bench-advancing-agent-benchmarking-to-knowledge-and-voice"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:tau3-retail",
+      "checkedAt": "2026-09-18",
+      "event": "co_introduced_component_or_version",
+      "inputRecordIndex": 101,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "Tau3 Retail",
+      "originalDate": "2026-03-18",
+      "precision": "day",
+      "reason": "Sierra's original tau3-bench announcement dated 2026-03-18 explicitly includes the updated retail domain. This does not establish a separate benchmark family or validate all providers' scoring configurations.",
+      "release_date": "2026-03-18",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://sierra.ai/uk/blog/bench-advancing-agent-benchmarking-to-knowledge-and-voice"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:tau3-telecom",
+      "checkedAt": "2026-09-18",
+      "event": "co_introduced_component_or_version",
+      "inputRecordIndex": 102,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "Tau3 Telecom",
+      "originalDate": "2026-03-18",
+      "precision": "day",
+      "reason": "Sierra's original tau3-bench announcement dated 2026-03-18 explicitly includes the updated telecom domain. This does not establish a separate benchmark family or validate all providers' scoring configurations.",
+      "release_date": "2026-03-18",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://sierra.ai/uk/blog/bench-advancing-agent-benchmarking-to-knowledge-and-voice"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:treebench",
+      "checkedAt": "2026-09-18",
+      "event": "introducing_paper_v1",
+      "inputRecordIndex": 103,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "TreeBench",
+      "originalDate": "2025-07-10",
+      "precision": "day",
+      "reason": "The original paper, Traceable Evidence Enhanced Visual Grounded Reasoning, introduces TreeBench. The arXiv v1 submission date is 2025-07-10, matching the input. Verification covers the original introductory paper date, without separately asserting that data files became downloadable that day.",
+      "release_date": "2025-07-10",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2507.07999"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2507.07999v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:usamo-2026",
+      "checkedAt": "2026-09-18",
+      "event": "matharena_usamo_2026_adaptation_introduction",
+      "inputRecordIndex": 148,
+      "limitation": "The date refers to MathArena's LLM evaluation adaptation and announcement, not the start of the USAMO examination.",
+      "name": "USAMO 2026",
+      "originalDate": "2026-03",
+      "precision": "day",
+      "reason": "MathArena's dedicated USAMO 2026 article is dated 2026-03-28 and introduces the six proof problems and evaluation procedure. It can replace the original record containing only the competition month.",
+      "release_date": "2026-03-28",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://matharena.ai/usamo/"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:usamo25",
+      "checkedAt": "2026-09-18",
+      "event": "usamo_2025_llm_evaluation_introduction",
+      "inputRecordIndex": 149,
+      "limitation": "The date applies to the benchmark and event described above; it does not establish that every model score in the catalog uses the same evaluation protocol.",
+      "name": "USAMO25",
+      "originalDate": "2025-03",
+      "precision": "day",
+      "reason": "The original USAMO 2025 evaluation paper v1 proposes a systematic evaluation of the six proof problems on 2025-03-27, distinct from the competition date alone.",
+      "release_date": "2025-03-27",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://arxiv.org/abs/2503.21934v1"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:v-star",
+      "checkedAt": "2026-09-18",
+      "event": "introducing_paper_v1",
+      "inputRecordIndex": 104,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "V*",
+      "originalDate": "2023-12-21",
+      "precision": "day",
+      "reason": "The V* paper explicitly introduces V*Bench. This verifies the evaluation set's introduction date, not model execution time. The arXiv v1 submission date is 2023-12-21, matching the input. Verification covers the original introductory paper date, without separately asserting that data files became downloadable that day.",
+      "release_date": "2023-12-21",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2312.14135"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2312.14135v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:vending-bench-2",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_history",
+      "inputRecordIndex": 105,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "Vending-Bench 2",
+      "originalDate": "2025-11-18",
+      "precision": "day",
+      "reason": "Andon Labs' official Vending-Bench page explicitly dates the v2 release to 2025-11-18.",
+      "release_date": "2025-11-18",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://andonlabs.com/evals/vending-bench"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:vibe-android",
+      "checkedAt": "2026-09-18",
+      "event": "vibe_phase1_task_release",
+      "inputRecordIndex": 150,
+      "limitation": "Verification covers the Phase 1 task descriptions and specifications. Phase 2 resources, including containers and sandboxes, were not all released that same day.",
+      "name": "VIBE Android",
+      "originalDate": "2025-12-23",
+      "precision": "day",
+      "reason": "MiniMax's official data card lists the Android, Backend, iOS, Simulation, and Web subsets together and explicitly dates the Phase 1 release of tasks and specifications to 2025-12-23.",
+      "release_date": "2025-12-23",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://huggingface.co/datasets/MiniMaxAI/VIBE"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://www.minimax.io/blog/minimax-m21"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:vibe-backend",
+      "checkedAt": "2026-09-18",
+      "event": "vibe_phase1_task_release",
+      "inputRecordIndex": 151,
+      "limitation": "Verification covers the Phase 1 task descriptions and specifications. Phase 2 resources, including containers and sandboxes, were not all released that same day.",
+      "name": "VIBE Backend",
+      "originalDate": "2025-12-23",
+      "precision": "day",
+      "reason": "MiniMax's official data card lists the Android, Backend, iOS, Simulation, and Web subsets together and explicitly dates the Phase 1 release of tasks and specifications to 2025-12-23.",
+      "release_date": "2025-12-23",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://huggingface.co/datasets/MiniMaxAI/VIBE"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://www.minimax.io/blog/minimax-m21"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:vibe-ios",
+      "checkedAt": "2026-09-18",
+      "event": "vibe_phase1_task_release",
+      "inputRecordIndex": 152,
+      "limitation": "Verification covers the Phase 1 task descriptions and specifications. Phase 2 resources, including containers and sandboxes, were not all released that same day.",
+      "name": "VIBE iOS",
+      "originalDate": "2025-12-23",
+      "precision": "day",
+      "reason": "MiniMax's official data card lists the Android, Backend, iOS, Simulation, and Web subsets together and explicitly dates the Phase 1 release of tasks and specifications to 2025-12-23.",
+      "release_date": "2025-12-23",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://huggingface.co/datasets/MiniMaxAI/VIBE"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://www.minimax.io/blog/minimax-m21"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:vibe-simulation",
+      "checkedAt": "2026-09-18",
+      "event": "vibe_phase1_task_release",
+      "inputRecordIndex": 153,
+      "limitation": "Verification covers the Phase 1 task descriptions and specifications. Phase 2 resources, including containers and sandboxes, were not all released that same day.",
+      "name": "VIBE Simulation",
+      "originalDate": "2025-12-23",
+      "precision": "day",
+      "reason": "MiniMax's official data card lists the Android, Backend, iOS, Simulation, and Web subsets together and explicitly dates the Phase 1 release of tasks and specifications to 2025-12-23.",
+      "release_date": "2025-12-23",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://huggingface.co/datasets/MiniMaxAI/VIBE"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://www.minimax.io/blog/minimax-m21"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:vibe-web",
+      "checkedAt": "2026-09-18",
+      "event": "vibe_phase1_task_release",
+      "inputRecordIndex": 154,
+      "limitation": "Verification covers the Phase 1 task descriptions and specifications. Phase 2 resources, including containers and sandboxes, were not all released that same day.",
+      "name": "VIBE Web",
+      "originalDate": "2025-12-23",
+      "precision": "day",
+      "reason": "MiniMax's official data card lists the Android, Backend, iOS, Simulation, and Web subsets together and explicitly dates the Phase 1 release of tasks and specifications to 2025-12-23.",
+      "release_date": "2025-12-23",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://huggingface.co/datasets/MiniMaxAI/VIBE"
+        },
+        {
+          "role": "primary_evidence",
+          "url": "https://www.minimax.io/blog/minimax-m21"
+        }
+      ],
+      "verificationField": "nextVerification"
+    },
+    {
+      "catalogKey": "llm-stats:videoholmes",
+      "checkedAt": "2026-09-18",
+      "event": "introducing_paper_v1",
+      "inputRecordIndex": 106,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "VideoHolmes",
+      "originalDate": "2025-05-27",
+      "precision": "day",
+      "reason": "The original paper introduces the Video-Holmes video-reasoning evaluation. The arXiv v1 submission date is 2025-05-27, matching the input. Verification covers the original introductory paper date, without separately asserting that data files became downloadable that day.",
+      "release_date": "2025-05-27",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2505.21374"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2505.21374v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:videommmu",
+      "checkedAt": "2026-09-18",
+      "event": "introducing_paper_v1",
+      "inputRecordIndex": 107,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "VideoMMMU",
+      "originalDate": "2025-01-23",
+      "precision": "day",
+      "reason": "The original paper introduces the Video-MMMU multidisciplinary video-knowledge evaluation. The arXiv v1 submission date is 2025-01-23, matching the input. Verification covers the original introductory paper date, without separately asserting that data files became downloadable that day.",
+      "release_date": "2025-01-23",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2501.13826"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2501.13826v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:vladbench",
+      "checkedAt": "2026-09-18",
+      "event": "introducing_paper_v1",
+      "inputRecordIndex": 108,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "VLADBench",
+      "originalDate": "2025-03-27",
+      "precision": "day",
+      "reason": "The original paper, Fine-Grained Evaluation of Large Vision-Language Models in Autonomous Driving, introduces VLADBench. The arXiv v1 submission date is 2025-03-27, matching the input. Verification covers the original introductory paper date, without separately asserting that data files became downloadable that day.",
+      "release_date": "2025-03-27",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2503.21505"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2503.21505v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:vlmsareblind",
+      "checkedAt": "2026-09-18",
+      "event": "introducing_paper_v1",
+      "inputRecordIndex": 109,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "VLMsAreBlind",
+      "originalDate": "2024-07-09",
+      "precision": "day",
+      "reason": "The original paper, Vision language models are blind, introduces the corresponding visual-detail evaluation tasks. The arXiv v1 submission date is 2024-07-09, matching the input. Verification covers the original introductory paper date, without separately asserting that data files became downloadable that day.",
+      "release_date": "2024-07-09",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2407.06581"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2407.06581v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:vqa-rad",
+      "checkedAt": "2026-09-18",
+      "event": "introducing_journal_paper",
+      "inputRecordIndex": 110,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "VQA-Rad",
+      "originalDate": "2018-11-20",
+      "precision": "day",
+      "reason": "The original VQA-RAD data paper in Nature Scientific Data has a Published date of 2018-11-20. Verification covers the formal publication event of the data paper.",
+      "release_date": "2018-11-20",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://www.nature.com/articles/sdata2018251"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:webarena-verified",
+      "checkedAt": "2026-09-18",
+      "event": "official_public_release_pull_request",
+      "inputRecordIndex": 111,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "WebArena-Verified",
+      "originalDate": "2025-12-05",
+      "precision": "day",
+      "reason": "ServiceNow's official initial data and evaluator release PR #1 was created and merged on 2025-12-05. Its contents release the initial data/evaluator, supporting the date of that release event.",
+      "release_date": "2025-12-05",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://api.github.com/repos/ServiceNow/webarena-verified/pulls/1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:webdev-arena",
+      "checkedAt": "2026-09-18",
+      "event": "official_introduction_month",
+      "inputRecordIndex": 112,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "WebDev Arena",
+      "originalDate": "2024-12",
+      "precision": "month",
+      "reason": "LMArena's official WebDev Arena retrospective dated 2025-03-10 explicitly states that it launched in December 2024, supporting month precision.",
+      "release_date": "2024-12",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arena.ai/blog/webdev-arena"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:wmdp",
+      "checkedAt": "2026-09-18",
+      "event": "introducing_paper_v1",
+      "inputRecordIndex": 113,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "WMDP",
+      "originalDate": "2024-03-05",
+      "precision": "day",
+      "reason": "The original paper introduces the WMDP hazardous-knowledge benchmark. The arXiv v1 submission date is 2024-03-05, matching the input. Verification covers the original introductory paper date, without separately asserting that data files became downloadable that day.",
+      "release_date": "2024-03-05",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://arxiv.org/abs/2403.03218"
+        },
+        {
+          "retrievalStatus": "retrieved",
+          "role": "supplemental",
+          "url": "https://arxiv.org/abs/2403.03218v1"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "llm-stats:wmt23",
+      "checkedAt": "2026-09-18",
+      "event": "official_test_set_release_month",
+      "inputRecordIndex": 114,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "WMT23",
+      "originalDate": "2023-07",
+      "precision": "month",
+      "reason": "The official WMT23 general translation task schedule places test-set release in July 2023. The conclusion is limited to that year's general translation test-set month, not every WMT23 track.",
+      "release_date": "2023-07",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://www2.statmt.org/wmt23/translation-task.html"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "model-reports:arxivmath",
+      "checkedAt": "2026-09-18",
+      "event": "official_release_announcement",
+      "inputRecordIndex": 118,
+      "limitation": "Passing applies only to the release or introduction event described in reason/event and to the original date precision. It does not establish uniform protocols across all providers or claim an exhaustive search of every earlier public channel.",
+      "name": "ArXivMath",
+      "originalDate": "2026-02-04",
+      "precision": "day",
+      "reason": "MathArena's original article dated 2026-02-04 releases ArXivMath and introduces its first 40 research-mathematics problems.",
+      "release_date": "2026-02-04",
+      "sources": [
+        {
+          "retrievalStatus": "retrieved",
+          "role": "original",
+          "url": "https://matharena.ai/arxivmath/"
+        }
+      ],
+      "verificationField": "verification"
+    },
+    {
+      "catalogKey": "model-reports:harbor_index",
+      "checkedAt": "2026-09-18",
+      "event": "harbor_index_1_0_launch",
+      "inputRecordIndex": 156,
+      "limitation": "Only the index's initial release date is confirmed. This does not assert that all later model scores in the catalog were measured on the 1.0 task set.",
+      "name": "Harbor Index",
+      "originalDate": "2026-07-28",
+      "precision": "day",
+      "reason": "The official Harbor Index release article is dated 2026-07-07 and explicitly releases 1.0 with 82 tasks. The unversioned catalog name should be associated with the initial announcement, not replaced by the July 28 commit for 1.4.",
+      "release_date": "2026-07-07",
+      "sources": [
+        {
+          "role": "primary_evidence",
+          "url": "https://harbor-index.org/blog/harbor-index"
+        }
+      ],
+      "verificationField": "nextVerification"
+    }
+  ],
+  "schema_version": 1,
+  "selection": "Use nextVerification when present, otherwise verification; require passed; use releaseDate or verifiedDate. Join only by verification.catalogKey, never by name or legacy id. Fill only missing dates. Preserve month/day precision.",
+  "software_commit": "8f46bbfa91f5d9900c8b08a5d552c3df5c9597b0",
+  "supplemented": 156,
+  "undated": 512
+}

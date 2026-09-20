@@ -1,26 +1,31 @@
 #!/usr/bin/env python3
 r"""Draw the taxonomy figures from the classified census.
 
-Two figures, both from `evidence/benchmark-taxonomy.jsonl`:
+Two figures, both from `evidence/benchmark-taxonomy-dated.jsonl`:
 
   taxonomy-sankey    Level 1 -> Level 2 for all 1,283 source records. Every
                      record is one unit of ribbon height, so both columns are
                      equal in total and a reader can check coverage by eye.
                      Source composition is stated in the caption.
-  taxonomy-trends    Release-year series over the 615 records that carry a
-                     benchmark release date, with the 668 undated records
-                     stated on the figure rather than left out silently.
+  taxonomy-trends    Panel A buckets the census by release period from
+                     2023-01-01, the first full period after ChatGPT's release,
+                     so the expansion this corpus is about is read in steps
+                     rather than compressed into three annual bars. The step is
+                     `PANEL_A_PERIOD`: quarter, half or year. Panel B keeps the
+                     release-year shares the evidence supports.
 
-Nothing is imputed and no record is dropped: a benchmark with no release date
-is absent from the year panels by necessity, and the count is printed there.
+Nothing is imputed and no record is dropped: the dated records released before
+the window and those that still carry no release date at all cannot take a
+half-year bucket, so each group keeps a column of its own on Panel A with its
+count printed there.
 
 Both are written as vector PDFs, which is what \includegraphics takes. The Sankey
-export is then finished by widening its page to the left, because matplotlib sizes
-a page from `figsize` alone and clips the longest Level 1 label; see
-`pad_left_margin`. That step needs pypdf.
+reserves space for its rendered labels before export, so font metrics cannot
+clip long class names at the page edge.
 
 Usage:
-    python3 scripts/plot_taxonomy.py     # write figures/taxonomy-sankey.pdf and -trends.pdf
+    python3 scripts/plot_taxonomy.py                    # write figures/taxonomy-sankey.pdf and -trends.pdf
+    python3 scripts/plot_taxonomy.py --period quarter   # same, with Panel A bucketed by quarter
 """
 
 import argparse
@@ -41,6 +46,12 @@ import matplotlib.pyplot as plt  # noqa: E402
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from taxonomy import L1 as L1_LABEL  # noqa: E402
+from supplement_taxonomy_dates import ROWS, sha256, check as check_dates  # noqa: E402
+# The period model lives with the analysis that computes the shares, so both
+# panels run on one clock and a switch cannot desynchronise them.
+from taxonomy_trends import (  # noqa: E402
+    PERIODS, TREND_PERIOD, WINDOW_START_YEAR, period_key,
+)
 
 PAPER = Path(__file__).resolve().parents[1]
 
@@ -57,18 +68,11 @@ DISCOVERY_CUTOFF = "2026-09-07"
 # prints as 7pt. Drawn wider, the same figure is scaled down and its labels fall
 # below the ~6pt that stays legible in print.
 FIG_WIDTH_IN = 484.20988 / 72
-# That same width is why the Sankey needs a page repair rather than a wider
-# canvas: its longest Level 1 label is set right-aligned and runs left of its
-# node, ending at x=-1.5pt and off the exported page. `pad_left_margin` moves the
-# page edge out by this much once the drawing is final; 8pt clears the overhang
-# with a small margin to spare.
-SANKEY_LEFT_PAD_PT = 8.0
 # Titles and provenance notes live in the LaTeX caption, not inside the figure,
 # so nothing is said twice and the drawing keeps the height.
 FS_L1, FS_L2, FS_HEAD = 8.5, 6.2, 9.0
 FS_TICK, FS_AXIS, FS_PANEL, FS_LEGEND = 7.0, 8.0, 8.5, 7.0
 
-ROWS = PAPER / "evidence" / "benchmark-taxonomy.jsonl"
 TRENDS = PAPER / "evidence" / "benchmark-taxonomy-trends.json"
 FIGURES = PAPER / "figures"
 
@@ -175,13 +179,44 @@ SOURCE_COLOR = {
     "artificial_analysis": "#4A148C",
 }
 
+# Every tracked facet needs a label and a hue, because Panel B's series are
+# chosen by a rule rather than named here: any of them can reach the chart.
 FACET_LABEL = {
     "interaction:agentic": "agentic (facet)",
     "modality:multimodal": "multimodal (facet)",
+    "modality:image": "image (facet)",
+    "modality:video": "video (facet)",
+    "modality:audio": "audio (facet)",
     "modality:embodied": "embodied (facet)",
+    "modality:gui": "GUI (facet)",
+    "operational:reasoning": "reasoning (facet)",
     "operational:tool_calling": "tool calling (facet)",
     "operational:long_context": "long context (facet)",
+    "operational:retrieval_rag": "retrieval & RAG (facet)",
+    "operational:safety_probe": "safety probe (facet)",
+    "operational:spatial": "spatial (facet)",
+    "operational:multilingual": "multilingual (facet)",
     "operational:examination": "examination (facet)",
+    "operational:instruction_following": "instruction following (facet)",
+}
+
+FACET_COLOR = {
+    "interaction:agentic": "#8172B3",
+    "modality:multimodal": "#00838F",
+    "modality:image": "#1565C0",
+    "modality:video": "#6A1B9A",
+    "modality:audio": "#AD1457",
+    "modality:embodied": "#2E7D32",
+    "modality:gui": "#EF6C00",
+    "operational:reasoning": "#5D4037",
+    "operational:tool_calling": "#C2185B",
+    "operational:long_context": "#00695C",
+    "operational:retrieval_rag": "#827717",
+    "operational:safety_probe": "#B71C1C",
+    "operational:spatial": "#455A64",
+    "operational:multilingual": "#0277BD",
+    "operational:examination": "#7B1FA2",
+    "operational:instruction_following": "#4527A0",
 }
 
 
@@ -366,118 +401,168 @@ def draw_sankey(rows, path_stem, order):
     ax.axis("off")
     # No suptitle and no in-figure note: Figure~\ref{fig:taxonomy-sankey}'s
     # caption carries the population, the provenance and the facet counts.
+    fit_label_width(fig, ax)
     written = path_stem.with_suffix(".pdf")
     fig.savefig(written)
     plt.close(fig)
-    # The export is not the finished figure: matplotlib clips the widest label at
-    # the page edge, so the page is opened up before this returns. Doing it here
-    # rather than in a separate script means the committed PDF is whatever this
-    # function wrote, and a rerun cannot quietly undo the repair.
-    padded = pad_left_margin(written)
-    return {"nodes_l2": len(l2s), "total": total, "padded": padded}
+    return {"nodes_l2": len(l2s), "total": total}
 
 
-def pad_left_margin(path, pad_pt=SANKEY_LEFT_PAD_PT):
-    r"""Widen an exported page to the left in place, leaving the drawing untouched.
-
-    matplotlib sizes a page from `figsize` alone and does not grow it for text
-    that overhangs the axes, so the Sankey's longest Level 1 label ends at
-    x=-1.5pt and the page edge cuts it. Drawing the figure wider is not an option:
-    the manuscript includes it at `width=\textwidth`, so a wider page is scaled
-    down and every label with it, below the size this module authors them at.
-    Moving /MediaBox and /CropBox exposes the label instead and leaves the vector
-    content stream byte-for-byte unchanged, which the check below enforces.
-
-    Idempotent, and returns whether it changed anything: a page that already
-    carries the margin is left alone, so this runs safely over its own output.
-    """
-    from pypdf import PdfReader, PdfWriter
-    from pypdf.generic import RectangleObject
-
-    reader = PdfReader(path)
-    if len(reader.pages) != 1:
-        raise ValueError(f"{path.name}: expected a single-page export")
-    page = reader.pages[0]
-    media = [float(value) for value in page.mediabox]
-    if media != [float(value) for value in page.cropbox] or page.rotation:
-        raise ValueError(f"{path.name}: unexpected page bounds {media}; inspect the export")
-    if media[0] == -pad_pt:
-        return False
-    if media[0] != 0.0:
-        raise ValueError(f"{path.name}: page starts at x={media[0]}, not 0; inspect the export")
-
-    writer = PdfWriter()
-    writer.clone_document_from_reader(reader)
-    padded = RectangleObject([media[0] - pad_pt, media[1], media[2], media[3]])
-    writer.pages[0].mediabox = padded
-    writer.pages[0].cropbox = padded
-    temporary = path.with_suffix(".tmp.pdf")
-    try:
-        writer.write(temporary)
-        repaired = PdfReader(temporary).pages[0]
-        if repaired.get_contents().get_data() != page.get_contents().get_data():
-            raise ValueError(f"{path.name}: the repair must preserve the drawing unchanged")
-        temporary.replace(path)
-    finally:
-        temporary.unlink(missing_ok=True)
-    return True
+def fit_label_width(fig, ax):
+    """Fit text inside the authored page width without reducing font sizes."""
+    for _ in range(60):
+        fig.canvas.draw()
+        renderer = fig.canvas.get_renderer()
+        extents = [text.get_window_extent(renderer) for text in ax.texts]
+        left = min(box.x0 for box in extents)
+        right = max(box.x1 for box in extents)
+        # Leave a small safety margin for PDF versus raster font metrics.
+        margin = fig.bbox.width * 0.012
+        if left >= margin and right <= fig.bbox.width - margin:
+            return
+        inverse = ax.transData.inverted()
+        lo, hi = ax.get_xlim()
+        required_lo = inverse.transform((left - margin, 0))[0]
+        required_hi = inverse.transform((right + margin, 0))[0]
+        ax.set_xlim(min(lo, required_lo), max(hi, required_hi))
+    raise ValueError("Sankey labels do not fit the page at the authored font size")
 
 
 # --- Trends -------------------------------------------------------------
 
-TREND_SERIES = [
-    ("facets", "interaction:agentic", "#8172B3", 2.6),
-    ("l1", "coding_se", L1_COLOR["coding_se"], 1.8),
-    ("l1", "multimodal_perception", L1_COLOR["multimodal_perception"], 1.8),
-    ("l1", "knowledge_factuality", L1_COLOR["knowledge_factuality"], 1.8),
-    ("l1", "applied_verticals", L1_COLOR["applied_verticals"], 1.8),
-    ("facets", "modality:embodied", "#2E7D32", 1.6),
-    ("facets", "operational:tool_calling", "#C2185B", 1.6),
-]
+# Panel A starts at 2023-01-01, the first full period after ChatGPT's release.
+# Earlier dated records keep an aggregate column; undated records keep another.
+# The period axis therefore focuses on the recent expansion without dropping
+# either group from the population.
+#
+# The step is a reading choice, not a data one: all three run off the same
+# release dates. It follows `taxonomy_trends.TREND_PERIOD`, which is also the
+# granularity Panel B's shares are computed at, so one edit moves both panels.
+# `--period` overrides Panel A for exploration; the reproducible manuscript
+# build uses the default period shared by both panels.
+PANEL_A_PERIOD = TREND_PERIOD
 
 
-def draw_trends(trends, path_stem, order):
-    years = [int(y) for y in trends["years"]]
-    per_year = {int(k): v for k, v in trends["per_year"].items()}
-    reportable = [int(y) for y in trends["reportable_years"]]
-    # A real year axis. A categorical one would place 2010 next to 2015 and
-    # read as a single step, which is not what the dates say.
-    axis = list(range(min(years), max(years) + 1))
-    excluded_total = sum(per_year[y] for y in years if y not in reportable)
-    # The undated records cannot take a year, so they get their own column. It
-    # holds 668 records against a largest year of 279, so a shared y-axis would
-    # flatten every year bar; the column keeps its own scale, said on the axis.
+def period_axis(rows, months, end):
+    """Bucket the census for Panel A. Every record lands somewhere.
+
+    Returns the contiguous periods from the start of `WINDOW_START_YEAR` through
+    `end`, the per-bucket Level 1 counts, and the two groups no period can hold:
+    records dated before the window, and records with no date at all. The axis is
+    stepped rather than taken from the keys present, so a period with no releases
+    stays on it as a gap instead of closing up.
+    """
+    start = (WINDOW_START_YEAR, 1)
+    per_year = 12 // months
+    buckets, before, undated = defaultdict(Counter), Counter(), Counter()
+    before_years = set()
+    for row in rows:
+        when = period_key(row.get("release_date"), months)
+        if when is None:
+            undated[row["l1"]] += 1
+        elif when < start:
+            before[row["l1"]] += 1
+            before_years.add(when[0])
+        else:
+            buckets[when][row["l1"]] += 1
+
+    last = max([end, *buckets])
+    axis, cursor = [], start
+    while cursor <= last:
+        axis.append(cursor)
+        year, index = cursor
+        cursor = (year, index + 1) if index < per_year else (year + 1, 1)
+    span = (min(before_years), max(before_years)) if before_years else None
+    return axis, dict(buckets), before, undated, span
+
+
+def draw_trends(rows, trends, path_stem, order, period=PANEL_A_PERIOD):
+    months = PERIODS[period]["months"]
+    cutoff = datetime.fromisoformat(DISCOVERY_CUTOFF)
+    axis, buckets, before, undated, before_span = period_axis(
+        rows, months, period_key(DISCOVERY_CUTOFF, months))
+    # Panel A buckets the census rows itself, because the trends file is a year
+    # series; these keep the two readings of the same evidence in agreement.
+    assert sum(undated.values()) == trends["undated"]
+    placed = sum(before.values()) + sum(sum(counts.values()) for counts in buckets.values())
+    assert placed == trends["dated"]
+
+    # Three columns across the top. The middle one is the period axis; the
+    # two flanking columns hold the records no half-year can take. The left one
+    # shares the main scale, because the pre-window years hold a comparable
+    # number of records. The larger undated column uses its own scale so
+    # the dated bars remain readable.
     fig = plt.figure(figsize=(FIG_WIDTH_IN, 5.7))
     # Explicit margins: tight_layout cannot handle a hand-built gridspec whose
-    # two columns carry different scales, and warns rather than laying it out.
-    grid = fig.add_gridspec(2, 2, height_ratios=[1.2, 1.0], width_ratios=[11, 1.5],
-                            hspace=1.00, wspace=0.06,
-                            left=0.085, right=0.965, top=0.955, bottom=0.175)
-    ax_top = fig.add_subplot(grid[0, 0])
-    ax_undated = fig.add_subplot(grid[0, 1])
+    # columns carry different scales, and warns rather than laying it out.
+    grid = fig.add_gridspec(2, 3, height_ratios=[1.2, 1.0], width_ratios=[1.5, 11, 1.5],
+                            hspace=1.05, wspace=0.07,
+                            left=0.095, right=0.955, top=0.945, bottom=0.175)
+    ax_top = fig.add_subplot(grid[0, 1])
+    ax_before = fig.add_subplot(grid[0, 0], sharey=ax_top)
+    ax_undated = fig.add_subplot(grid[0, 2])
     ax_mid = fig.add_subplot(grid[1, :])
 
-    # Panel A: every record. Dated ones on the year axis, undated in their own
-    # labelled column, both stacked by Level 1.
-    bottom = {year: 0.0 for year in axis}
-    undated_bottom = 0.0
+    # Panel A: every record. The dated ones from 2023 on their period, the
+    # earlier dated ones and the undated ones in their columns, all stacked by
+    # Level 1. The two aggregate columns are hatched so neither is mistaken for
+    # a period bucket.
+    xs = list(range(len(axis)))
+    bottom = [0.0] * len(axis)
+    before_bottom = undated_bottom = 0.0
+    full_counts = Counter(row["l1"] for row in rows)
     for l1 in order:
-        series = trends["l1"].get(l1)
-        values = [series["counts"].get(str(y), 0) for y in axis] if series else [0] * len(axis)
-        ax_top.bar(axis, values, bottom=[bottom[y] for y in axis], color=L1_COLOR[l1],
-                   width=0.74, label=f"{L1_LABEL[l1]} ({(series or {}).get('total', 0)})",
+        values = [buckets.get(key, {}).get(l1, 0) for key in axis]
+        ax_top.bar(xs, values, bottom=bottom, color=L1_COLOR[l1], width=0.74,
+                   label=f"{L1_LABEL[l1]} ({full_counts[l1]})",
                    edgecolor="white", linewidth=0.4)
-        for year, value in zip(axis, values):
-            bottom[year] += value
-        share = trends["undated_by_l1"].get(l1, 0)
-        ax_undated.bar([0], [share], bottom=[undated_bottom], color=L1_COLOR[l1],
-                       width=0.72, edgecolor="white", linewidth=0.4, hatch="//")
-        undated_bottom += share
-    peak = max(bottom.values())
-    for year in axis:
-        if per_year.get(year):
-            ax_top.text(year, bottom[year] + peak * 0.02, str(per_year[year]),
-                        ha="center", va="bottom", fontsize=6.0, color="#333333")
+        bottom = [b + v for b, v in zip(bottom, values)]
+        for ax, counts, base in ((ax_before, before, before_bottom),
+                                 (ax_undated, undated, undated_bottom)):
+            ax.bar([0], [counts.get(l1, 0)], bottom=[base], color=L1_COLOR[l1],
+                   width=0.72, edgecolor="white", linewidth=0.4, hatch="//")
+        before_bottom += before.get(l1, 0)
+        undated_bottom += undated.get(l1, 0)
+    peak = max(bottom)
+    for x, value in zip(xs, bottom):
+        if value:
+            ax_top.text(x, value + peak * 0.02, str(int(value)), ha="center", va="bottom",
+                        fontsize=6.5, color="#333333")
+
+    mark = PERIODS[period]["mark"]
+    labels = [f"{year}\n{mark}{index}" if mark else str(year) for year, index in axis]
+    # The last bucket stops at the discovery cutoff rather than at the end of its
+    # own months, so it is short by construction. Saying so on the tick keeps a
+    # reader from taking the fall for the field slowing down.
+    if axis[-1] == period_key(DISCOVERY_CUTOFF, months):
+        labels[-1] += f"\nto {cutoff.day} {cutoff:%b}"
+    ax_top.set_xticks(xs)
+    ax_top.set_xticklabels(labels, fontsize=FS_TICK)
+    ax_top.set_xlim(-0.72, len(axis) - 0.28)
+    ax_top.set_ylim(0, peak * 1.12)
+    ax_top.tick_params(axis="y", labelleft=False, length=0)
+    ax_top.spines[["top", "right"]].set_visible(False)
+    ax_top.grid(axis="y", alpha=0.25, linewidth=0.6)
+    ax_top.set_axisbelow(True)
+
+    ax_before.text(0, before_bottom + peak * 0.02, str(int(before_bottom)), ha="center",
+                   va="bottom", fontsize=7.5, color="#333333", fontweight="bold")
+    early = f"{before_span[0]}\u2013{before_span[1]}" if before_span else "before"
+    years_spanned = before_span[1] - before_span[0] + 1 if before_span else 0
+    ax_before.set_xticks([0])
+    ax_before.set_xticklabels([f"{early}\n({years_spanned} years)"], fontsize=FS_TICK)
+    ax_before.set_xlim(-0.62, 0.62)
+    ax_before.set_ylabel("Benchmarks", fontsize=FS_AXIS)
+    ax_before.tick_params(axis="y", labelsize=6.0)
+    ax_before.spines[["top", "right"]].set_visible(False)
+    ax_before.grid(axis="y", alpha=0.25, linewidth=0.6)
+    ax_before.set_axisbelow(True)
+    ax_before.set_title(
+        f"A \u00b7 Release {PERIODS[period]['noun']} of all {trends['population']:,} "
+        f"records, by Level 1",
+        fontsize=FS_PANEL, fontweight="bold", loc="left", pad=6,
+    )
+
     ax_undated.text(0, undated_bottom * 1.02, str(trends["undated"]), ha="center", va="bottom",
                     fontsize=7.5, color="#333333", fontweight="bold")
     ax_undated.set_xticks([0])
@@ -486,43 +571,48 @@ def draw_trends(trends, path_stem, order):
     ax_undated.set_ylim(0, undated_bottom * 1.12)
     ax_undated.yaxis.tick_right()
     ax_undated.tick_params(axis="y", labelsize=6.0)
-    ax_undated.yaxis.set_label_position("right")
-    ax_undated.set_ylabel("own scale", fontsize=6.5, color="#B71C1C", style="italic", labelpad=2)
+    # Said above the column, not as a y-label: a right-side y-label lands between
+    # the bar and its own tick labels and was clipped off the page entirely when
+    # the column sat at the figure edge.
+    ax_undated.set_title("own scale", fontsize=6.5, color="#B71C1C", style="italic", pad=3)
     ax_undated.spines[["top", "left"]].set_visible(False)
     ax_undated.grid(axis="y", alpha=0.25, linewidth=0.6)
     ax_undated.set_axisbelow(True)
-    ax_top.set_xticks(axis)
-    ax_top.set_xticklabels([str(y) for y in axis], fontsize=FS_TICK, rotation=45)
-    ax_top.set_xlim(min(axis) - 0.7, max(axis) + 0.7)
-    ax_top.set_ylim(0, peak * 1.10)
-    ax_top.set_ylabel("Benchmarks", fontsize=FS_AXIS)
-    ax_top.set_title(
-        f"A \u00b7 Release year of all {trends['population']:,} records, by Level 1",
-        fontsize=FS_PANEL, fontweight="bold", loc="left", pad=6,
-    )
-    ax_top.spines[["top", "right"]].set_visible(False)
-    ax_top.grid(axis="y", alpha=0.25, linewidth=0.6)
-    ax_top.set_axisbelow(True)
 
-    # Panel B: shares only where the base supports them. Drawing 2010-2022 here
-    # would turn a single 2010 record into a 100% spike.
-    for kind, key, color, width in TREND_SERIES:
-        series = trends[kind][key]
-        values = [series["share"][str(y)] for y in reportable]
-        label = FACET_LABEL.get(key, L1_LABEL.get(key, key))
-        ax_mid.plot(reportable, values, color=color, linewidth=width * 0.65, marker="o",
-                    markersize=3.5, label=label, zorder=3, alpha=0.95)
-        ax_mid.annotate(f"{values[-1] * 100:.0f}%", xy=(reportable[-1], values[-1]),
+    # Panel B: shares only over the periods whose base and source mix support
+    # them, and only for the series the evidence file's rule picked. This module
+    # names no class: `shares["selected"]` is that rule's output and
+    # `shares["series"]` holds every candidate it was ranked against, each with
+    # the reason it was or was not drawn. The x axis is positional, because the
+    # reported periods are contiguous and equally wide.
+    shares = trends["shares"]
+    reported = shares["reported"]
+    xs = list(range(len(reported)))
+    peak = 0.0
+    for rank, key in enumerate(shares["selected"]):
+        entry = shares["series"][key]
+        values = [entry["share"][label] for label in reported]
+        peak = max(peak, max(values))
+        facet = entry["kind"] == "facet"
+        color = FACET_COLOR[key] if facet else L1_COLOR[key]
+        name = FACET_LABEL[key] if facet else L1_LABEL[key]
+        ax_mid.plot(xs, values, color=color, linewidth=1.70 if rank == 0 else 1.15,
+                    marker="o", markersize=3.5, zorder=3, alpha=0.95,
+                    label=f"{name}  {entry['movement'] * 100:+.0f}pp")
+        ax_mid.annotate(f"{values[-1] * 100:.0f}%", xy=(xs[-1], values[-1]),
                         xytext=(6, 0), textcoords="offset points", va="center",
                         fontsize=6.5, color=color, fontweight="bold")
-    ax_mid.set_xticks(reportable)
-    ax_mid.set_xticklabels([f"{y}\nn={per_year[y]}" for y in reportable], fontsize=FS_TICK)
-    ax_mid.set_xlim(reportable[0] - 0.35, reportable[-1] + 0.55)
-    ax_mid.set_ylim(0, 0.35)
+    ax_mid.set_xticks(xs)
+    ax_mid.set_xticklabels(
+        [f"{label[:4]} {label[4:]}".strip() + f"\nn={shares['per_period'][label]}"
+         for label in reported], fontsize=FS_TICK)
+    ax_mid.set_xlim(-0.35, len(reported) - 1 + 0.55)
+    ax_mid.set_ylim(0, max(0.35, peak * 1.18))
     ax_mid.yaxis.set_major_formatter(lambda v, _: f"{v * 100:.0f}%")
     ax_mid.set_ylabel("Share of dated records", fontsize=FS_AXIS)
     ax_mid.set_title(
-        "B \u00b7 Selected classes and facets, over the years whose share the evidence supports",
+        f"B \u00b7 The {len(shares['selected'])} series whose share moved most across the "
+        f"reported {shares['noun']}s",
         fontsize=FS_PANEL, fontweight="bold", loc="left", pad=6,
     )
 
@@ -530,7 +620,7 @@ def draw_trends(trends, path_stem, order):
     ax_mid.grid(axis="y", alpha=0.25, linewidth=0.6)
     ax_mid.set_axisbelow(True)
 
-    ax_top.legend(loc="upper center", bbox_to_anchor=(0.5, -0.34), ncol=3,
+    ax_top.legend(loc="upper center", bbox_to_anchor=(0.5, -0.38), ncol=3,
                   fontsize=6.2, frameon=False, columnspacing=1.2, handlelength=1.2)
     ax_mid.legend(loc="upper center", bbox_to_anchor=(0.5, -0.22), ncol=3,
                   fontsize=6.2, frameon=False, columnspacing=1.2, handlelength=1.2)
@@ -539,36 +629,54 @@ def draw_trends(trends, path_stem, order):
     # date provenance, the omitted low-base years and the per-source undated split.
     fig.savefig(path_stem.with_suffix(".pdf"))
     plt.close(fig)
+    return {"axis": axis, "period": period, "labels": labels,
+            "in_window": int(sum(bottom)),
+            "before": int(before_bottom), "before_span": before_span}
 
 
 def main():
-    argparse.ArgumentParser(description=__doc__).parse_args()
-    os.environ.setdefault("SOURCE_DATE_EPOCH", str(int(
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--period", choices=sorted(PERIODS), default=PANEL_A_PERIOD,
+                        help="Panel A's bucket width (default: PANEL_A_PERIOD, "
+                             f"currently {PANEL_A_PERIOD})")
+    args = parser.parse_args()
+    os.environ["SOURCE_DATE_EPOCH"] = str(int(
         datetime.fromisoformat(DISCOVERY_CUTOFF).replace(tzinfo=timezone.utc).timestamp()
-    )))
+    ))
 
+    plt.rcdefaults()
     plt.rcParams.update({
         "font.family": "sans-serif",
-        "font.sans-serif": ["Helvetica Neue", "Helvetica", "Arial", "DejaVu Sans"],
+        "font.sans-serif": ["DejaVu Sans"],
         "pdf.fonttype": 42,
     })
     FIGURES.mkdir(exist_ok=True)
 
+    check_dates()
     rows = load_rows()
     trends = json.loads(TRENDS.read_text(encoding="utf-8"))
+    for relative, digest in trends["input_sha256"].items():
+        if sha256(PAPER / relative) != digest:
+            raise ValueError("Stale trends: rerun make reproduce-taxonomy")
     assert len(rows) == trends["population"] == 1283, "figures must draw the whole census"
 
     order = display_order(rows)
     info = draw_sankey(rows, FIGURES / "taxonomy-sankey", order)
-    draw_trends(trends, FIGURES / "taxonomy-trends", order)
+    window = draw_trends(rows, trends, FIGURES / "taxonomy-trends", order, args.period)
 
     print(f"taxonomy-sankey  : {info['total']:,} records from "
           f"{len({r['source'] for r in rows})} sources, "
-          f"{len({r['l1'] for r in rows})} L1 -> {info['nodes_l2']} L2 nodes; "
-          f"left margin {'extended' if info['padded'] else 'already'} "
-          f"{SANKEY_LEFT_PAD_PT:g}pt")
-    print(f"taxonomy-trends  : {trends['dated']} dated over "
-          f"{trends['years'][0]}-{trends['years'][-1]}, {trends['undated']} undated stated on the figure")
+          f"{len({r['l1'] for r in rows})} L1 -> {info['nodes_l2']} L2 nodes")
+    first, last = (label.replace("\n", " ").split(" to ")[0] for label in
+                   (window["labels"][0], window["labels"][-1]))
+    print(f"taxonomy-trends  : {window['in_window']} records over {first}-{last} in "
+          f"{len(window['axis'])} {PERIODS[window['period']]['noun']} buckets; "
+          f"{window['before']} dated before the window and {trends['undated']} undated "
+          f"stated on the figure")
+    if window["period"] != PANEL_A_PERIOD:
+        print(f"    note: the figure now holds the {window['period']} view. Set "
+              f"PANEL_A_PERIOD = {window['period']!r} to keep it, or rerun without "
+              f"--period to restore the committed one.")
     for name in ("taxonomy-sankey", "taxonomy-trends"):
         written = FIGURES / f"{name}.pdf"
         print(f"    {written.relative_to(PAPER)}  {written.stat().st_size // 1024} KB")

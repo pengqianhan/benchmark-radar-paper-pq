@@ -38,6 +38,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 import matplotlib
+from matplotlib import font_manager
 from matplotlib.patches import Path as MplPath
 from matplotlib.patches import PathPatch, Rectangle
 
@@ -72,6 +73,9 @@ FIG_WIDTH_IN = 484.20988 / 72
 # so nothing is said twice and the drawing keeps the height.
 FS_L1, FS_L2, FS_HEAD = 8.5, 6.2, 9.0
 FS_TICK, FS_AXIS, FS_PANEL, FS_LEGEND = 7.0, 8.0, 8.5, 7.0
+
+FONT_DIR = PAPER / "assets/fonts/liberation-sans"
+FONT_FAMILY = "Liberation Sans"
 
 TRENDS = PAPER / "evidence" / "benchmark-taxonomy-trends.json"
 FIGURES = PAPER / "figures"
@@ -379,7 +383,7 @@ def draw_sankey(rows, path_stem, order):
         y0, y1 = span_l1[l1]
         share = l1_totals[l1] / total * 100
         node(x_l1, y0, y1, L1_COLOR[l1],
-             f"{L1_LABEL[l1]}  \u00b7  {l1_totals[l1]}  ({share:.1f}%)", "left", FS_L1, "bold")
+             f"{L1_LABEL[l1]}  \u00b7  {l1_totals[l1]}  ({share:.1f}%)", "left", FS_L1)
 
     for key, at in zip(l2s, label_y):
         y0, y1 = span_l2[key]
@@ -394,7 +398,7 @@ def draw_sankey(rows, path_stem, order):
         (x_l2 + node_w + 0.010, "left", "Level 2 \u2014 sub-domain"),
     ):
         ax.text(x, view_hi - gap * 1.2, title, ha=align, va="bottom",
-                fontsize=FS_HEAD, fontweight="bold")
+                fontsize=FS_HEAD, fontweight="normal")
 
     ax.set_xlim(-0.25, 1.08)
     ax.set_ylim(view_lo, view_hi)
@@ -546,7 +550,7 @@ def draw_trends(rows, trends, path_stem, order, period=PANEL_A_PERIOD):
     ax_top.set_axisbelow(True)
 
     ax_before.text(0, before_bottom + peak * 0.02, str(int(before_bottom)), ha="center",
-                   va="bottom", fontsize=7.5, color="#333333", fontweight="bold")
+                   va="bottom", fontsize=7.5, color="#333333", fontweight="normal")
     early = f"{before_span[0]}\u2013{before_span[1]}" if before_span else "before"
     years_spanned = before_span[1] - before_span[0] + 1 if before_span else 0
     ax_before.set_xticks([0])
@@ -560,11 +564,11 @@ def draw_trends(rows, trends, path_stem, order, period=PANEL_A_PERIOD):
     ax_before.set_title(
         f"A \u00b7 Release {PERIODS[period]['noun']} of all {trends['population']:,} "
         f"records, by Level 1",
-        fontsize=FS_PANEL, fontweight="bold", loc="left", pad=6,
+        fontsize=FS_PANEL, fontweight="normal", loc="left", pad=6,
     )
 
     ax_undated.text(0, undated_bottom * 1.02, str(trends["undated"]), ha="center", va="bottom",
-                    fontsize=7.5, color="#333333", fontweight="bold")
+                    fontsize=7.5, color="#333333", fontweight="normal")
     ax_undated.set_xticks([0])
     ax_undated.set_xticklabels(["no release\ndate"], fontsize=FS_TICK)
     ax_undated.set_xlim(-0.62, 0.62)
@@ -601,7 +605,7 @@ def draw_trends(rows, trends, path_stem, order, period=PANEL_A_PERIOD):
                     label=f"{name}  {entry['movement'] * 100:+.0f}pp")
         ax_mid.annotate(f"{values[-1] * 100:.0f}%", xy=(xs[-1], values[-1]),
                         xytext=(6, 0), textcoords="offset points", va="center",
-                        fontsize=6.5, color=color, fontweight="bold")
+                        fontsize=6.5, color=color, fontweight="normal")
     ax_mid.set_xticks(xs)
     ax_mid.set_xticklabels(
         [f"{label[:4]} {label[4:]}".strip() + f"\nn={shares['per_period'][label]}"
@@ -613,7 +617,7 @@ def draw_trends(rows, trends, path_stem, order, period=PANEL_A_PERIOD):
     ax_mid.set_title(
         f"B \u00b7 The {len(shares['selected'])} series whose share moved most across the "
         f"reported {shares['noun']}s",
-        fontsize=FS_PANEL, fontweight="bold", loc="left", pad=6,
+        fontsize=FS_PANEL, fontweight="normal", loc="left", pad=6,
     )
 
     ax_mid.spines[["top", "right"]].set_visible(False)
@@ -644,10 +648,20 @@ def main():
         datetime.fromisoformat(DISCOVERY_CUTOFF).replace(tzinfo=timezone.utc).timestamp()
     ))
 
+    # Pin redistributable Helvetica-style fonts instead of a system-dependent
+    # fallback. Remove other installed versions before registering our files.
+    font_manager.fontManager.ttflist = [
+        entry for entry in font_manager.fontManager.ttflist if entry.name != FONT_FAMILY
+    ]
+    for style in ("Regular", "Italic"):
+        font_manager.fontManager.addfont(FONT_DIR / f"LiberationSans-{style}.ttf")
     plt.rcdefaults()
     plt.rcParams.update({
         "font.family": "sans-serif",
-        "font.sans-serif": ["DejaVu Sans"],
+        "font.sans-serif": [FONT_FAMILY],
+        "font.weight": "normal",
+        "axes.titleweight": "normal",
+        "axes.labelweight": "normal",
         "pdf.fonttype": 42,
     })
     FIGURES.mkdir(exist_ok=True)

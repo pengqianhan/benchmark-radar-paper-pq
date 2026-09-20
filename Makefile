@@ -9,7 +9,8 @@ TAXONOMY_FIGURES := figures/taxonomy-sankey.pdf figures/taxonomy-trends.pdf
 TAXONOMY_INPUTS := scripts/taxonomy.py scripts/classify_benchmarks.py \
 	scripts/supplement_taxonomy_dates.py scripts/taxonomy_trends.py scripts/plot_taxonomy.py \
 	evidence/156_from_xiaoke_all_passed_en.json \
-	evidence/catalog-findings.json $(wildcard evidence/taxonomy-inputs/*)
+	evidence/catalog-findings.json $(wildcard evidence/taxonomy-inputs/*) \
+	$(wildcard assets/fonts/liberation-sans/*)
 TAXONOMY_OUTPUTS := $(TAXONOMY_FIGURES) taxonomy-data.tex taxonomy-trend-data.tex \
 	evidence/benchmark-taxonomy.jsonl evidence/benchmark-taxonomy-summary.json \
 	evidence/benchmark-taxonomy-dated.jsonl evidence/taxonomy-release-date-supplements.json \

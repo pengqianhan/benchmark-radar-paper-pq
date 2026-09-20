@@ -151,8 +151,10 @@ between runs; generated JSON/JSONL/TeX must also match the checked-in files.
 It records hashes and environment versions in
 `build/taxonomy-reproduction-check.json`. PDF metadata use the discovery cutoff
 as a deterministic timestamp (not the annotation or build date), and the figures
-use Matplotlib's bundled DejaVu Sans font. PDF bytes may differ across library
-versions/platforms; repeat the byte comparison within one environment. The
+use the vendored Liberation Sans regular/italic fonts in
+`assets/fonts/liberation-sans/`, matching the paper's Helvetica-style figures
+without depending on system fonts. Labels and titles use normal weight. PDF
+bytes may differ across library versions/platforms; repeat the byte comparison within one environment. The
 statistics and input hashes remain directly checkable across environments.
 After rebuilding figures, run `make PYTHON=build/figure-venv/bin/python` to update
 and scan `main.pdf`.

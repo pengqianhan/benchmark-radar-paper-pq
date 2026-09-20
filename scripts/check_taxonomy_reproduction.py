@@ -41,6 +41,7 @@ def rebuild(root, seed):
     for name in ("catalog-findings.json", "156_from_xiaoke_all_passed_en.json"):
         shutil.copyfile(PAPER / "evidence" / name, root / "evidence" / name)
     shutil.copytree(PAPER / "evidence/taxonomy-inputs", root / "evidence/taxonomy-inputs")
+    shutil.copytree(PAPER / "assets/fonts", root / "assets/fonts")
     env = {**os.environ, "MPLCONFIGDIR": str(root / "mpl-cache"),
            "PYTHONHASHSEED": str(seed), "TZ": "UTC" if seed == 1 else "Pacific/Auckland",
            "SOURCE_DATE_EPOCH": str(seed)}
@@ -68,6 +69,8 @@ def main():
         "python": sys.version,
         "packages": {name: version(name) for name in
                      ("matplotlib", "numpy", "pypdf", "PyYAML", "fonttools", "pillow")},
+        "font_sha256": {str(path.relative_to(PAPER)): digest(path)
+                        for path in sorted((PAPER / "assets/fonts").rglob("*.ttf"))},
         "output_sha256": hashes[0],
         "working_tree_pdf_matches": {name: (PAPER / name).exists() and
                                      digest(PAPER / name) == hashes[0][name]

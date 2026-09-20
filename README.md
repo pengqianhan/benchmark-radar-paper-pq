@@ -104,6 +104,10 @@ Those artifacts do not update the checked-in `main.pdf` automatically.
 
 ## Reproduce the taxonomy figures
 
+For the detailed production and maintenance workflow, including data provenance,
+date verification rules, plotting parameters and validation, see
+[scripts/README.md](scripts/README.md) (Chinese).
+
 The complete pipeline runs locally from committed evidence; no live website,
 software checkout, or manual PDF editing is required. With Python 3.11:
 

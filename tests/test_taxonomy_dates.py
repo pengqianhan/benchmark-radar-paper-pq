@@ -20,7 +20,16 @@ from match_library_dates import (  # noqa: E402
 from match_library_dates import (  # noqa: E402
     build as build_matches,
 )
-from supplement_taxonomy_dates import BASE, build, check, enrich  # noqa: E402
+from supplement_taxonomy_dates import (  # noqa: E402
+    BASE,
+    LEGACY,
+    SELECTION,
+    build,
+    check,
+    combine_matches,
+    enrich,
+    validate_legacy_date,
+)
 
 
 def test_enrichment_preserves_full_population_and_all_non_date_fields():
@@ -29,7 +38,7 @@ def test_enrichment_preserves_full_population_and_all_non_date_fields():
     assert [row["key"] for row in enriched] == [row["key"] for row in baseline]
     assert (manifest["population"], manifest["baseline_dated"], manifest["baseline_undated"],
             manifest["supplemented"], manifest["dated"], manifest["undated"]) == (
-                1283, 615, 668, 437, 1052, 231)
+                1283, 615, 668, 453, 1068, 215)
     changed = 0
     for original, result in zip(baseline, enriched):
         if result == original:
@@ -40,8 +49,96 @@ def test_enrichment_preserves_full_population_and_all_non_date_fields():
         restored.pop("release_date_evidence")
         restored["release_date"] = None
         assert restored == original
-    assert changed == 437
+    assert changed == 453
     check()
+
+
+def test_combination_adds_exactly_selected_16_and_preserves_all_437_library_dates():
+    _, manifest = build()
+    combined = {r["catalogKey"]: r for r in manifest["matching_records"]}
+    library = {r["catalogKey"]: r for r in build_matches()["records"]}
+    legacy = {r["verification"]["catalogKey"]: r for r in json.loads(LEGACY.read_text())}
+    selected = set(json.loads(SELECTION.read_text())["catalog_keys"])
+    assert set(combined) == set(library)
+    assert len(selected) == 16
+    assert manifest["date_source_counts"] == {"library": 437, "legacy_next_verification": 16}
+    assert manifest["matching_decisions"] == {
+        "accepted": 453, "scope_not_release": 187, "identity_unresolved": 1, "unmatched": 27}
+    assert manifest["precision_counts"] == {"day": 437, "month": 16}
+    for key, row in combined.items():
+        if key in selected:
+            review = legacy[key]["nextVerification"]
+            assert row["release_date"] == review["releaseDate"]
+            assert row["nextVerification"] == review
+            assert row["date_field"] == "nextVerification.releaseDate"
+            assert row["sources"] == review["sources"]
+            assert library[key]["decision"] != "accepted"
+        else:
+            assert row["release_date"] == library[key]["release_date"]
+            assert row["decision"] == library[key]["decision"]
+    assert combined["llm-stats:global-mmlu-lite"]["release_date"] == "2024-12"
+    assert combined["llm-stats:groundui-1k"]["release_date"] == "2024-10-02"
+    assert combined["model-reports:harbor_index"]["event"] == "harbor_index_1_0_launch"
+    assert combined["artificial-analysis:tau3-banking"]["release_date"] is None
+
+
+def legacy_fixture():
+    return {"date": "2000-01-01", "verification": {"catalogKey": "llm-stats:a"},
+            "nextVerification": {"status": "passed", "releaseDate": "2025-02",
+                                 "precision": "month", "event": "version_release",
+                                 "reason": "Version release history establishes the month.",
+                                 "sources": [{"url": "https://example.org/releases"}]}}
+
+
+@pytest.mark.parametrize("problem", ["failed", "missing_field", "placeholder", "invalid_day",
+                                    "precision_mismatch", "after_cutoff", "straddling_month",
+                                    "missing_event", "missing_source"])
+def test_legacy_review_must_have_valid_passed_event_and_exact_date_field(problem):
+    donor = legacy_fixture()
+    v = donor["nextVerification"]
+    if problem == "failed":
+        v["status"] = "failed"
+    elif problem == "missing_field":
+        v.pop("releaseDate")
+        v["verifiedDate"] = "2025-02"  # Neither this nor top-level date is a fallback.
+    elif problem == "placeholder":
+        v.update(releaseDate="0001-01-01", precision="day")
+    elif problem == "invalid_day":
+        v.update(releaseDate="2025-02-30", precision="day")
+    elif problem == "precision_mismatch":
+        v["precision"] = "day"
+    elif problem == "after_cutoff":
+        v.update(releaseDate="2026-09-08", precision="day")
+    elif problem == "straddling_month":
+        v["releaseDate"] = "2026-09"
+    elif problem == "missing_event":
+        v.pop("event")
+    elif problem == "missing_source":
+        v["sources"] = []
+    with pytest.raises(ValueError):
+        validate_legacy_date(donor, "2026-09-07")
+
+
+def test_legacy_join_requires_exact_selected_keys_and_cannot_overwrite_library():
+    census, snapshot, reviews = fixtures()
+    matches = match(census, snapshot, reviews, [])
+    donor = legacy_fixture()
+    key = "llm-stats:a"
+    with pytest.raises(ValueError, match="must not replace"):
+        combine_matches(matches, [donor], [key], census["discovery_cutoff"])
+    matches[0].update(decision="scope_not_release", release_date=None)
+    for donors, selected in [([donor], [key, key]), ([donor, donor], [key]),
+                             ([donor], ["other:a"])]:
+        with pytest.raises(ValueError):
+            combine_matches(matches, donors, selected, census["discovery_cutoff"])
+    assert combine_matches(matches, [donor], [], census["discovery_cutoff"])[0]["release_date"] is None
+    result = combine_matches(matches, [donor], [key], census["discovery_cutoff"])
+    assert result[0]["release_date"] == "2025-02"
+    assert result[0]["library_candidate_date"] == "2025-01-15"
+    tampered = copy.deepcopy(result)
+    tampered[0]["release_date"] = donor["date"]
+    with pytest.raises(ValueError, match="selected evidence field"):
+        enrich(census["records"], tampered)
 
 
 def test_audit_has_all_668_original_missing_records_and_reconciles_every_source():

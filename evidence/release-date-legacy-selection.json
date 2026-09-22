@@ -1,0 +1,29 @@
+{
+  "adopted_on": "2026-09-23",
+  "catalog_keys": [
+    "artificial-analysis:apex-agents-aa",
+    "llm-stats:frontier-bench-v0.1",
+    "llm-stats:global-mmlu-lite",
+    "llm-stats:groundui-1k",
+    "llm-stats:mathverse-mini",
+    "llm-stats:mega-mlqa",
+    "llm-stats:mega-tydi-qa",
+    "llm-stats:mega-udpos",
+    "llm-stats:mega-xcopa",
+    "llm-stats:mega-xstorycloze",
+    "llm-stats:surds",
+    "llm-stats:swe-atlas",
+    "llm-stats:t2-bench",
+    "llm-stats:usamo-2026",
+    "llm-stats:usamo25",
+    "model-reports:harbor_index"
+  ],
+  "date_field": "nextVerification.releaseDate",
+  "definition": "User-authorized addition of the 16 exact source-record matches from the previously passed verification file to the unchanged 437 Library dates. No name-only or cross-source additions.",
+  "input_sha256": {
+    "evidence/156_from_xiaoke_all_passed_en.json": "e3bda21e7380ae51ba2a1fc38bf8fb05f145461d99a289371fde85843966ba48",
+    "evidence/catalog-findings.json": "a62fe8265b3640ac96ae84265fe3bd1cb0312097b5eefe33126011e733e5e914",
+    "evidence/library-date-matches.json": "39fc0300343ac91af685b64bc15df6531fef6b217dcba0d23fc08d0567512c6f"
+  },
+  "schema_version": 1
+}

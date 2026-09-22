@@ -127,9 +127,12 @@ evidence, even when the PDFs already exist. The stages are:
    against the fixed **1,107-record** `evidence/library-reviewed-dates.json`.
    It writes a complete JSON/CSV audit, using exact source IDs or explicit
    identity reviews and checking whether each date applies to the named version.
-3. `scripts/supplement_taxonomy_dates.py` applies only accepted matches and writes
-   `evidence/benchmark-taxonomy-dated.jsonl` and the source-linked
-   `evidence/taxonomy-release-date-supplements.json` manifest.
+3. `scripts/supplement_taxonomy_dates.py` keeps the accepted Library matches and
+   adds the 16 explicitly selected, passed `nextVerification.releaseDate` values
+   from the earlier verification file. It writes the combined 668-record
+   `evidence/release-date-matches.json` / `.csv` audit, the full drawing input
+   `evidence/benchmark-taxonomy-dated.jsonl`, and the source-linked manifest
+   `evidence/taxonomy-release-date-supplements.json`.
 4. `scripts/taxonomy_trends.py` recomputes eligible periods and selected series in
    `evidence/benchmark-taxonomy-trends.json`, and exports `taxonomy-trend-data.tex`.
 5. `scripts/plot_taxonomy.py` draws both taxonomy PDFs from that complete population.
@@ -142,21 +145,25 @@ use this committed snapshot, require no live Library access, and never import
 new records from it. The contributor's date verification is distinguished from
 this paper's subsequent identity and event-scope review.
 
-**437 dates are adopted: 615 originally dated + 437 = 1,052 dated, leaving 231
-undated.** Of those remaining, 202 have candidate dates that do not establish
-the target's release/introduction, 2 have unresolved identity/version issues,
-and 27 have no match in the reviewed snapshot. Source IDs alone are insufficient
+**453 dates are adopted: 437 from Library evidence + 16 from passed legacy
+reviews. The full population has 615 originally dated + 453 = 1,068 dated,
+leaving 215 undated.** Of those remaining, 187 have candidate dates that do not
+establish the target's release/introduction, 1 has unresolved identity/version
+issues, and 27 have no match in the reviewed snapshot. Source IDs alone are insufficient
 when evidence only dates a parent dataset or a later result disclosure.
 Explicit component-introduction evidence can support a component's date without
 counting it as an independent benchmark-family release.
 
-The previous 156-record annotation remains as historical comparison evidence;
-it is not a fallback date donor. The new matching starts from all 668 original
-missing records. It supports 140 previously annotated records and 297 additional
-records; 16 previously annotated records are now withheld. Every accepted date
-comes unchanged from Library `releaseEvidence.date`, preserving day/month
-precision and event scope. See the [matching report](evidence/library-date-matching.md)
-and [complete audit table](evidence/library-date-matches.csv).
+The first-stage Library matching remains unchanged and auditable separately.
+It supplies dates for 140 records in the previous 156-record annotation and
+297 additional records. The second stage uses the explicit allowlist in
+`evidence/release-date-legacy-selection.json` for the other 16 records, joined by
+`verification.catalogKey`. All 16 require `nextVerification.status: passed`,
+and use only `nextVerification.releaseDate`, preserving its precision, event and
+sources. No accepted Library date is overwritten; the top-level legacy `date`
+is never a fallback. The selection binds the donor, Library audit and census
+hashes. See the [combined report](evidence/release-date-matching.md) and
+[complete current audit table](evidence/release-date-matches.csv).
 
 This is a retrospective annotation of the existing v0.11.0 population with the
 same 2026-09-07 discovery cutoff. All 1,283 source records, the original census
@@ -164,7 +171,7 @@ same 2026-09-07 discovery cutoff. All 1,283 source records, the original census
 unchanged. Review dates can follow the cutoff; accepted benchmark dates cannot.
 
 `make check-taxonomy` runs two fresh, isolated builds with different hash seeds,
-time zones and caller timestamps. All eleven artifacts must be byte-identical
+time zones and caller timestamps. All thirteen artifacts must be byte-identical
 between runs; generated JSON/JSONL/CSV/TeX must also match the checked-in files.
 It records hashes and environment versions in
 `build/taxonomy-reproduction-check.json`. PDF metadata use the discovery cutoff

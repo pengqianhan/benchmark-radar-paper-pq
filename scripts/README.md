@@ -41,7 +41,8 @@ v0.11.0、软件提交 `8f46bbfa91f5d9900c8b08a5d552c3df5c9597b0`、发现截止
 | [taxonomy.py](taxonomy.py) | 分类名称、标签映射、字段权重、排除词、文本模式和类别选择规则 |
 | [library-reviewed-dates.json](../evidence/library-reviewed-dates.json) | 全部 1,107 条带核验日期证据的 Library 输入快照 |
 | [library-date-match-reviews.json](../evidence/library-date-match-reviews.json) | 身份消歧、跨来源映射及事件适用性审查 |
-| [156_from_xiaoke_all_passed_en.json](../evidence/156_from_xiaoke_all_passed_en.json) | 历史对照及组件身份佐证，不作为日期兜底来源 |
+| [156_from_xiaoke_all_passed_en.json](../evidence/156_from_xiaoke_all_passed_en.json) | 历史对照、身份佐证及明确选定的 16 条核验日期 |
+| [release-date-legacy-selection.json](../evidence/release-date-legacy-selection.json) | 第二阶段采用的 16 个精确来源记录 key，绑定全部输入哈希 |
 | [liberation-sans/](../assets/fonts/liberation-sans/) | 固定版本的字体、来源说明、许可与校验值 |
 
 分类用的 CSV 是此前发布的 v0.10.0 爬取文件的随仓库副本；**决定总体范围的是 v0.11.0 的冻结 census**。
@@ -57,7 +58,8 @@ v0.11.0、软件提交 `8f46bbfa91f5d9900c8b08a5d552c3df5c9597b0`、发现截止
 “人工核验”是提供者对日期来源的说明；本流程另行核对论文记录的身份及日期事件适用性。
 
 [156_from_xiaoke_all_passed_en.json](../evidence/156_from_xiaoke_all_passed_en.json)
-保留为历史对照和具名组件身份的佐证，不提供兜底日期。
+用于历史对照和具名组件身份佐证，并在第二阶段为明确选定的 16 条记录提供
+`nextVerification.releaseDate`。不采用顶层 `date`，也不覆盖第一阶段已接受的日期。
 本轮从 main 原始 **668 条无日期记录**开始，并非从旧补全后的 512 条开始。
 
 ## 3. 制作流程与中间产物
@@ -69,6 +71,8 @@ v0.11.0、软件提交 `8f46bbfa91f5d9900c8b08a5d552c3df5c9597b0`、发现截止
 冻结 census + Library 1107 条快照 + 身份/事件审查 + 旧结果对照
     └─ match_library_dates.py → library-date-matches.json / .csv（全部 668 条）
          └─ supplement_taxonomy_dates.py
+              ├─ + 16 条明确选定且 passed 的 nextVerification.releaseDate
+              ├─ release-date-matches.json / .csv（合并后全部 668 条）
               ├─ taxonomy-release-date-supplements.json（采用的日期与证据）
               └─ benchmark-taxonomy-dated.jsonl（全部 1283 条）
                    ├─ taxonomy_trends.py → 趋势 JSON + taxonomy-trend-data.tex
@@ -103,6 +107,10 @@ build/figure-venv/bin/python scripts/plot_taxonomy.py
    不因此合并来源记录或声称这些组件是独立 benchmark 发布。
 5. 日期值不同不一定是错误：例如原始介绍、论文公开、任务数据开放可能发生在不同日期。
    `event` 与旧结果对照保存这些差异。父版本早于目标版本的日期仍被拒绝。
+6. 第二阶段仅对 allowlist 中的 16 个 `verification.catalogKey` 采用旧核验文件的
+   `nextVerification.releaseDate`，要求 `status` 为 `passed` 且事件、日期精度和来源齐全。
+   保持第一阶段 437 个日期值不变。保留 Library 候选与决定供对照；最终结果和实际日期字段
+   写入 `release-date-matches.json/.csv`。跨来源同名候选不自动加入。
 
 审计 JSON/CSV 包含全部 668 条目标记录的候选、来源身份、日期、精度、来源 URL、
 决定、理由及旧结果对照。无法采用的候选保留证据；无匹配、日期范围不适用、
@@ -110,12 +118,15 @@ build/figure-venv/bin/python scripts/plot_taxonomy.py
 
 ```text
 原始 census：615 有日期 + 668 无日期 = 1,283
-本轮：437 采用 + 202 事件范围不适用 + 2 身份/版本未确定 + 27 无匹配 = 668
-绘图输入：1,052 有日期 + 231 无日期 = 1,283
-旧结果对照：140 条继续得到支持、16 条保留未知，另补充 297 条
+第一阶段：437 Library 日期 + 231 无日期 = 668
+第二阶段：437 Library 日期 + 16 旧核验日期 + 215 无日期 = 668
+剩余：187 事件范围不适用 + 1 身份/版本未确定 + 27 无匹配 = 215
+绘图输入：1,068 有日期 + 215 无日期 = 1,283
+旧结果对照：140 条使用 Library 日期、16 条使用旧核验日期，另补充 297 条
 ```
 
-见 [本轮匹配报告](../evidence/library-date-matching.md)。重建不访问网络。
+见 [合并匹配报告](../evidence/release-date-matching.md)。第一阶段结果保留在
+[Library 匹配报告](../evidence/library-date-matching.md)。重建不访问网络。
 需要重新提取用户提供的同一文件时：
 
 ```bash
@@ -152,7 +163,7 @@ python scripts/match_library_dates.py --freeze-source evidence/library_index.jso
 曲线按合格时段前半与后半的**合并计数占比之差的绝对值**排序，时段数量为奇数时不把中间时段计入这两个比较组。
 这不是首尾两个点直接相减。每个候选项的统计、选择结果及原因都写入趋势 JSON。
 Facets 与主类别可以重叠，因此 Panel B 的曲线占比不要求相加为 100%。
-当前合格时段是 2023 H1–2025 H2；该范围由代码计算，不能在图中手动固定。
+当前合格时段是 2023 H2–2025 H2；该范围由代码计算，不能在图中手动固定。
 
 ## 4. 视觉样式与字体
 
@@ -188,7 +199,7 @@ build/figure-venv/bin/python scripts/taxonomy_trends.py --check
 make check-taxonomy PYTHON=build/figure-venv/bin/python
 ```
 
-它在两个临时目录中从原始输入分别构建，改变哈希种子、时区和调用者时间戳，要求 **11 个生成产物逐字节一致**。
+它在两个临时目录中从原始输入分别构建，改变哈希种子、时区和调用者时间戳，要求 **13 个生成产物逐字节一致**。
 其中 JSON、JSONL、CSV、TeX 还必须与当前工作区文件一致。
 结果写入 `build/taxonomy-reproduction-check.json`，包含包版本、字体哈希、产物哈希及 `working_tree_pdf_matches`。
 后者应单独查看：它记录当前 PDF 是否与本次构建相同；不同平台／依赖版本的 PDF 字节可能不同，该字段为 `false` 本身不会使检查失败。

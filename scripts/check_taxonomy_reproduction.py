@@ -22,6 +22,7 @@ SCRIPTS = ("classify_benchmarks.py", "match_library_dates.py", "supplement_taxon
            "taxonomy_trends.py", "plot_taxonomy.py")
 DATA_OUTPUTS = (
     "evidence/library-date-matches.json", "evidence/library-date-matches.csv",
+    "evidence/release-date-matches.json", "evidence/release-date-matches.csv",
     "evidence/benchmark-taxonomy.jsonl", "evidence/benchmark-taxonomy-summary.json",
     "taxonomy-data.tex", "evidence/benchmark-taxonomy-dated.jsonl",
     "evidence/taxonomy-release-date-supplements.json",
@@ -40,7 +41,8 @@ def rebuild(root, seed):
     for name in (*SCRIPTS, "taxonomy.py"):
         shutil.copyfile(PAPER / "scripts" / name, root / "scripts" / name)
     for name in ("catalog-findings.json", "156_from_xiaoke_all_passed_en.json",
-                 "library-reviewed-dates.json", "library-date-match-reviews.json"):
+                 "library-reviewed-dates.json", "library-date-match-reviews.json",
+                 "release-date-legacy-selection.json"):
         shutil.copyfile(PAPER / "evidence" / name, root / "evidence" / name)
     shutil.copytree(PAPER / "evidence/taxonomy-inputs", root / "evidence/taxonomy-inputs")
     shutil.copytree(PAPER / "assets/fonts", root / "assets/fonts")

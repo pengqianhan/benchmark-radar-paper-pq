@@ -9,6 +9,7 @@ TAXONOMY_FIGURES := figures/taxonomy-sankey.pdf figures/taxonomy-trends.pdf
 TAXONOMY_INPUTS := scripts/taxonomy.py scripts/classify_benchmarks.py \
 	scripts/match_library_dates.py evidence/library-reviewed-dates.json \
 	evidence/library-date-match-reviews.json \
+	evidence/release-date-legacy-selection.json \
 	scripts/supplement_taxonomy_dates.py scripts/taxonomy_trends.py scripts/plot_taxonomy.py \
 	evidence/156_from_xiaoke_all_passed_en.json \
 	evidence/catalog-findings.json $(wildcard evidence/taxonomy-inputs/*) \
@@ -17,6 +18,7 @@ TAXONOMY_OUTPUTS := $(TAXONOMY_FIGURES) taxonomy-data.tex taxonomy-trend-data.te
 	evidence/benchmark-taxonomy.jsonl evidence/benchmark-taxonomy-summary.json \
 	evidence/benchmark-taxonomy-dated.jsonl evidence/taxonomy-release-date-supplements.json \
 	evidence/library-date-matches.json evidence/library-date-matches.csv \
+	evidence/release-date-matches.json evidence/release-date-matches.csv \
 	evidence/benchmark-taxonomy-trends.json
 
 .PHONY: all figures taxonomy-figures reproduce-taxonomy check-taxonomy arxiv check-small-numbers clean

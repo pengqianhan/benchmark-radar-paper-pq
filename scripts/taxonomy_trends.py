@@ -326,7 +326,7 @@ def build():
                          for path in (ROWS, SUPPLEMENTS)},
         "date_coverage": {key: supplement[key] for key in
                           ("baseline_dated", "baseline_undated", "supplemented",
-                           "library_reviewed_records")},
+                           "library_reviewed_records", "date_source_counts")},
         "definitions": {
             "population": "Every row in benchmark-taxonomy-dated.jsonl, dated and undated.",
             "dated": "Frozen census dates plus reviewed release or first introduction dates for previously undated records. Retrospective evidence does not extend the discovery cutoff.",
@@ -406,6 +406,8 @@ def main():
         f"\\newcommand{{\\TaxonomyTrendUndated}}{{{data['undated']}}}",
         f"\\newcommand{{\\TaxonomySupplementedDates}}{{{data['date_coverage']['supplemented']}}}",
         f"\\newcommand{{\\TaxonomyLibraryReviewedDates}}{{{data['date_coverage']['library_reviewed_records']}}}",
+        f"\\newcommand{{\\TaxonomyLibraryDates}}{{{data['date_coverage']['date_source_counts']['library']}}}",
+        f"\\newcommand{{\\TaxonomyLegacyDates}}{{{data['date_coverage']['date_source_counts']['legacy_next_verification']}}}",
         f"\\newcommand{{\\TaxonomySharePeriod}}{{{shares['noun']}}}",
         f"\\newcommand{{\\TaxonomyReportedPeriods}}{{{tex_period(reported[0])}--"
         f"{tex_period(reported[-1])}}}",

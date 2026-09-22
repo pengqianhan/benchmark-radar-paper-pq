@@ -14,10 +14,9 @@ Two figures, both from `evidence/benchmark-taxonomy-dated.jsonl`:
                      `PANEL_A_PERIOD`: quarter, half or year. Panel B keeps the
                      release-year shares the evidence supports.
 
-Nothing is imputed and no record is dropped: the dated records released before
-the window and those that still carry no release date at all cannot take a
-half-year bucket, so each group keeps a column of its own on Panel A with its
-count printed there.
+The full census remains in the input. Panel A omits dates before 2023 to focus
+on recent trends under incomplete historical coverage. Undated records retain
+their own column; legend counts describe only the records shown in Panel A.
 
 Both are written as vector PDFs, which is what \includegraphics takes. The Sankey
 reserves space for its rendered labels before export, so font metrics cannot
@@ -435,9 +434,9 @@ def fit_label_width(fig, ax):
 # --- Trends -------------------------------------------------------------
 
 # Panel A starts at 2023-01-01, the first full period after ChatGPT's release.
-# Earlier dated records keep an aggregate column; undated records keep another.
-# The period axis therefore focuses on the recent expansion without dropping
-# either group from the population.
+# Earlier dated records are omitted from this view, but kept in the census and
+# audit. Undated records retain their own column. Panel B keeps its existing
+# eligibility and source-composition rules.
 #
 # The step is a reading choice, not a data one: all three run off the same
 # release dates. It follows `taxonomy_trends.TREND_PERIOD`, which is also the
@@ -491,41 +490,38 @@ def draw_trends(rows, trends, path_stem, order, period=PANEL_A_PERIOD):
     placed = sum(before.values()) + sum(sum(counts.values()) for counts in buckets.values())
     assert placed == trends["dated"]
 
-    # Three columns across the top. The middle one is the period axis; the
-    # two flanking columns hold the records no half-year can take. The left one
-    # shares the main scale, because the pre-window years hold a comparable
-    # number of records. The larger undated column uses its own scale so
-    # the dated bars remain readable.
+    shown_counts = Counter(undated)
+    for counts in buckets.values():
+        shown_counts.update(counts)
+    assert dict(shown_counts) == trends["panel_a"]["legend_counts"]
+    assert sum(before.values()) == trends["panel_a"]["excluded_before_window"]
+
+    # Recent dated periods and the undated column share the top row. Earlier
+    # records are accounted for above, without reserving a visible column.
     fig = plt.figure(figsize=(FIG_WIDTH_IN, 5.7))
     # Explicit margins: tight_layout cannot handle a hand-built gridspec whose
     # columns carry different scales, and warns rather than laying it out.
-    grid = fig.add_gridspec(2, 3, height_ratios=[1.2, 1.0], width_ratios=[1.5, 11, 1.5],
+    grid = fig.add_gridspec(2, 2, height_ratios=[1.2, 1.0], width_ratios=[12.5, 1.5],
                             hspace=1.05, wspace=0.07,
                             left=0.095, right=0.955, top=0.945, bottom=0.175)
-    ax_top = fig.add_subplot(grid[0, 1])
-    ax_before = fig.add_subplot(grid[0, 0], sharey=ax_top)
-    ax_undated = fig.add_subplot(grid[0, 2])
+    ax_top = fig.add_subplot(grid[0, 0])
+    ax_undated = fig.add_subplot(grid[0, 1])
     ax_mid = fig.add_subplot(grid[1, :])
 
-    # Panel A: every record. The dated ones from 2023 on their period, the
-    # earlier dated ones and the undated ones in their columns, all stacked by
-    # Level 1. The two aggregate columns are hatched so neither is mistaken for
-    # a period bucket.
+    # Panel A: dates from 2023 plus unknown dates, all stacked by Level 1.
+    # Hatch the unknown-date column so it cannot be mistaken for a period.
     xs = list(range(len(axis)))
     bottom = [0.0] * len(axis)
-    before_bottom = undated_bottom = 0.0
-    full_counts = Counter(row["l1"] for row in rows)
+    undated_bottom = 0.0
     for l1 in order:
         values = [buckets.get(key, {}).get(l1, 0) for key in axis]
         ax_top.bar(xs, values, bottom=bottom, color=L1_COLOR[l1], width=0.74,
-                   label=f"{L1_LABEL[l1]} ({full_counts[l1]})",
+                   label=f"{L1_LABEL[l1]} ({shown_counts[l1]})",
                    edgecolor="white", linewidth=0.4)
         bottom = [b + v for b, v in zip(bottom, values)]
-        for ax, counts, base in ((ax_before, before, before_bottom),
-                                 (ax_undated, undated, undated_bottom)):
-            ax.bar([0], [counts.get(l1, 0)], bottom=[base], color=L1_COLOR[l1],
-                   width=0.72, edgecolor="white", linewidth=0.4, hatch="//")
-        before_bottom += before.get(l1, 0)
+        ax_undated.bar([0], [undated.get(l1, 0)], bottom=[undated_bottom],
+                       color=L1_COLOR[l1], width=0.72, edgecolor="white",
+                       linewidth=0.4, hatch="//")
         undated_bottom += undated.get(l1, 0)
     peak = max(bottom)
     for x, value in zip(xs, bottom):
@@ -544,26 +540,14 @@ def draw_trends(rows, trends, path_stem, order, period=PANEL_A_PERIOD):
     ax_top.set_xticklabels(labels, fontsize=FS_TICK)
     ax_top.set_xlim(-0.72, len(axis) - 0.28)
     ax_top.set_ylim(0, peak * 1.12)
-    ax_top.tick_params(axis="y", labelleft=False, length=0)
+    ax_top.set_ylabel("Benchmarks", fontsize=FS_AXIS)
+    ax_top.tick_params(axis="y", labelsize=6.0)
     ax_top.spines[["top", "right"]].set_visible(False)
     ax_top.grid(axis="y", alpha=0.25, linewidth=0.6)
     ax_top.set_axisbelow(True)
 
-    ax_before.text(0, before_bottom + peak * 0.02, str(int(before_bottom)), ha="center",
-                   va="bottom", fontsize=7.5, color="#333333", fontweight="normal")
-    early = f"{before_span[0]}\u2013{before_span[1]}" if before_span else "before"
-    years_spanned = before_span[1] - before_span[0] + 1 if before_span else 0
-    ax_before.set_xticks([0])
-    ax_before.set_xticklabels([f"{early}\n({years_spanned} years)"], fontsize=FS_TICK)
-    ax_before.set_xlim(-0.62, 0.62)
-    ax_before.set_ylabel("Benchmarks", fontsize=FS_AXIS)
-    ax_before.tick_params(axis="y", labelsize=6.0)
-    ax_before.spines[["top", "right"]].set_visible(False)
-    ax_before.grid(axis="y", alpha=0.25, linewidth=0.6)
-    ax_before.set_axisbelow(True)
-    ax_before.set_title(
-        f"A \u00b7 Release {PERIODS[period]['noun']} of all {trends['population']:,} "
-        f"records, by Level 1",
+    ax_top.set_title(
+        f"A \u00b7 Release {PERIODS[period]['noun']} from {WINDOW_START_YEAR}, by Level 1",
         fontsize=FS_PANEL, fontweight="normal", loc="left", pad=6,
     )
 
@@ -648,7 +632,8 @@ def draw_trends(rows, trends, path_stem, order, period=PANEL_A_PERIOD):
     plt.close(fig)
     return {"axis": axis, "period": period, "labels": labels,
             "in_window": int(sum(bottom)),
-            "before": int(before_bottom), "before_span": before_span}
+            "before": sum(before.values()), "before_span": before_span,
+            "shown": sum(shown_counts.values())}
 
 
 def main():
@@ -685,7 +670,7 @@ def main():
     for relative, digest in trends["input_sha256"].items():
         if sha256(PAPER / relative) != digest:
             raise ValueError("Stale trends: rerun make reproduce-taxonomy")
-    assert len(rows) == trends["population"] == 1283, "figures must draw the whole census"
+    assert len(rows) == trends["population"] == 1283, "figure inputs must retain the whole census"
 
     order = display_order(rows)
     info = draw_sankey(rows, FIGURES / "taxonomy-sankey", order)
@@ -698,8 +683,8 @@ def main():
                    (window["labels"][0], window["labels"][-1]))
     print(f"taxonomy-trends  : {window['in_window']} records over {first}-{last} in "
           f"{len(window['axis'])} {PERIODS[window['period']]['noun']} buckets; "
-          f"{window['before']} dated before the window and {trends['undated']} undated "
-          f"stated on the figure")
+          f"{window['before']} earlier dated records omitted from Panel A, "
+          f"{trends['undated']} undated shown; {window['shown']} shown in total")
     if window["period"] != PANEL_A_PERIOD:
         print(f"    note: the figure now holds the {window['period']} view. Set "
               f"PANEL_A_PERIOD = {window['period']!r} to keep it, or rerun without "

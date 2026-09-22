@@ -141,19 +141,21 @@ python scripts/match_library_dates.py --freeze-source evidence/library_index.jso
 每条记录贡献一个单位的流带高度，左右两列的总量一致。
 日期是否缺失不影响这张图的分类计数；facets 不作为 Sankey 的分类列。
 
-**Trends 图 Panel A**也保留全部记录：
+**Trends 图 Panel A**从完整总体出发，展示近期日期与未知日期：
 
 - 从 2023 H1 开始按半年分桶，最后一个桶只到发现截止日。
-- 2023 年之前的有日期记录合并在左侧一列。
+- 不绘制原来的 2010–2022 汇总列：该时期的收集不完整，图中聚焦近期趋势。
+- 132 条早期记录仍保留在完整 census、日期输入和统计审计中，不从数据集中删除。
 - 无日期记录放在右侧独立刻度的一列，仍按主分类堆叠。
-- 图例计数包含有日期和无日期记录。
+- 图例只计入实际展示的记录：936 条 2023 年起的有日期记录 + 215 条无日期记录 = 1,151 条。
+- `benchmark-taxonomy-trends.json` 的 `panel_a` 保存展示范围、排除数量及各类图例计数。
 
 **Panel B**只对满足条件的时间段计算和展示占比。当前规则在 `taxonomy_trends.py` 中：
 
 | 参数 | 当前值 | 含义 |
 | --- | --- | --- |
 | `TREND_PERIOD` | `"half"` | 默认半年；同时控制统计与绘图 |
-| `WINDOW_START_YEAR` | `2023` | Panel A 分时段轴的起点；更早记录仍保留 |
+| `WINDOW_START_YEAR` | `2023` | Panel A 分时段轴的起点；更早记录保留在数据中但不绘制 |
 | `MIN_RELIABLE` | `30` | 一个时间段至少有 30 条有日期记录 |
 | `MAX_MIX_DEVIATION` | `0.25` | 该时段与全部有日期记录的来源构成，总变差距离不超过 0.25 |
 | `SHARE_SERIES_MIN_RECORDS` | `20` | 候选类别／facet 在合格时段至少包含 20 条记录 |
@@ -164,6 +166,7 @@ python scripts/match_library_dates.py --freeze-source evidence/library_index.jso
 这不是首尾两个点直接相减。每个候选项的统计、选择结果及原因都写入趋势 JSON。
 Facets 与主类别可以重叠，因此 Panel B 的曲线占比不要求相加为 100%。
 当前合格时段是 2023 H2–2025 H2；该范围由代码计算，不能在图中手动固定。
+移除 Panel A 早期汇总列不会改变 Panel B 的输入、分母、来源构成基准或曲线选择。
 
 ## 4. 视觉样式与字体
 

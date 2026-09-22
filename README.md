@@ -170,6 +170,13 @@ same 2026-09-07 discovery cutoff. All 1,283 source records, the original census
 (615 dated / 668 undated), classifications, scores and released hashes remain
 unchanged. Review dates can follow the cutoff; accepted benchmark dates cannot.
 
+Figure 6 Panel A focuses on dates from 2023: it shows 936 dated records and
+215 undated records, with legend counts covering those 1,151 shown records.
+The 132 earlier dated records are omitted from this view because historical
+coverage is incomplete; they remain in the census, input data and audit.
+The trends JSON records this display scope in `panel_a`. Panel B's data,
+denominators, source-composition reference and selection rules are unchanged.
+
 `make check-taxonomy` runs two fresh, isolated builds with different hash seeds,
 time zones and caller timestamps. All thirteen artifacts must be byte-identical
 between runs; generated JSON/JSONL/CSV/TeX must also match the checked-in files.

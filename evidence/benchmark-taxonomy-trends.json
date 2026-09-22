@@ -2933,6 +2933,27 @@
     "2025": 0.0927,
     "2026": 0.3934
   },
+  "panel_a": {
+    "dated_shown": 936,
+    "definition": "Show dates from the window start plus all undated records. Earlier dated records remain in the full census and audit but are omitted from this view because historical coverage is incomplete. Legend counts cover only the shown records. Panel B calculations are unchanged.",
+    "excluded_before_window": 132,
+    "legend_counts": {
+      "agentic_tool_use": 131,
+      "applied_verticals": 82,
+      "coding_se": 220,
+      "general_composite": 11,
+      "knowledge_factuality": 49,
+      "language_communication": 159,
+      "math_logic": 136,
+      "multimodal_perception": 244,
+      "other": 4,
+      "safety_security": 56,
+      "science_research": 59
+    },
+    "shown": 1151,
+    "undated_shown": 215,
+    "window_start_year": 2023
+  },
   "per_year": {
     "2010": 1,
     "2015": 5,

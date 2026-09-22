@@ -347,6 +347,12 @@ def test_figures_render_and_are_current():
         if path.name not in produced
     )
     assert not stale, f"stale taxonomy figures on disk: {stale}"
+    from pypdf import PdfReader
+
+    text = "\n".join(page.extract_text() for page in
+                     PdfReader(PAPER / "figures/taxonomy-trends.pdf").pages)
+    assert "2010" not in text and "2022" not in text
+    assert "2023" in text and "no release" in text
 
 
 def test_figure_labels_are_the_canonical_class_names():
@@ -368,11 +374,11 @@ def test_figure_labels_are_the_canonical_class_names():
 
 
 def test_panel_a_periods_keep_every_record_and_a_contiguous_axis():
-    """Every bucket width must hold the whole census on a gapless axis.
+    """Every bucket width must account for the whole census on a gapless axis.
 
     Panel A's step is a reading choice, so quarter, half and year all run off the
-    same release dates: a record is in a period bucket, in the pre-window column,
-    or in the undated one, and none of the three may lose one. The axis is
+    same release dates: a record is in a period bucket, in the omitted pre-window
+    group, or in the undated column. No group may lose a record. The axis is
     stepped rather than read off the keys present, so a period with no releases
     has to stay on it as a gap instead of closing up and shortening the window.
     """
@@ -390,7 +396,7 @@ def test_panel_a_periods_keep_every_record_and_a_contiguous_axis():
                   + sum(sum(counts.values()) for counts in buckets.values()))
         assert placed == len(rows), f"{period}: {placed} of {len(rows)} records placed"
         assert set(buckets) <= set(axis), f"{period}: a bucket sits off the axis"
-        assert span[1] < plot_taxonomy.WINDOW_START_YEAR, "the left column is pre-window only"
+        assert span[1] < plot_taxonomy.WINDOW_START_YEAR, "the omitted group is pre-window only"
 
         per_year = 12 // months
         stepped = [(year, index)
@@ -399,6 +405,25 @@ def test_panel_a_periods_keep_every_record_and_a_contiguous_axis():
         assert axis[0] == (plot_taxonomy.WINDOW_START_YEAR, 1)
         assert axis[-1] == end, f"{period}: the axis must run to the discovery cutoff"
         assert axis == stepped[stepped.index(axis[0]):stepped.index(axis[-1]) + 1]
+
+
+def test_panel_a_legend_counts_only_shown_records_and_preserves_the_census():
+    from taxonomy_trends import WINDOW_START_YEAR, build as build_trends, release_year
+
+    data = build_trends()
+    rows = [json.loads(line) for line in
+            (PAPER / "evidence/benchmark-taxonomy-dated.jsonl").read_text().splitlines()]
+    shown = [r for r in rows if release_year(r) is None or release_year(r) >= WINDOW_START_YEAR]
+    omitted = [r for r in rows if release_year(r) is not None and release_year(r) < WINDOW_START_YEAR]
+    coverage = data["panel_a"]
+    assert coverage["legend_counts"] == dict(Counter(r["l1"] for r in shown))
+    assert sum(coverage["legend_counts"].values()) == coverage["shown"] == len(shown)
+    assert coverage["excluded_before_window"] == len(omitted) == 132
+    assert coverage["dated_shown"] == 936 and coverage["undated_shown"] == 215
+    assert coverage["shown"] + coverage["excluded_before_window"] == data["population"] == 1283
+    assert {r["key"] for r in shown}.isdisjoint(r["key"] for r in omitted)
+    # Full historical statistics remain available outside the restricted view.
+    assert sum(data["per_year"].values()) == data["dated"] == 1068
 
 
 def test_manuscript_takes_every_period_word_from_the_generated_macros():
@@ -413,7 +438,7 @@ def test_manuscript_takes_every_period_word_from_the_generated_macros():
     from taxonomy_trends import PERIODS, TREND_PERIOD
 
     manuscript = (PAPER / "main.tex").read_text(encoding="utf-8")
-    body = manuscript[manuscript.index(r"Figure~\ref{fig:taxonomy-trends} places"):
+    body = manuscript[manuscript.index(r"Figure~\ref{fig:taxonomy-trends} focuses"):
                       manuscript.index(r"\label{fig:taxonomy-trends}")]
     prose, caption = body.split(r"\captionof{figure}{", 1)
     for where, text in (("paragraph", prose), ("caption", caption)):

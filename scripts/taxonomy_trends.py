@@ -260,6 +260,8 @@ def build():
     dated = [(release_year(r), r) for r in rows]
     undated = [r for year, r in dated if year is None]
     dated = [(year, r) for year, r in dated if year is not None]
+    panel_a_dated = [r for year, r in dated if year >= WINDOW_START_YEAR]
+    panel_a_shown = [*panel_a_dated, *undated]
 
     per_year = Counter(year for year, _ in dated)
     years = sorted(per_year)
@@ -327,6 +329,15 @@ def build():
         "date_coverage": {key: supplement[key] for key in
                           ("baseline_dated", "baseline_undated", "supplemented",
                            "library_reviewed_records", "date_source_counts")},
+        "panel_a": {
+            "definition": "Show dates from the window start plus all undated records. Earlier dated records remain in the full census and audit but are omitted from this view because historical coverage is incomplete. Legend counts cover only the shown records. Panel B calculations are unchanged.",
+            "window_start_year": WINDOW_START_YEAR,
+            "dated_shown": len(panel_a_dated),
+            "undated_shown": len(undated),
+            "shown": len(panel_a_shown),
+            "excluded_before_window": len(dated) - len(panel_a_dated),
+            "legend_counts": dict(sorted(Counter(r["l1"] for r in panel_a_shown).items())),
+        },
         "definitions": {
             "population": "Every row in benchmark-taxonomy-dated.jsonl, dated and undated.",
             "dated": "Frozen census dates plus reviewed release or first introduction dates for previously undated records. Retrospective evidence does not extend the discovery cutoff.",
@@ -413,6 +424,9 @@ def main():
         f"{tex_period(reported[-1])}}}",
         f"\\newcommand{{\\TaxonomyWindowFirst}}"
         f"{{{tex_period(period_label((WINDOW_START_YEAR, 1)))}}}",
+        f"\\newcommand{{\\TaxonomyWindowDated}}{{{data['panel_a']['dated_shown']}}}",
+        f"\\newcommand{{\\TaxonomyPanelAShown}}{{{data['panel_a']['shown']}}}",
+        f"\\newcommand{{\\TaxonomyPreWindowDated}}{{{data['panel_a']['excluded_before_window']}}}",
         f"\\newcommand{{\\TaxonomyMinPeriodRecords}}{{{MIN_RELIABLE}}}",
         f"\\newcommand{{\\TaxonomyExcludedFromShares}}{{{shares['excluded_records']}}}",
         f"\\newcommand{{\\TaxonomyMixAdjustment}}{{{shares['mix_adjustment']:.1f}}}",

@@ -39,103 +39,92 @@ v0.11.0、软件提交 `8f46bbfa91f5d9900c8b08a5d552c3df5c9597b0`、发现截止
 | [catalog-findings.json](../evidence/catalog-findings.json) | 冻结的记录集合、来源、原始发布日期及其他测量字段 |
 | [taxonomy-inputs/](../evidence/taxonomy-inputs/) | 随仓库保存的来源分类证据：OpenCompass Hub、LLM Stats、Artificial Analysis 的 CSV，以及 `model_cards.yml` |
 | [taxonomy.py](taxonomy.py) | 分类名称、标签映射、字段权重、排除词、文本模式和类别选择规则 |
-| [156_from_xiaoke_all_passed_en.json](../evidence/156_from_xiaoke_all_passed_en.json) | 对原来缺日期的记录完成核验后的日期证据 |
+| [library-reviewed-dates.json](../evidence/library-reviewed-dates.json) | 全部 1,107 条带核验日期证据的 Library 输入快照 |
+| [library-date-match-reviews.json](../evidence/library-date-match-reviews.json) | 身份消歧、跨来源映射及事件适用性审查 |
+| [156_from_xiaoke_all_passed_en.json](../evidence/156_from_xiaoke_all_passed_en.json) | 历史对照及组件身份佐证，不作为日期兜底来源 |
 | [liberation-sans/](../assets/fonts/liberation-sans/) | 固定版本的字体、来源说明、许可与校验值 |
 
 分类用的 CSV 是此前发布的 v0.10.0 爬取文件的随仓库副本；**决定总体范围的是 v0.11.0 的冻结 census**。
 不能把较早的分类证据文件误当成总体，也不能改用实时网站数据替换这些输入。
 文件哈希保存在生成的分类摘要和日期补充清单中。
 
-### 日期证据的形成
+### 日期证据与匹配范围
 
-历史记录从 [reviewed_from_xiaoke.json](../evidence/reviewed_from_xiaoke.json)
-筛选为 [284_from_xiaoke.json](../evidence/284_from_xiaoke.json)，经日期核验后分为：
+当前日期来源为 [library-reviewed-dates.json](../evidence/library-reviewed-dates.json)，
+从用户提供的本地 `library_index.json` 中提取全部 1,107 条带 `releaseEvidence` 的记录。
+快照保留完整日期证据、身份字段、源记录位置、源文件及记录哈希。
+原文件有 3,010 条，但这些记录不加入论文的 1,283 条冻结总体。
+“人工核验”是提供者对日期来源的说明；本流程另行核对论文记录的身份及日期事件适用性。
 
-- [156_from_xiaoke_all_passed_en.json](../evidence/156_from_xiaoke_all_passed_en.json)：已通过核验，进入补充流程。
-- [128_from_xiaoke_failed_next_fail.json](../evidence/128_from_xiaoke_failed_next_fail.json)：未通过核验，不用于补日期。
-
-这些核验结果是已保存的审查输入。绘图代码复现日期提取、合并、统计和绘制，**不会重新搜索网络或重新判定证据是否可信**。
-需要修订某个日期时，应先完成对该 benchmark／版本的证据核验，再更新通过核验的输入。
+[156_from_xiaoke_all_passed_en.json](../evidence/156_from_xiaoke_all_passed_en.json)
+保留为历史对照和具名组件身份的佐证，不提供兜底日期。
+本轮从 main 原始 **668 条无日期记录**开始，并非从旧补全后的 512 条开始。
 
 ## 3. 制作流程与中间产物
 
 ```text
 冻结 census + 来源分类证据 + taxonomy.py
-    │
-    └─ classify_benchmarks.py
-         └─ benchmark-taxonomy.jsonl（原始日期保持不变）
-              │
-              ├─ 156_from_xiaoke_all_passed_en.json
-              │
-              └─ supplement_taxonomy_dates.py
-                   ├─ taxonomy-release-date-supplements.json（证据与哈希）
-                   └─ benchmark-taxonomy-dated.jsonl（完整绘图数据）
-                        │
-                        ├─ taxonomy_trends.py
-                        │    ├─ benchmark-taxonomy-trends.json
-                        │    └─ taxonomy-trend-data.tex
-                        │
-                        └─ plot_taxonomy.py（同时读取趋势统计）
-                             ├─ taxonomy-sankey.pdf
-                             └─ taxonomy-trends.pdf
+    └─ classify_benchmarks.py → benchmark-taxonomy.jsonl（原始日期）
+
+冻结 census + Library 1107 条快照 + 身份/事件审查 + 旧结果对照
+    └─ match_library_dates.py → library-date-matches.json / .csv（全部 668 条）
+         └─ supplement_taxonomy_dates.py
+              ├─ taxonomy-release-date-supplements.json（采用的日期与证据）
+              └─ benchmark-taxonomy-dated.jsonl（全部 1283 条）
+                   ├─ taxonomy_trends.py → 趋势 JSON + taxonomy-trend-data.tex
+                   └─ plot_taxonomy.py → taxonomy-trends.pdf / taxonomy-sankey.pdf
 ```
 
-| 顺序 | 脚本 | 输出 |
-| --- | --- | --- |
-| 1 | [classify_benchmarks.py](classify_benchmarks.py) | `evidence/benchmark-taxonomy.jsonl`、`evidence/benchmark-taxonomy-summary.json`、`taxonomy-data.tex` |
-| 2 | [supplement_taxonomy_dates.py](supplement_taxonomy_dates.py) | `evidence/benchmark-taxonomy-dated.jsonl`、`evidence/taxonomy-release-date-supplements.json` |
-| 3 | [taxonomy_trends.py](taxonomy_trends.py) | `evidence/benchmark-taxonomy-trends.json`、`taxonomy-trend-data.tex` |
-| 4 | [plot_taxonomy.py](plot_taxonomy.py) | `figures/taxonomy-sankey.pdf`、`figures/taxonomy-trends.pdf` |
-
-需要定位某一步的问题时，可以按顺序分别执行：
+可以按以下顺序单独执行；`make reproduce-taxonomy` 自动执行全部步骤：
 
 ```bash
 build/figure-venv/bin/python scripts/classify_benchmarks.py
+build/figure-venv/bin/python scripts/match_library_dates.py
 build/figure-venv/bin/python scripts/supplement_taxonomy_dates.py
 build/figure-venv/bin/python scripts/taxonomy_trends.py
 build/figure-venv/bin/python scripts/plot_taxonomy.py
 ```
 
-### 第一步：分类
+分类标签、facets、全部源记录身份和非日期测量字段保持不变。
 
-分类器根据来源字段及文本证据，结合 `taxonomy.py` 的规则，为每条记录选择一个主类别 `l1` 和一个子类别 `l2`。
-`interaction`、`modality`、`operational` 是独立的属性（facets），可以重叠。
-`evidence`、`label_basis`、`needs_review` 等字段保留分类依据和待复核原因。
-证据不足的记录保留为 `other`，不会从总体删除。
+### 身份匹配与日期适用性
 
-### 第二步：补充日期
+1. 首先按 Library `catalogSources.catalog + sourceId` 对应冻结 `key`，得到
+   619 条唯一候选、2 条多候选、47 条无此类匹配。
+2. 名称规范化只检索候选，保留 `+` 和版本数字；不能单独授权补全。
+   跨来源映射、多候选消歧和事件范围例外写入
+   [library-date-match-reviews.json](../evidence/library-date-match-reviews.json)。
+   审查绑定 census 和 Library 快照哈希，输入变化必须重新审查。
+3. 采用 `releaseEvidence.date` 与其 `precision`，不用 `firstSeenAt`、
+   模型日期或补成具体日期的顶层 `releasedAt`。
+   `0001-01-01` 无效。月精度保持 `YYYY-MM`，跨越截止日的月份不能作为已证实的截止日前日期。
+4. 底层数据集日期和结果披露日期默认不作为目标版本的发布日期。
+   只有明确证明原始发布已经包含具名组件、子集或别名时，才记录例外；
+   不因此合并来源记录或声称这些组件是独立 benchmark 发布。
+5. 日期值不同不一定是错误：例如原始介绍、论文公开、任务数据开放可能发生在不同日期。
+   `event` 与旧结果对照保存这些差异。父版本早于目标版本的日期仍被拒绝。
 
-按以下规则提取有效日期：
-
-```python
-verification = record.get("nextVerification") or record["verification"]
-assert verification["status"] == "passed"
-release_date = verification.get("releaseDate") or verification.get("verifiedDate")
-precision = verification["precision"]
-catalog_key = record["verification"]["catalogKey"]
-```
-
-注意以下约束：
-
-- 顶层 `date` 可能是修正前的历史值，不能直接作为最终日期。
-- 使用 `catalogKey` 匹配分类记录的 `key`，不能按名称或历史 `id` 合并。
-- 只填补原来为 `null` 的日期，不覆盖冻结 census 已有日期。
-- 月精度保持 `YYYY-MM`，日精度保持 `YYYY-MM-DD`，不人为补出具体日期。
-- 重复键、找不到的键、覆盖已有日期、未通过核验、非法日期或超出截止日的日期会报错。
-- 保留事件类型、来源 URL、核验说明、核验日期、输入位置和文件哈希；首次介绍、论文公开、特定版本发布不一律等于数据集可下载日期。
-
-当前证据对应的数量关系为：
+审计 JSON/CSV 包含全部 668 条目标记录的候选、来源身份、日期、精度、来源 URL、
+决定、理由及旧结果对照。无法采用的候选保留证据；无匹配、日期范围不适用、
+身份或版本未确定的记录仍进入图中无日期列。
 
 ```text
 原始 census：615 有日期 + 668 无日期 = 1,283
-补充日期：156（143 条日精度 + 13 条月精度）
-绘图输入：771 有日期 + 512 无日期 = 1,283
+本轮：437 采用 + 202 事件范围不适用 + 2 身份/版本未确定 + 27 无匹配 = 668
+绘图输入：1,052 有日期 + 231 无日期 = 1,283
+旧结果对照：140 条继续得到支持、16 条保留未知，另补充 297 条
 ```
 
-这是对截止日前已有记录的事后证据补充，不扩大发现截止日。
-原始 `catalog-findings.json` 和 `benchmark-taxonomy.jsonl` 的日期保持不变。
+见 [本轮匹配报告](../evidence/library-date-matching.md)。重建不访问网络。
+需要重新提取用户提供的同一文件时：
 
-### 第三、四步：两张图如何生成
+```bash
+python scripts/match_library_dates.py --freeze-source evidence/library_index.json
+```
+
+此命令只提取快照；新的快照若改变哈希，既有身份/事件审查会失败，不能自动沿用。
+
+### 趋势统计与绘图
 
 **Sankey 图**使用全部 1,283 条记录的主分类。
 每条记录贡献一个单位的流带高度，左右两列的总量一致。
@@ -163,7 +152,7 @@ catalog_key = record["verification"]["catalogKey"]
 曲线按合格时段前半与后半的**合并计数占比之差的绝对值**排序，时段数量为奇数时不把中间时段计入这两个比较组。
 这不是首尾两个点直接相减。每个候选项的统计、选择结果及原因都写入趋势 JSON。
 Facets 与主类别可以重叠，因此 Panel B 的曲线占比不要求相加为 100%。
-当前合格时段是 2023 H2–2025 H1；该范围由代码计算，不能在图中手动固定。
+当前合格时段是 2023 H1–2025 H2；该范围由代码计算，不能在图中手动固定。
 
 ## 4. 视觉样式与字体
 
@@ -188,6 +177,7 @@ Facets 与主类别可以重叠，因此 Panel B 的曲线占比不要求相加�
 
 ```bash
 build/figure-venv/bin/python scripts/classify_benchmarks.py --check
+build/figure-venv/bin/python scripts/match_library_dates.py --check
 build/figure-venv/bin/python scripts/supplement_taxonomy_dates.py --check
 build/figure-venv/bin/python scripts/taxonomy_trends.py --check
 ```
@@ -198,8 +188,8 @@ build/figure-venv/bin/python scripts/taxonomy_trends.py --check
 make check-taxonomy PYTHON=build/figure-venv/bin/python
 ```
 
-它在两个临时目录中从原始输入分别构建，改变哈希种子、时区和调用者时间戳，要求 **9 个生成产物逐字节一致**。
-其中 JSON、JSONL、TeX 还必须与当前工作区文件一致。
+它在两个临时目录中从原始输入分别构建，改变哈希种子、时区和调用者时间戳，要求 **11 个生成产物逐字节一致**。
+其中 JSON、JSONL、CSV、TeX 还必须与当前工作区文件一致。
 结果写入 `build/taxonomy-reproduction-check.json`，包含包版本、字体哈希、产物哈希及 `working_tree_pdf_matches`。
 后者应单独查看：它记录当前 PDF 是否与本次构建相同；不同平台／依赖版本的 PDF 字节可能不同，该字段为 `false` 本身不会使检查失败。
 

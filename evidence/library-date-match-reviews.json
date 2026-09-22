@@ -1,0 +1,3140 @@
+{
+  "census_sha256": "de28dcff9ae2dcd27eaeecd395421901b78821cc965b95d117895348c5da07db",
+  "definition": "Explicit identity and date-event decisions. All adopted date values come from the 1107-record Library snapshot. Historical reviews may corroborate component identity or identify conflicts; their dates never act as fallback donors.",
+  "records": [
+    {
+      "catalogKey": "artificial-analysis:aa-analystagent",
+      "decision": "accepted",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "Quantitative analysis on spreadsheets & documents"
+        },
+        "name": "AA-AnalystAgent",
+        "source": "artificial_analysis"
+      },
+      "identityEvidence": [
+        {
+          "basis": "frozen-artifact-and-task-crosswalk",
+          "file": "evidence/taxonomy-inputs/artificial_analysis_benchmarks_2026-08-25.csv"
+        },
+        {
+          "basis": "supplied-reviewed-original-source",
+          "sourceUrl": "https://artificialanalysis.ai/articles/aa-analyst-agent"
+        }
+      ],
+      "libraryId": "catalog_b49897f7c57912bd",
+      "reason": "Same Artificial Analysis named AnalystAgent evaluation and spreadsheet/document task; original evaluator announcement and evaluation URL identify the exact edition."
+    },
+    {
+      "catalogKey": "artificial-analysis:apex-agents-aa",
+      "decision": "scope_not_release",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "Long-horizon agentic tasks"
+        },
+        "name": "APEX-Agents-AA",
+        "source": "artificial_analysis"
+      },
+      "identityEvidence": [
+        {
+          "basis": "exact-source-record-and-reviewed-event",
+          "sourceUrl": "https://www.mercor.space/blog/introducing-apex-agents/"
+        }
+      ],
+      "libraryId": "catalog_269af5b11a2387c6",
+      "reason": "Identity matches the AA edition, but the supplied evidence explicitly dates original Mercor APEX-Agents and says it does not date the AA implementation."
+    },
+    {
+      "catalogKey": "artificial-analysis:automationbench-aa",
+      "decision": "accepted",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "Agentic SaaS workflows"
+        },
+        "name": "AutomationBench-AA",
+        "source": "artificial_analysis"
+      },
+      "identityEvidence": [
+        {
+          "basis": "frozen-artifact-and-task-crosswalk",
+          "file": "evidence/taxonomy-inputs/artificial_analysis_benchmarks_2026-08-25.csv"
+        },
+        {
+          "basis": "supplied-reviewed-original-source",
+          "sourceUrl": "https://artificialanalysis.ai/articles/announcing-zapier-automationbench-aa"
+        }
+      ],
+      "libraryId": "catalog_530d0ae739bef10b",
+      "reason": "The target is the AA SaaS-workflow edition. The donor explicitly dates the independent 657-task AA benchmark, not the original AutomationBench paper."
+    },
+    {
+      "catalogKey": "artificial-analysis:enterpriseops-gym-aa",
+      "decision": "accepted",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "Agentic business operations"
+        },
+        "name": "EnterpriseOps-Gym-AA",
+        "source": "artificial_analysis"
+      },
+      "identityEvidence": [
+        {
+          "basis": "frozen-artifact-and-task-crosswalk",
+          "file": "evidence/taxonomy-inputs/artificial_analysis_benchmarks_2026-08-25.csv"
+        },
+        {
+          "basis": "supplied-reviewed-original-source",
+          "sourceUrl": "https://artificialanalysis.ai/articles/announcing-enterpriseops-gym-aa"
+        }
+      ],
+      "libraryId": "catalog_8e4a8ec02cfd3740",
+      "reason": "AA prefix/suffix spelling differs; both identify the Artificial Analysis enterprise-operations evaluation. The official enterprise-ops-gym-aa evaluation and introducing article identify the edition."
+    },
+    {
+      "catalogKey": "artificial-analysis:harvey-lab-aa",
+      "decision": "accepted",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "Legal agentic work, criterion pass rate"
+        },
+        "name": "Harvey LAB-AA",
+        "source": "artificial_analysis"
+      },
+      "identityEvidence": [
+        {
+          "basis": "frozen-artifact-and-task-crosswalk",
+          "file": "evidence/taxonomy-inputs/artificial_analysis_benchmarks_2026-08-25.csv"
+        },
+        {
+          "basis": "supplied-reviewed-original-source",
+          "sourceUrl": "https://artificialanalysis.ai/articles/harvey-lab-aa"
+        }
+      ],
+      "libraryId": "catalog_09556350c5c8a0a0",
+      "reason": "Same AA Harvey legal-agent evaluation and criterion-pass task; the date is the AA-edition announcement, not the original Harvey LAB family release."
+    },
+    {
+      "catalogKey": "artificial-analysis:itbench-aa",
+      "decision": "accepted",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "Kubernetes incident root-cause analysis"
+        },
+        "name": "ITBench-AA",
+        "source": "artificial_analysis"
+      },
+      "identityEvidence": [
+        {
+          "basis": "frozen-artifact-and-task-crosswalk",
+          "file": "evidence/taxonomy-inputs/artificial_analysis_benchmarks_2026-08-25.csv"
+        },
+        {
+          "basis": "supplied-reviewed-original-source",
+          "sourceUrl": "https://huggingface.co/blog/ibm-research/itbench-aa"
+        }
+      ],
+      "libraryId": "catalog_39e22f8f4a542156",
+      "reason": "AA prefix/suffix spelling differs; frozen Kubernetes root-cause task matches the AA ITBench incident-response evaluation and its IBM Research original announcement."
+    },
+    {
+      "catalogKey": "artificial-analysis:mlcr-aa",
+      "decision": "accepted",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "MLCR-AA overall score"
+        },
+        "name": "MLCR-AA",
+        "source": "artificial_analysis"
+      },
+      "identityEvidence": [
+        {
+          "basis": "frozen-artifact-and-task-crosswalk",
+          "file": "evidence/taxonomy-inputs/artificial_analysis_benchmarks_2026-08-25.csv"
+        },
+        {
+          "basis": "supplied-reviewed-original-source",
+          "sourceUrl": "https://www.linkedin.com/posts/artificial-analysis_announcing-mlcr-aa-our-leaderboard-for-wisedocs-activity-7496602690110648322-rSP0"
+        }
+      ],
+      "libraryId": "catalog_cf90022b4324eeb9",
+      "reason": "Same Artificial Analysis MLCR-AA edition. Original AA announcement describes its own tiers and judging; do not substitute the underlying MLCR family date."
+    },
+    {
+      "catalogKey": "artificial-analysis:tau3-banking",
+      "decision": "scope_not_release",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "Agentic tool use"
+        },
+        "name": "τ³-Banking",
+        "source": "artificial_analysis"
+      },
+      "identityEvidence": [
+        {
+          "basis": "exact-source-record-and-reviewed-event",
+          "sourceUrl": "https://sierra.ai/uk/blog/bench-advancing-agent-benchmarking-to-knowledge-and-voice"
+        }
+      ],
+      "libraryId": "catalog_ebd77eaccb2d583a",
+      "reason": "The named domain matches, but the Library evidence dates the original tau3 suite. It does not establish the release of the AA evaluation configuration."
+    },
+    {
+      "catalogKey": "llm-stats:aider-polyglot-edit",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "A challenging multi-language coding benchmark that evaluates models' code editing abilities across C++, Go, Java, JavaScript, Python, and Rust. Contains 225 of Exercism's most difficult programming problems, selected as problems that were solved by 3 or fewer out of 7 top coding models. The benchmark focuses on code editing tasks and measures both correctness of solutions and proper edit format usage. Designed to re-calibrate evaluation scales so top models score between 5-50%."
+        },
+        "name": "Aider-Polyglot Edit",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:aider-polyglot-edit",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "role": "primary_evidence",
+              "url": "https://aider.chat/2024/12/21/polyglot.html"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://aider.chat/2024/12/21/polyglot.html"
+        }
+      ],
+      "libraryId": "catalog_a7c2ffe234cb2fe7",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: Aider's original Polyglot announcement defines the percentage using the correct edit format in the same results table, resolving whether the Edit metric appeared with the original release. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:aime",
+      "decision": "scope_not_release",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "American Invitational Mathematics Examination (AIME) benchmark for evaluating mathematical reasoning capabilities of large language models. Contains 30 challenging mathematical problems from AIME 2024 competition that require multi-step reasoning and advanced mathematical insight. Each problem has an integer answer between 000-999."
+        },
+        "name": "AIME",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "frozen-description-specific-edition",
+          "file": "evidence/taxonomy-inputs/llm_stats_benchmarks_2026-08-17.csv",
+          "finding": "The AIME row explicitly identifies AIME 2024 and 30 integer-answer problems."
+        },
+        {
+          "basis": "library-scope-review",
+          "libraryId": "catalog_f1b502e7764977ee"
+        }
+      ],
+      "libraryId": "catalog_f1b502e7764977ee",
+      "reason": "The frozen description explicitly identifies the AIME 2024 problems, matching this donor rather than AIME 2025. However, the supplied month dates the contest problems, not publication of this AI-evaluation corpus or protocol."
+    },
+    {
+      "catalogKey": "llm-stats:air-bench",
+      "decision": "identity_unresolved",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "AIR-Bench 2024 is a safety benchmark grounded in risk categories derived from government regulations and company policies. It evaluates policy-grounded refusal across a broad regulatory and policy-derived harm taxonomy, using category-specific LLM-judge prompts that reward safe engagement rather than only penalizing unsafe responses."
+        },
+        "name": "AIR-Bench",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "exact-source-record-and-reviewed-event",
+          "sourceUrl": "https://arxiv.org/abs/2402.07729"
+        }
+      ],
+      "libraryId": "review_air_bench_audio",
+      "reason": "The frozen target is AIR-Bench 2024 safety/policy refusal. The supplied reviewed AIR-Bench candidate is audio understanding and explicitly distinguishes itself from the safety benchmark."
+    },
+    {
+      "catalogKey": "llm-stats:bc-vl",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "BC-VL is a vision-language benchmark for knowledge-grounded multimodal question answering."
+        },
+        "name": "BC-VL",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:bc-vl",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/abs/2508.05748v1"
+            },
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/html/2508.05748v1"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://arxiv.org/abs/2508.05748"
+        }
+      ],
+      "libraryId": "catalog_9019868a487d165b",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: The original WebWatcher paper constructs BrowseComp-VL and uses the abbreviation BC-VL in Table 2. The arXiv v1 date is 2025-08-07. The unrelated BiVLC found in search results is excluded. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:beam-128k",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "Beam 128K evaluates reasoning over long inputs at a 128K-token context length."
+        },
+        "name": "Beam 128K",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:beam-128k",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "retrievalStatus": "retrieved",
+              "role": "original",
+              "url": "https://arxiv.org/abs/2510.27246"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://arxiv.org/abs/2510.27246v1"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://arxiv.org/html/2510.27246v1"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://arxiv.org/abs/2510.27246"
+        }
+      ],
+      "libraryId": "catalog_7bcc639830899dd7",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: The original BEAM v1 explicitly lists the 128K evaluation configuration, which appears in the original paper dated 2025-10-31. This does not establish a separate benchmark family or validate all providers' scoring configurations. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:beyond-aime",
+      "decision": "accepted",
+      "event": "dataset_release",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "Beyond AIME is a difficult mathematical reasoning benchmark designed to test deeper reasoning chains and harder decomposition than standard AIME-style problem sets."
+        },
+        "name": "Beyond AIME",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "exact-source-record-and-reviewed-event",
+          "sourceUrl": "https://huggingface.co/api/datasets/ByteDance-Seed/BeyondAIME/commits/main"
+        }
+      ],
+      "libraryId": "catalog_ccaa76994404b451",
+      "reason": "The supplied date establishes the actual 100-question dataset upload. The older review dates the earlier public introduction. Both refer to different events; this round uses the reviewed dataset release and does not call it the earliest introduction."
+    },
+    {
+      "catalogKey": "llm-stats:bfcl-v3-multiturn",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "Berkeley Function Calling Leaderboard (BFCL) V3 MultiTurn benchmark that evaluates large language models' ability to handle multi-turn and multi-step function calling scenarios. The benchmark introduces complex interactions requiring models to manage sequential function calls, handle conversational context across multiple turns, and make dynamic decisions about when and how to use available functions. BFCL V3 uses state-based evaluation by verifying the actual state of API systems after function execution, providing more realistic assessment of function calling capabilities in agentic applications."
+        },
+        "name": "BFCL_v3_MultiTurn",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:bfcl-v3-multiturn",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "retrievalStatus": "retrieved",
+              "role": "original",
+              "url": "https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://gorilla.cs.berkeley.edu/blogs/13_bfcl_v3_multi_turn.html"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html"
+        }
+      ],
+      "libraryId": "catalog_30e8ebdf60c3b1f9",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: BFCL's official v3-specific announcement introduces multi-turn tasks on 2024-09-19; MultiTurn is part of that release. This does not establish a separate benchmark family or validate all providers' scoring configurations. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:ci-memories-coverage",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "CI Memories measures privacy behavior in memory-enabled agents using contextual-integrity scenarios. This metric reports evaluation coverage."
+        },
+        "name": "CI Memories Coverage",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:ci-memories-coverage",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/abs/2511.14937v1"
+            },
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/html/2511.14937v1"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://arxiv.org/abs/2511.14937"
+        }
+      ],
+      "libraryId": "catalog_c80d5333e2d792e7",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: CIMemories v1 already defines both necessary-information coverage (completeness, also called coverage in the text) and inappropriate-information disclosure (violations). The named metrics appear with the original benchmark. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:ci-memories-violation",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "CI Memories measures privacy failures in memory-enabled agents using contextual-integrity scenarios. This metric is the violation rate; lower is better."
+        },
+        "name": "CI Memories Violation Rate",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:ci-memories-violation",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/abs/2511.14937v1"
+            },
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/html/2511.14937v1"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://arxiv.org/abs/2511.14937"
+        }
+      ],
+      "libraryId": "catalog_851343005b4a282e",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: CIMemories v1 already defines both necessary-information coverage (completeness, also called coverage in the text) and inappropriate-information disclosure (violations). The named metrics appear with the original benchmark. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:cloningscenarios",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "CloningScenarios is an expert-level multi-step reasoning benchmark about difficult genetic cloning scenarios in multiple-choice format. It evaluates dual-use biological knowledge relevant to bioweapons development."
+        },
+        "name": "CloningScenarios",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:cloningscenarios",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "retrievalStatus": "retrieved",
+              "role": "original",
+              "url": "https://arxiv.org/abs/2407.10362"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://arxiv.org/abs/2407.10362v1"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://arxiv.org/html/2407.10362v1"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://arxiv.org/abs/2407.10362"
+        }
+      ],
+      "libraryId": "catalog_3102d317f87189a6",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: The original LAB-Bench v1 explicitly includes the CloningScenarios subtask, introduced with the paper on 2024-07-14. This does not establish a separate benchmark family or validate all providers' scoring configurations. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:corpusqa-1m",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "CorpusQA 1M is a long-context question answering benchmark designed to evaluate models at approximately 1 million token contexts. Models are scored on accuracy when retrieving and reasoning over information distributed across an extremely long input corpus."
+        },
+        "name": "CorpusQA 1M",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:corpusqa-1m",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "retrievalStatus": "retrieved",
+              "role": "original",
+              "url": "https://arxiv.org/abs/2601.14952"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://arxiv.org/abs/2601.14952v1"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://arxiv.org/html/2601.14952v1"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://arxiv.org/abs/2601.14952"
+        }
+      ],
+      "libraryId": "catalog_a03619ad23937b0d",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: The original CorpusQA v1 explicitly lists Set 2 (1M), which appears in the original paper dated 2026-01-21. This does not establish a separate benchmark family or validate all providers' scoring configurations. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:crperelation",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "Clinical reasoning problems evaluation benchmark for assessing diagnostic reasoning and medical knowledge application capabilities."
+        },
+        "name": "CRPErelation",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:crperelation",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/abs/2402.19474v1"
+            },
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/pdf/2402.19474v1"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://arxiv.org/abs/2402.19474"
+        }
+      ],
+      "libraryId": "catalog_558ad5fcac1a5329",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: Reading the original v1 PDF confirms that page 3 and pages 7-8 already define the Existence, Subject, Predicate, and Object components, with the latter three measuring relation comprehension. This resolves the earlier inadequate HTML extraction. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:deepswe-1.0",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "DeepSWE 1.0 pass@1 benchmark as reported by Artificial Analysis using provider-specific harness runs."
+        },
+        "name": "DeepSWE 1.0",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:deepswe-1.0",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "retrievalStatus": "retrieved",
+              "role": "original",
+              "url": "https://deepswe.datacurve.ai/blog/deepswe"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://deepswe.datacurve.ai/blog/deepswe"
+        }
+      ],
+      "libraryId": "catalog_eca7687d567a1c3a",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: Datacurve's first official DeepSWE announcement, dated 2026-05-26, corresponds to 1.0; the later 1.1 date is not backfilled into 1.0. This does not establish a separate benchmark family or validate all providers' scoring configurations. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:eq-bench",
+      "decision": "accepted",
+      "event": "named_version_introduction",
+      "identityEvidence": [
+        {
+          "basis": "exact-source-record-and-explicit-named-introduction",
+          "note": "Catalog description matches EQ-Bench 3 multi-turn roleplay and pairwise Elo, not the 2023 original questionnaire. Official repo May 3 and May 5 commits labeled update for release; author _sqrkl publicly announces EQ update May 5 on r/LocalLLaMA/1kfhmdq. Month precision retained because April 28 preparation data and May release revisions differ. Descriptive count 45 matches official EQ3 methodology, but raw May5 prompt file has 46 headers; no claim all current scoring/judge revisions date to launch.",
+          "sourceUrl": "https://api.github.com/repos/EQ-bench/eqbench3/commits/f6042d34986baa83e916f2c1aad46a8f920acded"
+        }
+      ],
+      "libraryId": "catalog_ab06169b3c2aeee2",
+      "reason": "The frozen task is the EQ-Bench 3 roleplay/Elo evaluation. The supplied review explicitly resolves this version and its May launch; preserve month precision and do not use the 2023 original questionnaire date."
+    },
+    {
+      "catalogKey": "llm-stats:figqa",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "FigQA is a multiple-choice benchmark on interpreting scientific figures from biology papers. It evaluates dual-use biological knowledge and multimodal reasoning relevant to bioweapons development."
+        },
+        "name": "FigQA",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:figqa",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "retrievalStatus": "retrieved",
+              "role": "original",
+              "url": "https://arxiv.org/abs/2407.10362"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://arxiv.org/abs/2407.10362v1"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://arxiv.org/html/2407.10362v1"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://arxiv.org/abs/2407.10362"
+        }
+      ],
+      "libraryId": "catalog_5db7d2d8065ea818",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: The original LAB-Bench v1 explicitly includes the FigQA subtask, introduced with the paper on 2024-07-14. This does not establish a separate benchmark family or validate all providers' scoring configurations. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:finsearchcomp-t2-t3",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "FinSearchComp T2&T3 is a combined benchmark for evaluating financial search and reasoning capabilities on Tier 2 and Tier 3 tasks, testing models' ability to retrieve and analyze complex financial information using tools."
+        },
+        "name": "FinSearchComp T2&T3",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:finsearchcomp-t2-t3",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "retrievalStatus": "retrieved",
+              "role": "original",
+              "url": "https://arxiv.org/abs/2509.13160"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://arxiv.org/abs/2509.13160v1"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://arxiv.org/html/2509.13160v1"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://arxiv.org/abs/2509.13160"
+        }
+      ],
+      "libraryId": "catalog_d0a57b04e138eb38",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: The original FinSearchComp v1 explicitly distinguishes T2 and T3, both present in the original paper dated 2025-09-16. This does not establish a separate benchmark family or validate all providers' scoring configurations. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:finsearchcomp-t3",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "FinSearchComp-T3 is a benchmark for evaluating financial search and reasoning capabilities, testing models' ability to retrieve and analyze financial information using tools."
+        },
+        "name": "FinSearchComp-T3",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:finsearchcomp-t3",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "retrievalStatus": "retrieved",
+              "role": "original",
+              "url": "https://arxiv.org/abs/2509.13160"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://arxiv.org/abs/2509.13160v1"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://arxiv.org/html/2509.13160v1"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://arxiv.org/abs/2509.13160"
+        }
+      ],
+      "libraryId": "catalog_38473fc736dd8308",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: The original FinSearchComp v1 explicitly describes T3's complex historical investigation tasks in the paper dated 2025-09-16. This does not establish a separate benchmark family or validate all providers' scoring configurations. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:frontier-swe-impl",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "FrontierSWE (Impl.) evaluates software engineering implementation ability and reports model ranking on implementation tasks. Lower rank is better."
+        },
+        "name": "FrontierSWE (Impl.)",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:frontier-swe-impl",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "retrievalStatus": "retrieved",
+              "role": "original",
+              "url": "https://www.frontierswe.com/blog/v1"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://www.frontierswe.com/blog/v1"
+        }
+      ],
+      "libraryId": "catalog_c74640a9725f90bd",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: FrontierSWE's official initial release article from April 2026 explicitly includes five implementation tasks. The month-precision date directly applies to this original track. This does not establish a separate benchmark family or validate all providers' scoring configurations. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:frontierscience-olympiad",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "FrontierScience Olympiad is a benchmark of olympiad-level scientific reasoning problems, testing expert understanding and multi-step reasoning across advanced natural-science domains."
+        },
+        "name": "FrontierScience Olympiad",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:frontierscience-olympiad",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "retrievalStatus": "retrieved",
+              "role": "original",
+              "url": "https://openai.com/index/frontierscience/"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://openai.com/index/frontierscience/"
+        }
+      ],
+      "libraryId": "catalog_845200828dcdd749",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: OpenAI's original FrontierScience announcement dated 2025-12-16 explicitly introduces both the Olympiad and Research tracks. This does not establish a separate benchmark family or validate all providers' scoring configurations. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:frontierscience-research",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "FrontierScience Research is a benchmark evaluating AI models on cutting-edge scientific research questions requiring deep domain expertise, multi-step reasoning, and synthesis of complex scientific concepts across disciplines."
+        },
+        "name": "FrontierScience Research",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:frontierscience-research",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "retrievalStatus": "retrieved",
+              "role": "original",
+              "url": "https://openai.com/index/frontierscience/"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://openai.com/index/frontierscience/"
+        }
+      ],
+      "libraryId": "catalog_24a4551d7f8a8078",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: OpenAI's original FrontierScience announcement dated 2025-12-16 explicitly introduces both the Research and Olympiad tracks. This does not establish a separate benchmark family or validate all providers' scoring configurations. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:fullstackbench-en",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "English subset of FullStackBench for evaluating end-to-end software engineering and full-stack development capability."
+        },
+        "name": "FullStackBench en",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:fullstackbench-en",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "retrievalStatus": "retrieved",
+              "role": "original",
+              "url": "https://arxiv.org/abs/2412.00535"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://arxiv.org/abs/2412.00535v1"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://arxiv.org/html/2412.00535v1"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://arxiv.org/abs/2412.00535"
+        }
+      ],
+      "libraryId": "catalog_98f45d18494cedc9",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: The bilingual construction description in the original FullStackBench v1 already includes the English version in the paper dated 2024-11-30. This does not establish a separate benchmark family or validate all providers' scoring configurations. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:fullstackbench-zh",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "Chinese subset of FullStackBench for evaluating end-to-end software engineering and full-stack development capability."
+        },
+        "name": "FullStackBench zh",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:fullstackbench-zh",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "retrievalStatus": "retrieved",
+              "role": "original",
+              "url": "https://arxiv.org/abs/2412.00535"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://arxiv.org/abs/2412.00535v1"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://arxiv.org/html/2412.00535v1"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://arxiv.org/abs/2412.00535"
+        }
+      ],
+      "libraryId": "catalog_41a7e9d5dcfe0e8b",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: The bilingual construction description in the original FullStackBench v1 already includes the Chinese version in the paper dated 2024-11-30. This does not establish a separate benchmark family or validate all providers' scoring configurations. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:global-mmlu-lite",
+      "decision": "scope_not_release",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "A lightweight version of Global MMLU benchmark that evaluates language models across multiple languages while addressing cultural and linguistic biases in multilingual evaluation."
+        },
+        "name": "Global-MMLU-Lite",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-version-event-review",
+          "catalogKey": "llm-stats:global-mmlu-lite",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "role": "primary_evidence",
+              "url": "https://huggingface.co/datasets/CohereLabs/Global-MMLU-Lite"
+            }
+          ]
+        },
+        {
+          "basis": "library-date-scope",
+          "sourceUrl": "https://arxiv.org/abs/2412.03304"
+        }
+      ],
+      "libraryId": "catalog_885d8f9fd59e8815",
+      "reason": "The new date does not establish the release/introduction event of this exact version. Stored event review: The Releases section of CohereLabs' data card explicitly lists the Global-MMLU-Lite v1.0 release in December 2024, covering 15 languages, but gives no exact day. The parent paper's December 4 date cannot be inherited. The historical date is shown for comparison and is not imported."
+    },
+    {
+      "catalogKey": "llm-stats:groundui-1k",
+      "decision": "scope_not_release",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "A subset of GroundUI-18K for UI grounding evaluation, where models must predict action coordinates on screenshots based on single-step instructions across web, desktop, and mobile platforms."
+        },
+        "name": "GroundUI-1K",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-version-event-review",
+          "catalogKey": "llm-stats:groundui-1k",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/abs/2403.17918v2"
+            },
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/html/2403.17918v1"
+            },
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/html/2403.17918v2"
+            }
+          ]
+        },
+        {
+          "basis": "library-date-scope",
+          "sourceUrl": "https://arxiv.org/abs/2403.17918"
+        }
+      ],
+      "libraryId": "catalog_bc257a1b3101252a",
+      "reason": "The new date does not establish the release/introduction event of this exact version. Stored event review: AgentStudio v1 does not specify GroundUI-1K. Version 2 explicitly introduces the GPT-4o-recaptioned subset with 400/300/300 web, desktop, and mobile examples. The version history dates v2 to 2024-10-02. The historical date is shown for comparison and is not imported."
+    },
+    {
+      "catalogKey": "llm-stats:hr-bench-4k",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "HR-Bench (4k) evaluates image understanding on high-resolution visual inputs with a 4k setting."
+        },
+        "name": "HR-Bench (4k)",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:hr-bench-4k",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "retrievalStatus": "retrieved",
+              "role": "original",
+              "url": "https://github.com/DreamMr/HR-Bench"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://github.com/DreamMr/HR-Bench"
+        }
+      ],
+      "libraryId": "catalog_6b53a3168cb7f356",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: The official HR-Bench repository announces data/code availability on 2024-08-23 and explicitly includes the 4K dataset derived from 8K. This does not establish a separate benchmark family or validate all providers' scoring configurations. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:humaneval+",
+      "decision": "accepted",
+      "event": "plus_edition_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "Enhanced version of HumanEval that extends the original test cases by 80x using EvalPlus framework for rigorous evaluation of LLM-synthesized code functional correctness, detecting previously undetected wrong code"
+        },
+        "name": "HumanEval+",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "exact-source-record-and-reviewed-event",
+          "sourceUrl": "https://arxiv.org/abs/2305.01210"
+        }
+      ],
+      "libraryId": "catalog_810807308d2673d1",
+      "reason": "The target explicitly names HumanEval+. The selected record has that exact alias and its paper introduces EvalPlus extended tests. The other source-ID candidate is original HumanEval and dates a different benchmark."
+    },
+    {
+      "catalogKey": "llm-stats:imagemining",
+      "decision": "accepted",
+      "event": "dataset_release",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "ImageMining evaluates multimodal models on extracting structured information from images using tool use, measuring ability to combine visual understanding with tool-based retrieval and analysis."
+        },
+        "name": "ImageMining",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "exact-source-record-and-reviewed-event",
+          "sourceUrl": "https://api.github.com/repos/zai-org/ImageMining/commits/fb051c630e0c9cb36489709347369b188080bb93"
+        }
+      ],
+      "libraryId": "catalog_087ec402f23016a9",
+      "reason": "The Library evidence identifies the substantive 217-case data/code commit preceding the introductory paper by one day. This dates actual benchmark material availability rather than the later paper."
+    },
+    {
+      "catalogKey": "llm-stats:imo-answerbench",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [
+          {
+            "id": "arxiv:2511.01846",
+            "kind": "paper",
+            "locator": "data/catalog/llm_stats_identity_overrides.yml#benchmarks.imo-answerbench.paper_url",
+            "url": "https://arxiv.org/html/2511.01846v1"
+          },
+          {
+            "id": "gh:google-deepmind/superhuman",
+            "kind": "repo",
+            "locator": "data/catalog/llm_stats_identity_overrides.yml#benchmarks.imo-answerbench.repo_url",
+            "url": "https://github.com/google-deepmind/superhuman"
+          },
+          {
+            "id": "hf:OpenEvals/IMO-AnswerBench",
+            "kind": "dataset",
+            "locator": "data/catalog/llm_stats_identity_overrides.yml#benchmarks.imo-answerbench.dataset_url",
+            "url": "https://huggingface.co/datasets/OpenEvals/IMO-AnswerBench"
+          }
+        ],
+        "description": {
+          "en": "IMO-AnswerBench is a benchmark for evaluating mathematical reasoning capabilities on International Mathematical Olympiad (IMO) problems, focusing on answer generation and verification."
+        },
+        "name": "IMO-AnswerBench",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:imo-answerbench",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "retrievalStatus": "retrieved",
+              "role": "original",
+              "url": "https://api.github.com/repos/google-deepmind/superhuman/commits/92ae8c2e88dee12a3f793dd88a5e80ed76754c2a"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://raw.githubusercontent.com/google-deepmind/superhuman/92ae8c2e88dee12a3f793dd88a5e80ed76754c2a/imobench/README.md"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://api.github.com/repos/google-deepmind/superhuman/commits/92ae8c2e88dee12a3f793dd88a5e80ed76754c2a"
+        }
+      ],
+      "libraryId": "catalog_9f633d8c67b1c89b",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: DeepMind's pinned original IMO-Bench README explicitly introduces the suite and IMO-AnswerBench in October 2025, with answerbench.csv in the same version. Verification accepts the stated release month without inferring an exact public release day from Git timestamps. This does not establish a separate benchmark family or validate all providers' scoring configurations. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:imoproof-adv",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "IMOProof-Adv is an advanced benchmark of International Mathematical Olympiad-style proof problems requiring rigorous multi-step mathematical proofs."
+        },
+        "name": "IMOProof-Adv",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:imoproof-adv",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "retrievalStatus": "retrieved",
+              "role": "original",
+              "url": "https://api.github.com/repos/google-deepmind/superhuman/commits/92ae8c2e88dee12a3f793dd88a5e80ed76754c2a"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://raw.githubusercontent.com/google-deepmind/superhuman/92ae8c2e88dee12a3f793dd88a5e80ed76754c2a/imobench/README.md"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://api.github.com/repos/google-deepmind/superhuman/commits/92ae8c2e88dee12a3f793dd88a5e80ed76754c2a"
+        }
+      ],
+      "libraryId": "catalog_50e3578d8fbe5eba",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: DeepMind's pinned original IMO-Bench README explicitly introduces the suite in October 2025 and distinguishes the basic and advanced ProofBench subsets, with proofbench.csv in the same version. This supports the month for the advanced subset. It does not establish a separate benchmark family or validate all providers' scoring configurations. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:kernel-bench-l3",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "Kernel Bench L3 evaluates agentic GPU kernel optimization across 50 problems. Qwen reports two metrics for this benchmark: median per-problem speedup over the PyTorch eager reference and the fraction of problems faster than torch.compile."
+        },
+        "name": "Kernel Bench L3",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:kernel-bench-l3",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "retrievalStatus": "retrieved",
+              "role": "original",
+              "url": "https://scalingintelligence.stanford.edu/blogs/kernelbench/"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://scalingintelligence.stanford.edu/blogs/kernelbench/"
+        }
+      ],
+      "libraryId": "catalog_aee8b5fdc1e6d419",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: Stanford's original KernelBench article dated 2024-12-03 explicitly introduces Level 3's 50 complete model-architecture tasks. This named level is present in the original introduction. It does not establish a separate benchmark family or validate all providers' scoring configurations. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:loca-bench-256k",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "LOCA-Bench is a long-context agentic benchmark. The 256k variant evaluates agents using the official ReAct mode with an environment description length of 256k tokens, measuring how well models reason and act over very long contexts."
+        },
+        "name": "LOCA-Bench (256k)",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:loca-bench-256k",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "retrievalStatus": "retrieved",
+              "role": "original",
+              "url": "https://arxiv.org/abs/2602.07962"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://arxiv.org/abs/2602.07962v1"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://arxiv.org/abs/2602.07962"
+        }
+      ],
+      "libraryId": "catalog_c158bb91f29e76ad",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: The original LOCA-Bench v1 explicitly includes seven length tiers from 8K to 256K. The 256K configuration appears in the original paper dated 2026-02-08. This does not establish a separate benchmark family or validate all providers' scoring configurations. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:math-500",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [
+          {
+            "id": "gh:openai/prm800k",
+            "kind": "repo",
+            "locator": "data/catalog/llm_stats_identity_overrides.yml#benchmarks.math-500.repo_url",
+            "url": "https://github.com/openai/prm800k"
+          },
+          {
+            "id": "url:https://github.com/openai/prm800k/blob/main/prm800k/math_splits/test.jsonl",
+            "kind": "dataset",
+            "locator": "data/catalog/llm_stats_identity_overrides.yml#benchmarks.math-500.dataset_url",
+            "url": "https://github.com/openai/prm800k/blob/main/prm800k/math_splits/test.jsonl"
+          }
+        ],
+        "description": {
+          "en": "MATH-500 is a subset of the MATH dataset containing 500 challenging competition mathematics problems from AMC 10, AMC 12, AIME, and other mathematics competitions. Each problem includes full step-by-step solutions and spans multiple difficulty levels across seven mathematical subjects including Prealgebra, Algebra, Number Theory, Counting and Probability, Geometry, Intermediate Algebra, and Precalculus."
+        },
+        "name": "MATH-500",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:math-500",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "retrievalStatus": "retrieved",
+              "role": "original",
+              "url": "https://arxiv.org/abs/2305.20050"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://github.com/openai/prm800k"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://arxiv.org/abs/2305.20050v1"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://arxiv.org/abs/2305.20050"
+        }
+      ],
+      "libraryId": "lib_math_500",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: The original v1 of Let's Verify Step by Step explicitly reserves 500 MATH test problems; the MATH Splits documentation in OpenAI's prm800k repository maps these to the public test.jsonl. This supports 2023-05-31 as the original paper introduction date of the 500-problem subset. It does not establish a separate benchmark family or validate all providers' scoring configurations. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:mathverse-mini",
+      "decision": "scope_not_release",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "MathVerse-Mini is a subset of the MathVerse benchmark for evaluating math reasoning capabilities in vision-language models."
+        },
+        "name": "MathVerse-Mini",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-version-event-review",
+          "catalogKey": "llm-stats:mathverse-mini",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "role": "primary_evidence",
+              "url": "https://github.com/ZrrSkywalker/MathVerse"
+            }
+          ]
+        },
+        {
+          "basis": "library-date-scope",
+          "sourceUrl": "https://arxiv.org/abs/2403.14624"
+        }
+      ],
+      "libraryId": "catalog_e552b2299f18d7c5",
+      "reason": "The new date does not establish the release/introduction event of this exact version. Stored event review: The 2024.03.22 News entry in the official MathVerse repository explicitly announces the release of testmini, the paper, and evaluation code. The mini subset's actual release record replaces the parent paper date from the previous day. The historical date is shown for comparison and is not imported."
+    },
+    {
+      "catalogKey": "llm-stats:mbpp+",
+      "decision": "accepted",
+      "event": "plus_edition_release",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "MBPP+ is an enhanced version of MBPP (Mostly Basic Python Problems) with significantly more test cases (35x) for more rigorous evaluation. MBPP is a benchmark of 974 crowd-sourced Python programming problems designed to be solvable by entry-level programmers, covering programming fundamentals and standard library functionality."
+        },
+        "name": "MBPP+",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "exact-source-record-and-reviewed-event",
+          "sourceUrl": "https://github.com/evalplus/evalplus/releases/tag/v0.2.0"
+        }
+      ],
+      "libraryId": "catalog_3b988625ad11d391",
+      "reason": "The target explicitly names MBPP+. The selected record has that exact alias and an official EvalPlus v0.2.0 announcement of MBPP+. The competing MBPP record dates the original base benchmark."
+    },
+    {
+      "catalogKey": "llm-stats:mbpp-++-base-version",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "MBPP (Mostly Basic Python Problems) is a benchmark of 974 crowd-sourced Python programming problems designed to be solvable by entry-level programmers. Each problem consists of a task description, code solution, and 3 automated test cases covering programming fundamentals and standard library functionality. This is an enhanced version with additional test cases."
+        },
+        "name": "MBPP ++ base version",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:mbpp-++-base-version",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "role": "primary_evidence",
+              "url": "https://github.com/evalplus/evalplus/releases/tag/v0.2.0"
+            },
+            {
+              "role": "primary_evidence",
+              "url": "https://github.com/evalplus/evalplus/blob/v0.2.0/evalplus/evaluate.py"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://github.com/evalplus/evalplus/releases/tag/v0.2.0"
+        }
+      ],
+      "libraryId": "catalog_f2ed6b6b0d44aa63",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: EvalPlus v0.2.0 officially releases MBPP+. Under that same fixed version tag, evaluate.py already loads MBPP+ and implements base_input, base_only, and base scores, establishing that the base view was released with this version. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:mbpp-evalplus",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "MBPP (Mostly Basic Python Problems) is a benchmark of 974 crowd-sourced Python programming problems designed to be solvable by entry-level programmers. EvalPlus extends MBPP with significantly more test cases (35x) for more rigorous evaluation of LLM-synthesized code, providing high-quality and precise evaluation."
+        },
+        "name": "MBPP EvalPlus",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:mbpp-evalplus",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "retrievalStatus": "retrieved",
+              "role": "original",
+              "url": "https://github.com/evalplus/evalplus/releases/tag/v0.2.0"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://github.com/evalplus/evalplus/releases/tag/v0.2.0"
+        }
+      ],
+      "libraryId": "catalog_e4fa459970018e88",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: The official EvalPlus v0.2.0 release explicitly releases MBPP+ on 2023-11-24. Here, MBPP EvalPlus is identified as the extended-test benchmark, excluding the separately listed base-only configuration. This does not establish a separate benchmark family or validate all providers' scoring configurations. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:mbpp-evalplus-(base)",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "MBPP (Mostly Basic Python Problems) is a benchmark of 974 crowd-sourced Python programming problems designed to be solvable by entry-level programmers. EvalPlus extends MBPP with significantly more test cases (35x) for more rigorous evaluation of LLM-synthesized code, providing high-quality and precise evaluation."
+        },
+        "name": "MBPP EvalPlus (base)",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:mbpp-evalplus-(base)",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "role": "primary_evidence",
+              "url": "https://github.com/evalplus/evalplus/releases/tag/v0.2.0"
+            },
+            {
+              "role": "primary_evidence",
+              "url": "https://github.com/evalplus/evalplus/blob/v0.2.0/evalplus/evaluate.py"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://github.com/evalplus/evalplus/releases/tag/v0.2.0"
+        }
+      ],
+      "libraryId": "catalog_8ab302d3bad1721c",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: EvalPlus v0.2.0 officially releases MBPP+. Under that same fixed version tag, evaluate.py already loads MBPP+ and implements base_input, base_only, and base scores, establishing that the base view was released with this version. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:mega-mlqa",
+      "decision": "scope_not_release",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "MLQA as part of the MEGA (Multilingual Evaluation of Generative AI) benchmark suite. A multi-way aligned extractive QA evaluation benchmark for cross-lingual question answering across 7 languages (English, Arabic, German, Spanish, Hindi, Vietnamese, and Simplified Chinese) with over 12K QA instances in English and 5K in each other language."
+        },
+        "name": "MEGA MLQA",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-version-event-review",
+          "catalogKey": "llm-stats:mega-mlqa",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/abs/2303.12528v1"
+            },
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/pdf/2303.12528v1"
+            }
+          ]
+        },
+        {
+          "basis": "library-date-scope",
+          "sourceUrl": "https://arxiv.org/abs/1910.07475"
+        }
+      ],
+      "libraryId": "catalog_8b815b926ea522f8",
+      "reason": "The new date does not establish the release/introduction event of this exact version. Stored event review: Direct inspection of the MEGA v1 PDF confirms that MLQA, TyDiQA-GoldP, and XCOPA are already included in the framework's tasks and prompting protocols. The MEGA introduction date should be used instead of each parent dataset's date. The historical date is shown for comparison and is not imported."
+    },
+    {
+      "catalogKey": "llm-stats:mega-tydi-qa",
+      "decision": "scope_not_release",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "TyDi QA as part of the MEGA benchmark suite. A question answering dataset covering 11 typologically diverse languages (Arabic, Bengali, English, Finnish, Indonesian, Japanese, Korean, Russian, Swahili, Telugu, and Thai) with 204K question-answer pairs. Features realistic information-seeking questions written by people who want to know the answer but don't know it yet."
+        },
+        "name": "MEGA TyDi QA",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-version-event-review",
+          "catalogKey": "llm-stats:mega-tydi-qa",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/abs/2303.12528v1"
+            },
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/pdf/2303.12528v1"
+            }
+          ]
+        },
+        {
+          "basis": "library-date-scope",
+          "sourceUrl": "https://arxiv.org/abs/2003.05002"
+        }
+      ],
+      "libraryId": "catalog_c079a6f3139250aa",
+      "reason": "The new date does not establish the release/introduction event of this exact version. Stored event review: Direct inspection of the MEGA v1 PDF confirms that MLQA, TyDiQA-GoldP, and XCOPA are already included in the framework's tasks and prompting protocols. The MEGA introduction date should be used instead of each parent dataset's date. The historical date is shown for comparison and is not imported."
+    },
+    {
+      "catalogKey": "llm-stats:mega-udpos",
+      "decision": "scope_not_release",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "Universal Dependencies POS tagging as part of the MEGA benchmark suite. A multilingual part-of-speech tagging dataset based on Universal Dependencies treebanks, utilizing the universal POS tag set of 17 tags across 38 diverse languages from different language families. Used for evaluating multilingual POS tagging systems."
+        },
+        "name": "MEGA UDPOS",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-version-event-review",
+          "catalogKey": "llm-stats:mega-udpos",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/abs/2303.12528v1"
+            },
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/pdf/2303.12528v1"
+            },
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/pdf/2303.12528v2"
+            },
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/pdf/2303.12528v3"
+            }
+          ]
+        },
+        {
+          "basis": "library-date-scope",
+          "sourceUrl": "https://arxiv.org/abs/2003.11080"
+        }
+      ],
+      "libraryId": "catalog_d9dab411d32bb30d",
+      "reason": "The new date does not establish the release/introduction event of this exact version. Stored event review: Version-by-version inspection finds neither task in MEGA v1 or v2; the v3 task table and protocols include UDPOS and XStoryCloze. The arXiv version history dates v3 to 2023-05-19. The historical date is shown for comparison and is not imported."
+    },
+    {
+      "catalogKey": "llm-stats:mega-xcopa",
+      "decision": "scope_not_release",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "XCOPA (Cross-lingual Choice of Plausible Alternatives) as part of the MEGA benchmark suite. A typologically diverse multilingual dataset for causal commonsense reasoning in 11 languages, including resource-poor languages like Eastern Apurímac Quechua and Haitian Creole. Requires models to select which choice is the effect or cause of a given premise."
+        },
+        "name": "MEGA XCOPA",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-version-event-review",
+          "catalogKey": "llm-stats:mega-xcopa",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/abs/2303.12528v1"
+            },
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/pdf/2303.12528v1"
+            }
+          ]
+        },
+        {
+          "basis": "library-date-scope",
+          "sourceUrl": "https://arxiv.org/abs/2005.00333"
+        }
+      ],
+      "libraryId": "catalog_bda51ce98572a0ed",
+      "reason": "The new date does not establish the release/introduction event of this exact version. Stored event review: Direct inspection of the MEGA v1 PDF confirms that MLQA, TyDiQA-GoldP, and XCOPA are already included in the framework's tasks and prompting protocols. The MEGA introduction date should be used instead of each parent dataset's date. The historical date is shown for comparison and is not imported."
+    },
+    {
+      "catalogKey": "llm-stats:mega-xstorycloze",
+      "decision": "scope_not_release",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "XStoryCloze as part of the MEGA benchmark suite. A cross-lingual story completion task that consists of professionally translated versions of the English StoryCloze dataset to 10 non-English languages. Requires models to predict the correct ending for a given four-sentence story, evaluating commonsense reasoning and narrative understanding."
+        },
+        "name": "MEGA XStoryCloze",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-version-event-review",
+          "catalogKey": "llm-stats:mega-xstorycloze",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/abs/2303.12528v1"
+            },
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/pdf/2303.12528v1"
+            },
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/pdf/2303.12528v2"
+            },
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/pdf/2303.12528v3"
+            }
+          ]
+        },
+        {
+          "basis": "library-date-scope",
+          "sourceUrl": "https://arxiv.org/abs/2112.10668"
+        }
+      ],
+      "libraryId": "catalog_93ac083d8fb4e9cd",
+      "reason": "The new date does not establish the release/introduction event of this exact version. Stored event review: Version-by-version inspection finds neither task in MEGA v1 or v2; the v3 task table and protocols include UDPOS and XStoryCloze. The arXiv version history dates v3 to 2023-05-19. The historical date is shown for comparison and is not imported."
+    },
+    {
+      "catalogKey": "llm-stats:mle-bench-lite",
+      "decision": "accepted",
+      "event": "named_subset_release",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "MLE-Bench Lite evaluates AI agents on machine learning engineering tasks, testing their ability to build, train, and optimize ML models for Kaggle-style competitions in a lightweight evaluation format."
+        },
+        "name": "MLE-Bench Lite",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "exact-source-record-and-reviewed-event",
+          "sourceUrl": "https://api.github.com/repos/openai/mle-bench/commits?path=experiments/splits/low.txt&per_page=100"
+        }
+      ],
+      "libraryId": "catalog_eb8fe21cec35acc2",
+      "reason": "The Library evidence pins the initial commit containing exactly the 22 low-complexity competition IDs and maps Lite to that subset. This precedes the paper by one day; it is not generic parent-dataset inheritance."
+    },
+    {
+      "catalogKey": "llm-stats:mls-bench-lite",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "MLS-Bench Lite is the official 30-task subset of MLS-Bench for evaluating whether AI systems can invent generalizable and scalable machine learning methods across LLM pretraining and post-training, robotics, world models, computer vision, reinforcement learning, optimization, ML systems, and AI for Science."
+        },
+        "name": "MLS-Bench Lite",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:mls-bench-lite",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "retrievalStatus": "retrieved",
+              "role": "original",
+              "url": "https://arxiv.org/abs/2605.08678"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://arxiv.org/abs/2605.08678v1"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://arxiv.org/html/2605.08678v1"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://arxiv.org/abs/2605.08678"
+        }
+      ],
+      "libraryId": "catalog_413ce4ccc028faaf",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: The original MLS-Bench v1 explicitly introduces Lite with 30 tasks in 12 domains. The subset appears in the paper dated 2026-05-09. This does not establish a separate benchmark family or validate all providers' scoring configurations. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:mlvu-m",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "MLVU-M benchmark"
+        },
+        "name": "MLVU-M",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:mlvu-m",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/abs/2406.04264v1"
+            },
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/html/2406.04264v1"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://arxiv.org/abs/2406.04264"
+        }
+      ],
+      "libraryId": "catalog_533dd059f93116c0",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: Table 1 of MLVU v1 already distinguishes the multiple-choice average, M-Avg, from the generation-task average, G-Avg. MLVU-M corresponds to the former, so the named task component exists in the original version. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:mm-clawbench",
+      "decision": "accepted",
+      "event": "private_benchmark_public_introduction",
+      "identityEvidence": [
+        {
+          "basis": "exact-source-record-and-explicit-named-introduction",
+          "note": "Official dated MiniMax M2.7 announcement introduces the evaluation set named MM Claw, explicitly built from common OpenClaw tasks: personal learning plans, office document delivery, research/investment advice, and code development/maintenance. Its 62.7% M2.7 result exactly matches the catalog MM-ClawBench entry. Date represents the benchmark public introduction in the announcement, not verified downloadable dataset availability; no public dataset or code link was identified. Do not equate this with a public corpus release.",
+          "sourceUrl": "https://www.minimax.io/news/minimax-m27-en"
+        }
+      ],
+      "libraryId": "catalog_a46d809efa147169",
+      "reason": "The supplied review explicitly identifies the original announcement as introducing MM Claw and its task construction. Accept the public introduction event; do not claim downloadable task availability."
+    },
+    {
+      "catalogKey": "llm-stats:mm-mt-bench",
+      "decision": "accepted",
+      "event": "paper_and_dataset_release",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "A multi-turn LLM-as-a-judge evaluation benchmark for testing multimodal instruction-tuned models' ability to follow user instructions in multi-turn dialogues and answer open-ended questions in a zero-shot manner."
+        },
+        "name": "MM-MT-Bench",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "exact-source-record-and-reviewed-event",
+          "sourceUrl": "https://arxiv.org/abs/2410.07073"
+        }
+      ],
+      "libraryId": "catalog_1165a051eddbecad",
+      "reason": "The earlier announcement says data would follow. The supplied October paper explicitly states that the named benchmark is open sourced. Retain that reviewed paper/artifact event, with the earlier introduction visible in the comparison."
+    },
+    {
+      "catalogKey": "llm-stats:mmlongbench-128k",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "MMLongBench-128K evaluates multimodal long-context understanding at a 128K token context length, testing how well vision-language models reason over very long mixed text and image inputs."
+        },
+        "name": "MMLongBench-128K",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:mmlongbench-128k",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "retrievalStatus": "retrieved",
+              "role": "original",
+              "url": "https://arxiv.org/abs/2505.10610"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://arxiv.org/abs/2505.10610v1"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://arxiv.org/html/2505.10610v1"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://arxiv.org/abs/2505.10610"
+        }
+      ],
+      "libraryId": "catalog_3cc95f78bfacb570",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: The original MMLongBench v1 explicitly includes evaluations up to 128K in the paper dated 2025-05-15. This does not establish a separate benchmark family or validate all providers' scoring configurations. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:mobileminiwob++-sr",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "MobileMiniWob++ SR (Success Rate) is an adaptation of the MiniWob++ web interaction benchmark for mobile Android environments within AndroidWorld. It comprises 92 web interaction tasks adapted for touch-based mobile interfaces, evaluating agents' ability to navigate and interact with web applications on mobile devices."
+        },
+        "name": "MobileMiniWob++_SR",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:mobileminiwob++-sr",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/abs/2405.14573v1"
+            },
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/html/2405.14573v1"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://arxiv.org/abs/2405.14573"
+        }
+      ],
+      "libraryId": "catalog_846e7f8f5af22dad",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: AndroidWorld v1 explicitly creates the MobileMiniWoB++ mobile adaptation and reports SR in Table 3; the original desktop MiniWoB++ date is not being applied to the mobile version. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:mrcr-v2",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "MRCR v2 (Multi-Round Coreference Resolution version 2) is an enhanced version of the synthetic long-context reasoning task. It extends the original MRCR framework with improved evaluation criteria and additional complexity for testing models' ability to maintain attention and reasoning across extended contexts."
+        },
+        "name": "MRCR v2",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:mrcr-v2",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "retrievalStatus": "retrieved",
+              "role": "original",
+              "url": "https://huggingface.co/datasets/openai/mrcr"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://openai.com/index/introducing-gpt-5-2/"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://huggingface.co/datasets/openai/mrcr"
+        }
+      ],
+      "libraryId": "catalog_11d6a18b4f745fb6",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: OpenAI MRCR's official changelog explicitly records corrections to erroneous examples on 2025-12-05. The official GPT-5.2 introduction calls this corrected version OpenAI MRCRv2, establishing the version mapping across the two sources. This does not establish a separate benchmark family or validate all providers' scoring configurations. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:mrcr-v2-(8-needle)",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "MRCR v2 (8-needle) is a variant of the Multi-Round Coreference Resolution benchmark that includes 8 needle items to retrieve from long contexts. This tests models' ability to simultaneously track and reason about multiple pieces of information across extended conversations."
+        },
+        "name": "MRCR v2 (8-needle)",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:mrcr-v2-(8-needle)",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "retrievalStatus": "retrieved",
+              "role": "original",
+              "url": "https://huggingface.co/datasets/openai/mrcr"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://openai.com/index/introducing-gpt-5-2/"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://huggingface.co/datasets/openai/mrcr"
+        }
+      ],
+      "libraryId": "catalog_f375a5d25b1929e3",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: OpenAI MRCR's official data card explicitly includes 8-needle data and records corrections on 2025-12-05; the official GPT-5.2 description labels that corrected version MRCRv2. Only the named data version is verified, not model-scoring configurations. This does not establish a separate benchmark family or validate all providers' scoring configurations. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:multilf",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "MultiLF benchmark"
+        },
+        "name": "MultiLF",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:multilf",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/html/2505.09388v1"
+            },
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/abs/2410.15553v1"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://arxiv.org/abs/2410.15553"
+        }
+      ],
+      "libraryId": "catalog_6ae40f22c77bfae7",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: The Multi-IF rows in the original Qwen3 report include 73.0 for Qwen3-32B and 71.9 for Qwen3-235B, matching the catalog's two model records. This supports identifying MultiLF as a misspelling of Multi-IF. Multi-IF v1 is dated 2024-10-21. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:nexus",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "NexusRaven benchmark for evaluating function calling capabilities of large language models in zero-shot scenarios across cybersecurity tools and API interactions"
+        },
+        "name": "Nexus",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:nexus",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/html/2407.21783v1"
+            },
+            {
+              "role": "primary_evidence",
+              "url": "https://nexusflow.ai/blogs/introducing-nexusraven-13b"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://huggingface.co/datasets/Nexusflow/NexusRaven_API_evaluation/commit/5e08295bde6376960fe917086be4a5a5ba07152d"
+        }
+      ],
+      "libraryId": "catalog_f5cfcb570b7edac2",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: The Nexus citation in the original Llama 3 report points to Srinivasan et al.'s NexusRaven, and the model scores also match the catalog. Nexusflow's announcement dated 2023-09-28 introduces that evaluation and its open-source resources, excluding December's NexusRaven-V2. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:nq",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "Natural Questions (NQ) benchmark containing real user questions issued to Google search with answers found from Wikipedia, designed for training and evaluation of automatic question answering systems"
+        },
+        "name": "NQ",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:nq",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "retrievalStatus": "retrieved",
+              "role": "original",
+              "url": "https://research.google/blog/natural-questions-a-new-corpus-and-challenge-for-question-answering-research/"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://research.google/blog/natural-questions-a-new-corpus-and-challenge-for-question-answering-research/"
+        }
+      ],
+      "libraryId": "catalog_af1a411ed6a2fdf0",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: NQ abbreviates the original Natural Questions. Google's original announcement dated 2019-01-23 introduces that dataset, not a later language or filtered variant. This does not establish a separate benchmark family or validate all providers' scoring configurations. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:prbench-finance",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "PRBench-Finance evaluates professional reasoning on finance tasks."
+        },
+        "name": "PRBench-Finance",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:prbench-finance",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "retrievalStatus": "retrieved",
+              "role": "original",
+              "url": "https://arxiv.org/abs/2511.11562"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://arxiv.org/abs/2511.11562v1"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://arxiv.org/html/2511.11562v1"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://arxiv.org/abs/2511.11562"
+        }
+      ],
+      "libraryId": "catalog_44c9e16983fcb045",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: The original PRBench v1 explicitly includes the Finance and Legal domains. Finance appears in the original paper dated 2025-11-14. This does not establish a separate benchmark family or validate all providers' scoring configurations. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:prbench-legal",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "PRBench-Legal evaluates professional reasoning on legal tasks."
+        },
+        "name": "PRBench-Legal",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:prbench-legal",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "retrievalStatus": "retrieved",
+              "role": "original",
+              "url": "https://arxiv.org/abs/2511.11562"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://arxiv.org/abs/2511.11562v1"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://arxiv.org/html/2511.11562v1"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://arxiv.org/abs/2511.11562"
+        }
+      ],
+      "libraryId": "catalog_780cd471a7228fcb",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: The original PRBench v1 explicitly includes the Legal and Finance domains. Legal appears in the original paper dated 2025-11-14. This does not establish a separate benchmark family or validate all providers' scoring configurations. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:protocolqa",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "ProtocolQA is a multiple-choice benchmark on troubleshooting failed experimental outcomes from common biological laboratory protocols. It evaluates dual-use biological knowledge relevant to bioweapons development."
+        },
+        "name": "ProtocolQA",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:protocolqa",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "retrievalStatus": "retrieved",
+              "role": "original",
+              "url": "https://arxiv.org/abs/2407.10362"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://arxiv.org/abs/2407.10362v1"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://arxiv.org/html/2407.10362v1"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://arxiv.org/abs/2407.10362"
+        }
+      ],
+      "libraryId": "catalog_b2dffdefb544c592",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: The original LAB-Bench v1 explicitly includes the ProtocolQA subtask in the paper dated 2024-07-14. This does not establish a separate benchmark family or validate all providers' scoring configurations. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:sat-math",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "SAT Math benchmark from AGIEval containing standardized mathematics questions from the College Board SAT examination, designed to evaluate mathematical reasoning capabilities of foundation models using human-centric assessment methods."
+        },
+        "name": "SAT Math",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:sat-math",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/abs/2304.06364v1"
+            },
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/pdf/2304.06364v1"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://arxiv.org/abs/2304.06364"
+        }
+      ],
+      "libraryId": "catalog_05a3b0ef55120ee4",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: The frozen catalog explicitly states that SAT Math comes from AGIEval. The task table in the original v1 PDF lists 220 SAT-Math questions and evaluation results, establishing that this component appeared with the first AGIEval version. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:seal-0",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "Seal-0 is a benchmark for evaluating agentic search capabilities, testing models' ability to navigate and retrieve information using tools."
+        },
+        "name": "Seal-0",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:seal-0",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "retrievalStatus": "retrieved",
+              "role": "original",
+              "url": "https://arxiv.org/abs/2506.01062"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://arxiv.org/abs/2506.01062v1"
+            },
+            {
+              "retrievalStatus": "retrieved",
+              "role": "supplemental",
+              "url": "https://arxiv.org/html/2506.01062v1"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://arxiv.org/abs/2506.01062"
+        }
+      ],
+      "libraryId": "catalog_573169b4bacca2e3",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: The original SealQA v1 explicitly introduces the 111 questions in Seal-0. The named subset appears in the paper dated 2025-06-01. This does not establish a separate benchmark family or validate all providers' scoring configurations. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:summscreenfd",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "SummScreenFD is the ForeverDreaming subset of the SummScreen dataset for abstractive screenplay summarization, comprising pairs of TV series transcripts and human-written recaps from 88 different shows. The dataset provides a challenging testbed for abstractive summarization where plot details are often expressed indirectly in character dialogues and scattered across the entirety of the transcript, requiring models to find and integrate these details to form succinct plot descriptions."
+        },
+        "name": "SummScreenFD",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:summscreenfd",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/abs/2104.07091v1"
+            },
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/pdf/2104.07091v1"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://arxiv.org/abs/2104.07091"
+        }
+      ],
+      "libraryId": "catalog_54a2a373859605d8",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: Direct inspection of the original v1 PDF confirms that the dataset construction section and tables already include ForeverDreaming (FD) and TVMegaSite. This establishes the presence of SummScreenFD in that same version. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:surds",
+      "decision": "scope_not_release",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "SURDS is a benchmark for spatial understanding and reasoning in autonomous-driving scenes."
+        },
+        "name": "SURDS",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-version-event-review",
+          "catalogKey": "llm-stats:surds",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/abs/2411.13112v2"
+            },
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/abs/2411.13112v3"
+            },
+            {
+              "role": "primary_evidence",
+              "url": "https://github.com/xiandaguo/drive-mllm"
+            }
+          ]
+        },
+        {
+          "basis": "library-date-scope",
+          "sourceUrl": "https://arxiv.org/abs/2411.13112"
+        }
+      ],
+      "libraryId": "catalog_ce00f2c163a1ff7b",
+      "reason": "The new date does not establish the release/introduction event of this exact version. Stored event review: The original date, 2024-11-20, belongs to an early DriveMLLM version. The arXiv v3 uses the SURDS name and introduces the expanded dataset on 2025-05-27; the authors' repository also distinguishes the old DriveMLLM from SURDS. The historical date is shown for comparison and is not imported."
+    },
+    {
+      "catalogKey": "llm-stats:svg-bench",
+      "decision": "scope_not_release",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "SVG-Bench is an internal benchmark that comprehensively evaluates SVG generation performance. It accepts text and image inputs across build-from-scratch and edit-based tasks, using a VLM to verify rendering accuracy of the generated outputs."
+        },
+        "name": "SVG-Bench",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "exact-source-record-and-reviewed-event",
+          "sourceUrl": "https://www.minimax.io/blog/minimax-m3"
+        }
+      ],
+      "libraryId": "catalog_a497b8fb621ca34b",
+      "reason": "The evidence explicitly permits only announcement-date public disclosure and notes later article edits; it is not version-pinned evidence of this task set first being introduced or released."
+    },
+    {
+      "catalogKey": "llm-stats:swe-atlas",
+      "decision": "scope_not_release",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "SWE-Atlas is a software engineering benchmark focused on debugging, evaluating a model's ability to localize and fix bugs in real-world codebases."
+        },
+        "name": "SWE-Atlas",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-version-event-review",
+          "catalogKey": "llm-stats:swe-atlas",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "role": "primary_evidence",
+              "url": "https://scale.com/blog/swe-atlas"
+            },
+            {
+              "role": "primary_evidence",
+              "url": "https://scale.com/blog/swe-atlas-complete"
+            }
+          ]
+        },
+        {
+          "basis": "library-date-scope",
+          "sourceUrl": "https://arxiv.org/abs/2605.08366"
+        }
+      ],
+      "libraryId": "catalog_223ba126f40f8d4b",
+      "reason": "The new date does not establish the release/introduction event of this exact version. Stored event review: Scale's official announcement dated 2026-03-04 launches SWE-Atlas; all three evaluation tracks were announced as available only on 2026-05-07. For the unversioned suite record, the initial launch date is used rather than the May paper date. The historical date is shown for comparison and is not imported."
+    },
+    {
+      "catalogKey": "llm-stats:swe-atlas-codebase-qna",
+      "decision": "accepted",
+      "event": "named_component_release",
+      "identityEvidence": [
+        {
+          "basis": "exact-source-record-and-explicit-named-introduction",
+          "note": "Scale official March4,2026 launch explicitly states Codebase QnA is available today, with Test Writing and Refactoring coming later. Replaces later May8 suite-paper date. Dates this underlying component; does not assert a separate provider protocol release.",
+          "sourceUrl": "https://scale.com/blog/swe-atlas"
+        }
+      ],
+      "libraryId": "catalog_009dc944c87b90dd",
+      "reason": "The supplied official launch evidence explicitly says the Codebase QnA component is available on the given date, while other tracks come later. This is direct named-component release evidence, not generic suite-date inheritance."
+    },
+    {
+      "catalogKey": "llm-stats:tau-bench",
+      "decision": "accepted",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "τ-bench: A benchmark for tool-agent-user interaction in real-world domains. Tests language agents' ability to interact with users and follow domain-specific rules through dynamic conversations using API tools and policy guidelines across retail and airline domains. Evaluates consistency and reliability of agent behavior over multiple trials."
+        },
+        "name": "Tau-bench",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "frozen-artifact-and-task-crosswalk",
+          "file": "evidence/taxonomy-inputs/llm_stats_benchmarks_2026-08-17.csv"
+        },
+        {
+          "basis": "supplied-reviewed-original-source",
+          "sourceUrl": "https://arxiv.org/abs/2406.12045"
+        }
+      ],
+      "libraryId": "lib_tau_bench",
+      "reason": "The frozen description explicitly names tool-agent-user interaction, retail and airline domains. It matches the original tau-bench paper title, task and official sierra-research/tau-bench repository."
+    },
+    {
+      "catalogKey": "llm-stats:tau3-airline",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "τ³-Bench airline domain evaluates agentic models on multi-turn, tool-using customer-support scenarios in a simulated airline booking and reservations environment."
+        },
+        "name": "Tau3 Airline",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:tau3-airline",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "retrievalStatus": "retrieved",
+              "role": "original",
+              "url": "https://sierra.ai/uk/blog/bench-advancing-agent-benchmarking-to-knowledge-and-voice"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://sierra.ai/uk/blog/bench-advancing-agent-benchmarking-to-knowledge-and-voice"
+        }
+      ],
+      "libraryId": "catalog_c928f909866afb23",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: Sierra's original tau3-bench announcement dated 2026-03-18 explicitly includes the updated airline domain. This does not establish a separate benchmark family or validate all providers' scoring configurations. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:tau3-banking",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "τ³-Bench banking domain evaluates agentic models on multi-turn, tool-using customer-support scenarios in a simulated retail banking environment."
+        },
+        "name": "Tau3 Banking",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:tau3-banking",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "retrievalStatus": "retrieved",
+              "role": "original",
+              "url": "https://sierra.ai/uk/blog/bench-advancing-agent-benchmarking-to-knowledge-and-voice"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://sierra.ai/uk/blog/bench-advancing-agent-benchmarking-to-knowledge-and-voice"
+        }
+      ],
+      "libraryId": "catalog_ebd77eaccb2d583a",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: Sierra's original tau3-bench announcement dated 2026-03-18 explicitly introduces the banking domain. This does not establish a separate benchmark family or validate all providers' scoring configurations. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:tau3-bench",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "TAU3-Bench is a benchmark for evaluating general-purpose agent capabilities, testing models on multi-turn interactions with simulated user models, retrieval, and complex decision-making scenarios."
+        },
+        "name": "TAU3-Bench",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:tau3-bench",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "retrievalStatus": "retrieved",
+              "role": "original",
+              "url": "https://sierra.ai/uk/blog/bench-advancing-agent-benchmarking-to-knowledge-and-voice"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://sierra.ai/uk/blog/bench-advancing-agent-benchmarking-to-knowledge-and-voice"
+        }
+      ],
+      "libraryId": "catalog_b5356cb55eb564be",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: Sierra's original official announcement explicitly releases tau3-bench on 2026-03-18. This does not establish a separate benchmark family or validate all providers' scoring configurations. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:tau3-retail",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "τ³-Bench retail domain evaluates agentic models on multi-turn, tool-using customer-support scenarios in a simulated online retail environment."
+        },
+        "name": "Tau3 Retail",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:tau3-retail",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "retrievalStatus": "retrieved",
+              "role": "original",
+              "url": "https://sierra.ai/uk/blog/bench-advancing-agent-benchmarking-to-knowledge-and-voice"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://sierra.ai/uk/blog/bench-advancing-agent-benchmarking-to-knowledge-and-voice"
+        }
+      ],
+      "libraryId": "catalog_6c8193c29e3e5937",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: Sierra's original tau3-bench announcement dated 2026-03-18 explicitly includes the updated retail domain. This does not establish a separate benchmark family or validate all providers' scoring configurations. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:tau3-telecom",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "τ³-Bench telecom domain evaluates agentic models on multi-turn, tool-using customer-support and troubleshooting scenarios in a simulated telecommunications environment."
+        },
+        "name": "Tau3 Telecom",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:tau3-telecom",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "retrievalStatus": "retrieved",
+              "role": "original",
+              "url": "https://sierra.ai/uk/blog/bench-advancing-agent-benchmarking-to-knowledge-and-voice"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://sierra.ai/uk/blog/bench-advancing-agent-benchmarking-to-knowledge-and-voice"
+        }
+      ],
+      "libraryId": "catalog_81a8751700459174",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: Sierra's original tau3-bench announcement dated 2026-03-18 explicitly includes the updated telecom domain. This does not establish a separate benchmark family or validate all providers' scoring configurations. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:usamo-2026",
+      "decision": "scope_not_release",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "USAMO 2026 evaluates models on the six problems from the 2026 United States of America Mathematical Olympiad, requiring rigorous proof-based reasoning. Following the MathArena methodology, proofs are graded against human expert rubrics by dual strong judge models, with the minimum of the two scores taken as final. Maximum score is 42 points."
+        },
+        "name": "USAMO 2026",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-version-event-review",
+          "catalogKey": "llm-stats:usamo-2026",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "role": "primary_evidence",
+              "url": "https://matharena.ai/usamo/"
+            }
+          ]
+        },
+        {
+          "basis": "library-date-scope",
+          "sourceUrl": "https://maa.org/news/2026-usamo-and-usajmo-invitations-determined/"
+        }
+      ],
+      "libraryId": "catalog_f98a3c865f045fb7",
+      "reason": "The new date does not establish the release/introduction event of this exact version. Stored event review: MathArena's dedicated USAMO 2026 article is dated 2026-03-28 and introduces the six proof problems and evaluation procedure. It can replace the original record containing only the competition month. The historical date is shown for comparison and is not imported."
+    },
+    {
+      "catalogKey": "llm-stats:usamo25",
+      "decision": "scope_not_release",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "The 2025 United States of America Mathematical Olympiad (USAMO) benchmark consists of six challenging mathematical problems requiring rigorous proof-based reasoning. USAMO is the most prestigious high school mathematics competition in the United States, serving as the final round of the American Mathematics Competitions series. This benchmark evaluates models on mathematical problem-solving capabilities beyond simple numerical computation, focusing on formal mathematical reasoning and proof generation."
+        },
+        "name": "USAMO25",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-version-event-review",
+          "catalogKey": "llm-stats:usamo25",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "role": "primary_evidence",
+              "url": "https://arxiv.org/abs/2503.21934v1"
+            }
+          ]
+        },
+        {
+          "basis": "library-date-scope",
+          "sourceUrl": "https://maa.org/news/2025-usamo-and-usajmo-thresholds-now-available/"
+        }
+      ],
+      "libraryId": "catalog_2938cd779ea308ef",
+      "reason": "The new date does not establish the release/introduction event of this exact version. Stored event review: The original USAMO 2025 evaluation paper v1 proposes a systematic evaluation of the six proof problems on 2025-03-27, distinct from the competition date alone. The historical date is shown for comparison and is not imported."
+    },
+    {
+      "catalogKey": "llm-stats:vibe-android",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "VIBE benchmark subset for Android application generation"
+        },
+        "name": "VIBE Android",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:vibe-android",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "role": "primary_evidence",
+              "url": "https://huggingface.co/datasets/MiniMaxAI/VIBE"
+            },
+            {
+              "role": "primary_evidence",
+              "url": "https://www.minimax.io/blog/minimax-m21"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://www.minimax.io/blog/minimax-m21"
+        }
+      ],
+      "libraryId": "catalog_c5fd1801a2c3042f",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: MiniMax's official data card lists the Android, Backend, iOS, Simulation, and Web subsets together and explicitly dates the Phase 1 release of tasks and specifications to 2025-12-23. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:vibe-backend",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "VIBE benchmark subset for backend service generation"
+        },
+        "name": "VIBE Backend",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:vibe-backend",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "role": "primary_evidence",
+              "url": "https://huggingface.co/datasets/MiniMaxAI/VIBE"
+            },
+            {
+              "role": "primary_evidence",
+              "url": "https://www.minimax.io/blog/minimax-m21"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://www.minimax.io/blog/minimax-m21"
+        }
+      ],
+      "libraryId": "catalog_c1d1fee0593d8c3d",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: MiniMax's official data card lists the Android, Backend, iOS, Simulation, and Web subsets together and explicitly dates the Phase 1 release of tasks and specifications to 2025-12-23. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:vibe-ios",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "VIBE benchmark subset for iOS application generation"
+        },
+        "name": "VIBE iOS",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:vibe-ios",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "role": "primary_evidence",
+              "url": "https://huggingface.co/datasets/MiniMaxAI/VIBE"
+            },
+            {
+              "role": "primary_evidence",
+              "url": "https://www.minimax.io/blog/minimax-m21"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://www.minimax.io/blog/minimax-m21"
+        }
+      ],
+      "libraryId": "catalog_a13f25bf6c359279",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: MiniMax's official data card lists the Android, Backend, iOS, Simulation, and Web subsets together and explicitly dates the Phase 1 release of tasks and specifications to 2025-12-23. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:vibe-simulation",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "VIBE benchmark subset for simulation code generation"
+        },
+        "name": "VIBE Simulation",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:vibe-simulation",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "role": "primary_evidence",
+              "url": "https://huggingface.co/datasets/MiniMaxAI/VIBE"
+            },
+            {
+              "role": "primary_evidence",
+              "url": "https://www.minimax.io/blog/minimax-m21"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://www.minimax.io/blog/minimax-m21"
+        }
+      ],
+      "libraryId": "catalog_0fa3c47d9e1f8121",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: MiniMax's official data card lists the Android, Backend, iOS, Simulation, and Web subsets together and explicitly dates the Phase 1 release of tasks and specifications to 2025-12-23. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "llm-stats:vibe-v2",
+      "decision": "scope_not_release",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "VIBE-V2 is an internal benchmark covering pure front-end and full-stack Web, Android, and iOS projects with build-from-scratch tasks. It uses an Agent-as-a-Verifier paradigm to automatically verify program interaction logic and visual output, scoring models through a unified pipeline that includes a requirement set, containerized deployment, and a dynamic interaction environment."
+        },
+        "name": "VIBE-V2",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "exact-source-record-and-reviewed-event",
+          "sourceUrl": "https://www.minimax.io/blog/minimax-m3"
+        }
+      ],
+      "libraryId": "catalog_e15ee86f46c26205",
+      "reason": "The evidence explicitly permits only announcement-date public disclosure and notes later article edits; it is not version-pinned evidence of this task set first being introduced or released."
+    },
+    {
+      "catalogKey": "llm-stats:vibe-web",
+      "decision": "accepted",
+      "event": "named_component_or_alias_introduction",
+      "frozenIdentity": {
+        "artifacts": [],
+        "description": {
+          "en": "VIBE benchmark subset for web application generation"
+        },
+        "name": "VIBE Web",
+        "source": "llm_stats"
+      },
+      "identityEvidence": [
+        {
+          "basis": "stored-component-identity-review",
+          "catalogKey": "llm-stats:vibe-web",
+          "file": "evidence/156_from_xiaoke_all_passed_en.json",
+          "sources": [
+            {
+              "role": "primary_evidence",
+              "url": "https://huggingface.co/datasets/MiniMaxAI/VIBE"
+            },
+            {
+              "role": "primary_evidence",
+              "url": "https://www.minimax.io/blog/minimax-m21"
+            }
+          ]
+        },
+        {
+          "basis": "reviewed-library-event",
+          "sourceUrl": "https://www.minimax.io/blog/minimax-m21"
+        }
+      ],
+      "libraryId": "catalog_58b102d24a7d44bc",
+      "reason": "The reviewed Library date applies to the named component or alias already present at introduction. Stored identity/event evidence: MiniMax's official data card lists the Android, Backend, iOS, Simulation, and Web subsets together and explicitly dates the Phase 1 release of tasks and specifications to 2025-12-23. The date is copied exclusively from releaseEvidence; no independent benchmark-family release is asserted."
+    },
+    {
+      "catalogKey": "model-reports:arxivmath",
+      "decision": "accepted",
+      "frozenIdentity": {
+        "artifacts": [
+          {
+            "kind": "website",
+            "url": "https://matharena.ai/arxivmath"
+          }
+        ],
+        "description": {
+          "en": "Competition-style mathematics drawn from arXiv; test-time compute budget is part of the result."
+        },
+        "name": "ArXivMath",
+        "source": "model_reports"
+      },
+      "identityEvidence": [
+        {
+          "basis": "frozen-artifact-and-task-crosswalk",
+          "file": "evidence/taxonomy-inputs/model_cards.yml"
+        },
+        {
+          "basis": "supplied-reviewed-original-source",
+          "sourceUrl": "https://matharena.ai/arxivmath/"
+        }
+      ],
+      "libraryId": "catalog_3ea1a5e4de61cb92",
+      "reason": "Exact original artifact URL matharena.ai/arxivmath is shared by the frozen source and reviewed date evidence; the mathematical task description agrees."
+    },
+    {
+      "catalogKey": "model-reports:bankertoolbench",
+      "decision": "accepted",
+      "frozenIdentity": {
+        "artifacts": [
+          {
+            "kind": "repo",
+            "url": "https://github.com/Handshake-AI-Research/bankertoolbench"
+          }
+        ],
+        "description": {
+          "en": "End-to-end investment-banking tasks produce spreadsheets, presentations, and documents; the agent harness, financial-data tools, and rubric-grader configuration are part of the score."
+        },
+        "name": "BankerToolBench",
+        "source": "model_reports"
+      },
+      "identityEvidence": [
+        {
+          "basis": "frozen-artifact-and-task-crosswalk",
+          "file": "evidence/taxonomy-inputs/model_cards.yml"
+        },
+        {
+          "basis": "supplied-reviewed-original-source",
+          "sourceUrl": "https://arxiv.org/abs/2604.11304"
+        }
+      ],
+      "libraryId": "catalog_9dcbfe996a77cf11",
+      "reason": "The frozen investment-banking artifact tasks match the exact original paper title and task: end-to-end investment banking workflows, not a general financial QA test."
+    },
+    {
+      "catalogKey": "model-reports:cybergym",
+      "decision": "accepted",
+      "frozenIdentity": {
+        "artifacts": [
+          {
+            "kind": "website",
+            "url": "https://openreview.net/forum?id=2YvbLQEdYt"
+          }
+        ],
+        "description": {
+          "en": "Real-world cybersecurity tasks; tool permissions and time limits are part of the result, not incidental to it."
+        },
+        "name": "CyberGym",
+        "source": "model_reports"
+      },
+      "identityEvidence": [
+        {
+          "basis": "frozen-artifact-and-task-crosswalk",
+          "file": "evidence/taxonomy-inputs/model_cards.yml"
+        },
+        {
+          "basis": "supplied-reviewed-original-source",
+          "sourceUrl": "https://arxiv.org/abs/2506.02548"
+        }
+      ],
+      "libraryId": "catalog_d269420d62ea46a3",
+      "reason": "Distinctive CyberGym identity and real-world vulnerability tasks match the supplied reviewed original paper. Preserve the model-report source record independently from its llm-stats sibling."
+    },
+    {
+      "catalogKey": "model-reports:draco",
+      "decision": "accepted",
+      "frozenIdentity": {
+        "artifacts": [
+          {
+            "kind": "website",
+            "url": "https://huggingface.co/datasets/perplexity-ai/draco"
+          }
+        ],
+        "description": {
+          "en": "Deep-research style long-context agent tasks; the retrieval and tool stack is part of the score."
+        },
+        "name": "DRACO",
+        "source": "model_reports"
+      },
+      "identityEvidence": [
+        {
+          "basis": "frozen-artifact-and-task-crosswalk",
+          "file": "evidence/taxonomy-inputs/model_cards.yml"
+        },
+        {
+          "basis": "supplied-reviewed-original-source",
+          "sourceUrl": "https://arxiv.org/abs/2602.11685"
+        }
+      ],
+      "libraryId": "catalog_c8c3d2e4ed91e9d5",
+      "reason": "Frozen artifact perplexity-ai/draco and deep-research task agree with the reviewed DRACO deep-research paper, rather than the unrelated expansion in one catalog fullName field."
+    },
+    {
+      "catalogKey": "model-reports:harbor_index",
+      "decision": "identity_unresolved",
+      "frozenIdentity": {
+        "artifacts": [
+          {
+            "kind": "repo",
+            "url": "https://github.com/harbor-framework/harbor-index"
+          }
+        ],
+        "description": {
+          "en": "Compact high-signal frontier-agent evaluation; the environment and harness define the score."
+        },
+        "name": "Harbor-Index",
+        "source": "model_reports"
+      },
+      "identityEvidence": [
+        {
+          "basis": "exact-source-record-and-reviewed-event",
+          "sourceUrl": "https://github.com/harbor-framework/harbor-index/commit/c189f6fa161ac106b99418464c91a9dacb13786b"
+        }
+      ],
+      "libraryId": "catalog_4f8c197b84c2e7d5",
+      "reason": "The frozen repository identifies the Harbor Index family without a revision. The donor specifically dates revision 1.4 with 80 tasks; its applicability to this model-report edition is not established."
+    },
+    {
+      "catalogKey": "model-reports:horizonmath",
+      "decision": "accepted",
+      "frozenIdentity": {
+        "artifacts": [
+          {
+            "kind": "repo",
+            "url": "https://github.com/ewang26/HorizonMath"
+          }
+        ],
+        "description": {
+          "en": "Unsolved research-level mathematics, reported at pass@4, so figures sit far below conventional accuracy scales."
+        },
+        "name": "HorizonMath",
+        "source": "model_reports"
+      },
+      "identityEvidence": [
+        {
+          "basis": "frozen-artifact-and-task-crosswalk",
+          "file": "evidence/taxonomy-inputs/model_cards.yml"
+        },
+        {
+          "basis": "supplied-reviewed-original-source",
+          "sourceUrl": "https://arxiv.org/abs/2603.15617"
+        }
+      ],
+      "libraryId": "catalog_d8b2de1a63b757a6",
+      "reason": "Frozen research-level mathematics task and HorizonMath repository identity agree with the reviewed paper on mathematical discovery with automatic verification."
+    },
+    {
+      "catalogKey": "model-reports:matharena_apex_2025",
+      "decision": "accepted",
+      "frozenIdentity": {
+        "artifacts": [
+          {
+            "kind": "website",
+            "url": "https://matharena.ai/apex"
+          }
+        ],
+        "description": {
+          "en": "The hardest MathArena split; even near-ceiling models sit well below typical math-benchmark numbers."
+        },
+        "name": "MathArena Apex 2025",
+        "source": "model_reports"
+      },
+      "identityEvidence": [
+        {
+          "basis": "frozen-artifact-and-task-crosswalk",
+          "file": "evidence/taxonomy-inputs/model_cards.yml"
+        },
+        {
+          "basis": "supplied-reviewed-original-source",
+          "sourceUrl": "https://matharena.ai/apex/"
+        }
+      ],
+      "libraryId": "catalog_f1a7872c89a6bca4",
+      "reason": "Frozen original artifact matharena.ai/apex is the same URL as the reviewed launch evidence; the 2025 edition and hard mathematical task agree."
+    },
+    {
+      "catalogKey": "model-reports:onemillionbench",
+      "decision": "accepted",
+      "frozenIdentity": {
+        "artifacts": [
+          {
+            "kind": "repo",
+            "url": "https://github.com/humanlaya/OneMillion-Bench"
+          }
+        ],
+        "description": {
+          "en": "Long-context recall and use; a \"with tools\" figure is not comparable to a no-tools run."
+        },
+        "name": "OneMillionBench",
+        "source": "model_reports"
+      },
+      "identityEvidence": [
+        {
+          "basis": "frozen-artifact-and-task-crosswalk",
+          "file": "evidence/taxonomy-inputs/model_cards.yml"
+        },
+        {
+          "basis": "supplied-reviewed-original-source",
+          "sourceUrl": "https://arxiv.org/abs/2603.07980"
+        },
+        {
+          "basis": "official-repository-citation-inspected",
+          "checkedAt": "2026-09-22",
+          "finding": "The official repository citation identifies arXiv:2603.07980; professional-domain rubric evaluation, not million-token recall.",
+          "sourceUrl": "https://github.com/humanlaya/OneMillion-Bench"
+        }
+      ],
+      "libraryId": "catalog_fca7f5666d5002e2",
+      "reason": "Frozen artifact github.com/humanlaya/OneMillion-Bench explicitly cites arXiv:2603.07980, the supplied evidence paper. This exact artifact link resolves the misleading frozen long-context description; classification is not changed in this date-only annotation."
+    },
+    {
+      "catalogKey": "model-reports:superchem",
+      "decision": "accepted",
+      "frozenIdentity": {
+        "artifacts": [
+          {
+            "kind": "repo",
+            "url": "https://github.com/catalystforyou/SUPERChem_eval"
+          }
+        ],
+        "description": {
+          "en": "Multimodal chemical reasoning; image and formula parsing quality moves the reported figure."
+        },
+        "name": "SUPERChem",
+        "source": "model_reports"
+      },
+      "identityEvidence": [
+        {
+          "basis": "frozen-artifact-and-task-crosswalk",
+          "file": "evidence/taxonomy-inputs/model_cards.yml"
+        },
+        {
+          "basis": "supplied-reviewed-original-source",
+          "sourceUrl": "https://arxiv.org/abs/2512.01274"
+        }
+      ],
+      "libraryId": "catalog_7d7e9a75ac4d072e",
+      "reason": "Frozen catalystforyou/SUPERChem_eval repository and multimodal chemistry task identify the original SUPERChem paper in the reviewed evidence."
+    }
+  ],
+  "review_type": "agent_identity_and_event_scope_review_of_supplied_evidence",
+  "reviewed_at": "2026-09-22",
+  "schema_version": 1,
+  "snapshot_sha256": "54974c15fccfe1af2ef0f30f6ba753973700d7cd0d2fb5f646dbc44e7bca8f2e"
+}

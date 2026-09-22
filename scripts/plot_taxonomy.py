@@ -593,6 +593,7 @@ def draw_trends(rows, trends, path_stem, order, period=PANEL_A_PERIOD):
     reported = shares["reported"]
     xs = list(range(len(reported)))
     peak = 0.0
+    endpoint_labels = []
     for rank, key in enumerate(shares["selected"]):
         entry = shares["series"][key]
         values = [entry["share"][label] for label in reported]
@@ -603,15 +604,27 @@ def draw_trends(rows, trends, path_stem, order, period=PANEL_A_PERIOD):
         ax_mid.plot(xs, values, color=color, linewidth=1.70 if rank == 0 else 1.15,
                     marker="o", markersize=3.5, zorder=3, alpha=0.95,
                     label=f"{name}  {entry['movement'] * 100:+.0f}pp")
-        ax_mid.annotate(f"{values[-1] * 100:.0f}%", xy=(xs[-1], values[-1]),
-                        xytext=(6, 0), textcoords="offset points", va="center",
-                        fontsize=6.5, color=color, fontweight="normal")
+        endpoint_labels.append((values[-1], key, color))
     ax_mid.set_xticks(xs)
     ax_mid.set_xticklabels(
         [f"{label[:4]} {label[4:]}".strip() + f"\nn={shares['per_period'][label]}"
          for label in reported], fontsize=FS_TICK)
     ax_mid.set_xlim(-0.35, len(reported) - 1 + 0.55)
     ax_mid.set_ylim(0, max(0.35, peak * 1.18))
+    # Space labels in physical points while leaving the actual data points fixed.
+    # More date coverage can select curves with nearly identical final shares.
+    fig.canvas.draw()
+    points_per_unit = ax_mid.get_window_extent().height / fig.dpi * 72 / ax_mid.get_ylim()[1]
+    previous = -float("inf")
+    for value, key, color in sorted(endpoint_labels):
+        target = max(value * points_per_unit, previous + 9.0, 3.5)
+        offset = target - value * points_per_unit
+        ax_mid.annotate(f"{value * 100:.0f}%", xy=(xs[-1], value),
+                        xytext=(9, offset), textcoords="offset points", va="center",
+                        fontsize=6.5, color=color, fontweight="normal",
+                        arrowprops={"arrowstyle": "-", "color": color, "lw": 0.5,
+                                    "shrinkA": 1.5, "shrinkB": 2} if offset > 1 else None)
+        previous = target
     ax_mid.yaxis.set_major_formatter(lambda v, _: f"{v * 100:.0f}%")
     ax_mid.set_ylabel("Share of dated records", fontsize=FS_AXIS)
     ax_mid.set_title(

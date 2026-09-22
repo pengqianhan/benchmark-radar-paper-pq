@@ -7,6 +7,8 @@ FIGURE_SOURCES := $(addprefix figures/,$(addsuffix .tex,$(FIGURE_NAMES)))
 # Drawn by matplotlib from the frozen classification, not by latexmk.
 TAXONOMY_FIGURES := figures/taxonomy-sankey.pdf figures/taxonomy-trends.pdf
 TAXONOMY_INPUTS := scripts/taxonomy.py scripts/classify_benchmarks.py \
+	scripts/match_library_dates.py evidence/library-reviewed-dates.json \
+	evidence/library-date-match-reviews.json \
 	scripts/supplement_taxonomy_dates.py scripts/taxonomy_trends.py scripts/plot_taxonomy.py \
 	evidence/156_from_xiaoke_all_passed_en.json \
 	evidence/catalog-findings.json $(wildcard evidence/taxonomy-inputs/*) \
@@ -14,6 +16,7 @@ TAXONOMY_INPUTS := scripts/taxonomy.py scripts/classify_benchmarks.py \
 TAXONOMY_OUTPUTS := $(TAXONOMY_FIGURES) taxonomy-data.tex taxonomy-trend-data.tex \
 	evidence/benchmark-taxonomy.jsonl evidence/benchmark-taxonomy-summary.json \
 	evidence/benchmark-taxonomy-dated.jsonl evidence/taxonomy-release-date-supplements.json \
+	evidence/library-date-matches.json evidence/library-date-matches.csv \
 	evidence/benchmark-taxonomy-trends.json
 
 .PHONY: all figures taxonomy-figures reproduce-taxonomy check-taxonomy arxiv check-small-numbers clean
@@ -26,6 +29,7 @@ figures: $(FIGURE_PDFS) $(TAXONOMY_FIGURES)
 # Always rebuild from evidence, including when checked-in PDFs already exist.
 taxonomy-figures: $(TAXONOMY_INPUTS)
 	$(PYTHON) scripts/classify_benchmarks.py
+	$(PYTHON) scripts/match_library_dates.py
 	$(PYTHON) scripts/supplement_taxonomy_dates.py
 	$(PYTHON) scripts/taxonomy_trends.py
 	$(PYTHON) scripts/plot_taxonomy.py

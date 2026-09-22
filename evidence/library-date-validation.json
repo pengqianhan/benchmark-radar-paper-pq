@@ -1,0 +1,339 @@
+{
+  "authored_file_sha256": {
+    "Makefile": "a940f96f0677247c6f70eb8e77efec5898307488fac905ea9a108108693cd7cb",
+    "README.md": "4de0a17a220bf9fd799bdc5c4ea1a707afc32682a3c90b8a998ecc3f6906dd93",
+    "evidence/library-date-matching.md": "a528e61f8c44f67b5182644eb3b4028aa93e8d1410a1029b538290c4d957d66b",
+    "main.tex": "405315a9db212945cf8f3bf86520c53e7c545fa9d30bf213e3fa6a050ed3b65e",
+    "scripts/README.md": "120a8d1506afc870c97ac9b87652185dc56adf7de0b41a7db1e4177ecbc0ddee",
+    "scripts/check_taxonomy_reproduction.py": "98d18d48042e80b872e4b41efe01226c50abb77048725ab9bfd40d01a0c0a67d",
+    "scripts/match_library_dates.py": "9f857aae2efa3b3650079220375e40c7f8d22401b80a01085ab19d007adae14a",
+    "scripts/plot_taxonomy.py": "a3de7099fff4e67b3c45f2609eb5ab73e1f3d2fc813e91c94731a8c513f31633",
+    "scripts/supplement_taxonomy_dates.py": "1b050420ac5d1becd98fb4f3e108a49cdc08e6407b465db44f599da66bbaa45d",
+    "scripts/taxonomy_trends.py": "ec86eb7b7bea6fccff758429b64f59dc50767c41d56b4caf6baf605f78bab195",
+    "tests/test_taxonomy.py": "3e8a5b7d63fb409cd7593cf096562e033d15583e53c076e2dc0efbaba286567f",
+    "tests/test_taxonomy_dates.py": "1f895fcff9c1b559b8c3d1da17b1c3c1e94192d6c7cdfcd7ef9fe2091afbf3dc"
+  },
+  "checks": [
+    {
+      "command": "python scripts/audit_catalog.py <frozen-software> --check",
+      "exit_code": 0,
+      "log": "build/library-date-review/catalog-check.log",
+      "log_sha256": "5b95961ee5ff3df1defaac800b548d4920ed7a03857c5288e3dea17d2d8f5122"
+    },
+    {
+      "command": "python scripts/audit_findings.py <frozen-software> --check",
+      "exit_code": 0,
+      "log": "build/library-date-review/findings-check.log",
+      "log_sha256": "1411d9980fa486e6e319bd4f600f25934c1d785d588a5d1b43037105e4a148a7"
+    },
+    {
+      "command": "python -m pytest -q tests",
+      "exit_code": 0,
+      "log": "build/library-date-review/paper-tests.log",
+      "log_sha256": "490f6fef0fdb7c30bf61c00a2315a73f4cac7c318e65ec1535da7d4b011d2d2a",
+      "passed": 78,
+      "warnings": 14
+    },
+    {
+      "command": "python -m pytest -q tests/test_taxonomy_dates.py",
+      "exit_code": 0,
+      "log": "build/library-date-review/date-tests-final.log",
+      "log_sha256": "bd28d2bb1c1512bc4c66e460df872d531a0caf48a9fd11389c888daa401e363d",
+      "note": "Rerun after final import-only cleanup.",
+      "passed": 24
+    },
+    {
+      "command": "make reproduce-taxonomy PYTHON=<figure-python> && make check-taxonomy PYTHON=<figure-python>",
+      "exit_code": 0,
+      "log": "build/library-date-review/reproduction-check.log",
+      "log_sha256": "a9b6e0884add4c84f0d4503da7c5f9c61e71e261ed75c640b29d3d7d5211307e"
+    },
+    {
+      "command": "make PYTHON=<figure-python>",
+      "exit_code": 0,
+      "log": "build/library-date-review/make.log",
+      "log_sha256": "65f15987f4bff3eb53eb265b6bc3f05c5aa8e64010b929956299983164f80a56"
+    },
+    {
+      "command": "ruff check --isolated --select E4,E7,E9,F,I scripts/match_library_dates.py scripts/supplement_taxonomy_dates.py tests/test_taxonomy_dates.py",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "counts": {
+    "baseline_dated": 615,
+    "baseline_undated": 668,
+    "dated": 1052,
+    "decisions": {
+      "accepted": 437,
+      "identity_unresolved": 2,
+      "scope_not_release": 202,
+      "unmatched": 27
+    },
+    "per_source": {
+      "artificial_analysis": {
+        "accepted": 6,
+        "scope_not_release": 2
+      },
+      "llm_stats": {
+        "accepted": 423,
+        "identity_unresolved": 1,
+        "scope_not_release": 200,
+        "unmatched": 21
+      },
+      "model_reports": {
+        "accepted": 8,
+        "identity_unresolved": 1,
+        "unmatched": 2
+      },
+      "opencompass_hub": {
+        "unmatched": 4
+      }
+    },
+    "population": 1283,
+    "precision": {
+      "day": 422,
+      "month": 15
+    },
+    "supplemented": 437,
+    "undated": 231
+  },
+  "input": {
+    "explicit_identity_or_scope_reviews": 95,
+    "reviewed_records": 1107,
+    "sha256": {
+      "evidence/156_from_xiaoke_all_passed_en.json": "e3bda21e7380ae51ba2a1fc38bf8fb05f145461d99a289371fde85843966ba48",
+      "evidence/catalog-findings.json": "a62fe8265b3640ac96ae84265fe3bd1cb0312097b5eefe33126011e733e5e914",
+      "evidence/library-date-match-reviews.json": "aa8c4d870229b8a53256c57192f9b03d2a3d6d0477aa1dea9af0d3d67acb6a3f",
+      "evidence/library-reviewed-dates.json": "f2a75ad5b2fda2024a0d2ce4b89dd487c579d540b0f07bff99afcf10f9011e6c"
+    },
+    "snapshot_reextracted_from_supplied_raw_file_equal": true,
+    "source_file_sha256": "e95cb671b15d3bd89d9abe44cb0ebd42c278a6609288d0eae6904ca1e219c99d",
+    "source_record_count": 3010
+  },
+  "limitations": [
+    "The contributor supplied date verification. This task reviewed record identity and event scope; it did not independently re-verify all 1107 external pages.",
+    "437 dates annotate existing source records; they are not counts of independent benchmark-family releases.",
+    "The main PDF includes normal build timestamps; byte reproducibility is asserted only for the 11 taxonomy pipeline artifacts."
+  ],
+  "log_note": "Local build logs are diagnostic files under ignored build/. This validation record preserves commands, outcomes, relevant counts and log hashes; builds use committed evidence and require no rolling Library access.",
+  "output_sha256": {
+    "evidence/benchmark-taxonomy-dated.jsonl": "556e9febbe42091bdba35bcacf426db90693a53a351ddbf59537897a47c56ef4",
+    "evidence/benchmark-taxonomy-summary.json": "d8ebb1deb383fae7e134187618f043070c072f833af190ea8f6544fda03c8e97",
+    "evidence/benchmark-taxonomy-trends.json": "e3bdd715d53e1625ebda60d991fe92da0bb4076986ef67aed61e86ab77d2b242",
+    "evidence/benchmark-taxonomy.jsonl": "a36e311a7b5a1198ebe2cba76deba267220fd39473d3adc303ec618ad36f9e39",
+    "evidence/library-date-matches.csv": "effd50e2d00037c9fdc44276772d6d34aa9e69b01ed5303eea14798b57a74c89",
+    "evidence/library-date-matches.json": "39fc0300343ac91af685b64bc15df6531fef6b217dcba0d23fc08d0567512c6f",
+    "evidence/taxonomy-release-date-supplements.json": "19816e1d24a5cd4e4e0d09a52aa100b205a47f8f8a1ebbf738a3b4829817c202",
+    "figures/corpus-evidence.pdf": "06af9126ca32c9429df8b5def587383a4542e7e72e4a96f62641d9a68f38584c",
+    "figures/cover-metrics.pdf": "a0d57a9424bd1cbfb01371ddcb70b104c72da5367cb79a70ad34ce1eb9fc18b0",
+    "figures/pipeline-evaluation.pdf": "3b806f8f05f394ced2cf0bbe096a899f02b63a0d9f8ad2541ede70291ccd074b",
+    "figures/search-surface.pdf": "fc2add215e6f2906c0528550ba8d8107ef54f997e6bf0127e876fa97b0bf28aa",
+    "figures/source-composition.pdf": "d4d4c143b45d3d4379265b08f71c1e2ce2c1f9c0a8c7d4dfd0a91ee098b4a65c",
+    "figures/taxonomy-sankey.pdf": "0338efed648f398a8cc07fd28b558debad761a186023ce3dd8ef3feb2fbbaa56",
+    "figures/taxonomy-trends.pdf": "d65d3db886e0abbd3925dd6c2c3ab724b0621f16a49718e03a3093f868008d7f",
+    "main.pdf": "51643393d208adb7a9b1593d9aacb4834177de55cc31855098d5ed655c45a74d",
+    "taxonomy-data.tex": "fc51913655afaa382ada4047705d40348b6cb3ac8d22664d8907b47bc1adcb5e",
+    "taxonomy-trend-data.tex": "d6ebc968748f01be228ff0e046205df728f9e346ee8a77369c49f3a19134e429"
+  },
+  "paper_base_commit": "fb699490359fbdff9dae79440ff3b09f5861f15f",
+  "paper_branch": "benchmark_class",
+  "pdf_review": {
+    "all_page_overviews_inspected": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28
+    ],
+    "detailed_pages_inspected": [
+      10,
+      11
+    ],
+    "latex_overfull_warnings": 0,
+    "latex_underfull_warnings": 2,
+    "main_pages": 28,
+    "result": "No new clipping or overlap; end labels separated with leaders while retaining data coordinates. Figure 6 totals and caption reconcile with the generated evidence.",
+    "standalone_taxonomy_trends_inspected": true,
+    "underfull_note": "Existing Appendix F census-input paragraph at main.tex lines 698-699; page 28 visually inspected."
+  },
+  "preservation": {
+    "method": "Byte comparison to paper_base_commit; all original source IDs, dates and non-date fields also checked by tests.",
+    "unchanged_sha256": {
+      "catalog-data.tex": "325030e61570b53686e93174b6dee3a0d394471b7906e68950bc9ccd159000fc",
+      "evidence/156_from_xiaoke_all_passed_en.json": "e3bda21e7380ae51ba2a1fc38bf8fb05f145461d99a289371fde85843966ba48",
+      "evidence/benchmark-taxonomy-summary.json": "d8ebb1deb383fae7e134187618f043070c072f833af190ea8f6544fda03c8e97",
+      "evidence/benchmark-taxonomy.jsonl": "a36e311a7b5a1198ebe2cba76deba267220fd39473d3adc303ec618ad36f9e39",
+      "evidence/catalog-audit.json": "0f1b07ce14fbb4be80b6d05f77fbe4ff8d3f29622a19c4dfa8f59fcd1f2d2163",
+      "evidence/catalog-findings.json": "a62fe8265b3640ac96ae84265fe3bd1cb0312097b5eefe33126011e733e5e914",
+      "figure-data.tex": "8d105d7cd9c256ccae9ba3d73f6da6e1ec9ad021d99b337e059c8915c389e703",
+      "findings-data.tex": "4d2f8d416c8495a653e3fab9bcd3eacd47f52e0ca545c63cd068e3f7c70419c2",
+      "taxonomy-data.tex": "fc51913655afaa382ada4047705d40348b6cb3ac8d22664d8907b47bc1adcb5e"
+    }
+  },
+  "reproducibility": {
+    "font_sha256": {
+      "assets/fonts/liberation-sans/LiberationSans-Italic.ttf": "e5bae5c4cde31f22142753855f4f8fb86da6ff39955ed3c0a11248b0d16948b0",
+      "assets/fonts/liberation-sans/LiberationSans-Regular.ttf": "76d04c18ea243f426b7de1f3ad208e927008f961dc5945e5aad352d0dfde8ee8"
+    },
+    "method": "Two fresh builds with different hash seeds, time zones and caller timestamps; all output bytes agree. Machine-readable outputs also match the working tree.",
+    "output_sha256": {
+      "evidence/benchmark-taxonomy-dated.jsonl": "556e9febbe42091bdba35bcacf426db90693a53a351ddbf59537897a47c56ef4",
+      "evidence/benchmark-taxonomy-summary.json": "d8ebb1deb383fae7e134187618f043070c072f833af190ea8f6544fda03c8e97",
+      "evidence/benchmark-taxonomy-trends.json": "e3bdd715d53e1625ebda60d991fe92da0bb4076986ef67aed61e86ab77d2b242",
+      "evidence/benchmark-taxonomy.jsonl": "a36e311a7b5a1198ebe2cba76deba267220fd39473d3adc303ec618ad36f9e39",
+      "evidence/library-date-matches.csv": "effd50e2d00037c9fdc44276772d6d34aa9e69b01ed5303eea14798b57a74c89",
+      "evidence/library-date-matches.json": "39fc0300343ac91af685b64bc15df6531fef6b217dcba0d23fc08d0567512c6f",
+      "evidence/taxonomy-release-date-supplements.json": "19816e1d24a5cd4e4e0d09a52aa100b205a47f8f8a1ebbf738a3b4829817c202",
+      "figures/taxonomy-sankey.pdf": "0338efed648f398a8cc07fd28b558debad761a186023ce3dd8ef3feb2fbbaa56",
+      "figures/taxonomy-trends.pdf": "d65d3db886e0abbd3925dd6c2c3ab724b0621f16a49718e03a3093f868008d7f",
+      "taxonomy-data.tex": "fc51913655afaa382ada4047705d40348b6cb3ac8d22664d8907b47bc1adcb5e",
+      "taxonomy-trend-data.tex": "d6ebc968748f01be228ff0e046205df728f9e346ee8a77369c49f3a19134e429"
+    },
+    "packages": {
+      "PyYAML": "6.0.1",
+      "fonttools": "4.65.0",
+      "matplotlib": "3.9.0",
+      "numpy": "1.26.4",
+      "pillow": "12.3.0",
+      "pypdf": "6.13.3"
+    },
+    "python": "3.12.14 (main, Aug 12 2026, 13:57:54) [Clang 21.0.0 (clang-2100.1.1.101)]",
+    "result": "passed",
+    "working_tree_pdf_matches": {
+      "figures/taxonomy-sankey.pdf": true,
+      "figures/taxonomy-trends.pdf": true
+    }
+  },
+  "required_small_number_scan": {
+    "command": "python scripts/check_small_numbers.py main.pdf --json-output build/small-number-warnings.json",
+    "log_sha256": "5784f7167ea2df87ecc81108adb31d5705eca75f0152377f872da2e829da8f4f",
+    "methods": [
+      "pdftotext",
+      "ocr"
+    ],
+    "pages": 28,
+    "review": "Page/context warning summary reviewed, with detailed contexts for the changed pages 10 and 11. Includes page numbers, references, dates, percentages and small source/class counts; frozen evidence was not changed to silence warnings.",
+    "warning_count": 1395,
+    "warnings_by_page": {
+      "1": 34,
+      "2": 93,
+      "3": 47,
+      "4": 23,
+      "5": 13,
+      "6": 33,
+      "7": 29,
+      "8": 19,
+      "9": 130,
+      "10": 6,
+      "11": 123,
+      "12": 50,
+      "13": 90,
+      "14": 44,
+      "15": 84,
+      "16": 64,
+      "17": 85,
+      "18": 51,
+      "19": 22,
+      "20": 38,
+      "21": 60,
+      "22": 62,
+      "23": 32,
+      "24": 15,
+      "25": 34,
+      "26": 12,
+      "27": 46,
+      "28": 56
+    }
+  },
+  "result": "passed",
+  "schema_version": 1,
+  "software": {
+    "clean_detached_checkout": true,
+    "commit": "8f46bbfa91f5d9900c8b08a5d552c3df5c9597b0",
+    "discovery_cutoff": "2026-09-07",
+    "frozen_input_manifest_canonical_sha256": "4be140fcd6b26b811e4206d6ef5b442cefca2b8fb6d69e0007af6122dd50cd15",
+    "paper_submodule_initialized": true,
+    "six_step_ci": [
+      {
+        "command": "python -m ruff check .",
+        "exit_code": 0,
+        "log": "build/library-date-review/software-ci-1.log",
+        "log_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+        "step": 1
+      },
+      {
+        "command": "python -m ruff format --check .",
+        "exit_code": 0,
+        "log": "build/library-date-review/software-ci-2.log",
+        "log_sha256": "f52d528266e46c68634e8bf5174096a1e41862d78b2236e1ff5a851a9e2d4f55",
+        "step": 2
+      },
+      {
+        "command": "python -m benchmark_radar.cli normalize-catalog",
+        "exit_code": 0,
+        "log": "build/library-date-review/software-ci-3.log",
+        "log_sha256": "2f6af4a09e51ff622316afa8daf07d31a41fb15e1b003aa972110b36576cf968",
+        "step": 3
+      },
+      {
+        "command": "python -m benchmark_radar.cli classify",
+        "exit_code": 0,
+        "log": "build/library-date-review/software-ci-4.log",
+        "log_sha256": "b27b64735290d28ac86ae999a76d1d9f2095c5092d05db8bc26a242948b82747",
+        "step": 4
+      },
+      {
+        "command": "python -m benchmark_radar.cli build-data-release",
+        "exit_code": 0,
+        "log": "build/library-date-review/software-ci-5.log",
+        "log_sha256": "fc04f57b5867cda85751a6057abadc67fab7fab105d09e8045b3d550b25a7bf9",
+        "step": 5
+      },
+      {
+        "command": "python -m pytest -q",
+        "exit_code": 0,
+        "initial_attempt": {
+          "exit_code": 1,
+          "log": "build/library-date-review/software-ci-6.log",
+          "log_sha256": "ab977cebe0f4fa9fcaae38f2310a1ab9ed05d5f7dc76b5d536d8167e5eb9a897",
+          "summary": "1310 passed; 4 local HTTP socket tests could not bind a port in the sandbox."
+        },
+        "log": "build/library-date-review/software-ci-6-unrestricted.log",
+        "log_sha256": "f9572cc8550f655b3143c4a4c42cae9ac231c55ab462c4680626ebaa2e0857f9",
+        "note": "Complete test suite rerun with local temporary port access; all passed.",
+        "passed": 1314,
+        "step": 6
+      }
+    ],
+    "worktree_clean_after_audit": true
+  },
+  "task": "Match all original missing-date source records to the supplied 1107-record reviewed Library evidence snapshot.",
+  "validated_on": "2026-09-22"
+}

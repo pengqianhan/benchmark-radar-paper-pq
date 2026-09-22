@@ -584,7 +584,7 @@ def test_undated_records_keep_their_classification():
 
 
 def test_stratified_series_expose_the_changing_source_mix():
-    """Panel C holds the source constant, so per-source bases must reconcile."""
+    """Published stratified evidence holds each source constant."""
     from taxonomy_trends import build as build_trends
 
     data = build_trends()
@@ -598,7 +598,7 @@ def test_stratified_series_expose_the_changing_source_mix():
             assert series["agentic"][year] <= series["base"][year]
     # The finding that motivated this panel: 2026 is not the same cohort.
     oc = data["stratified"]["opencompass_hub"]["share_of_year"]
-    assert oc["2025"] > 0.6 and oc["2026"] < 0.3, "the 2026 source break should be visible"
+    assert oc["2026"] < oc["2025"], "the trailing year has reduced OpenCompass coverage"
 
 
 def test_year_shares_need_a_stable_source_mix_not_just_a_count():
@@ -625,12 +625,24 @@ def test_year_shares_need_a_stable_source_mix_not_just_a_count():
     assert excluded + reported == data["dated"]
 
 
-def test_composition_adjustment_backs_the_prose_claim():
-    """Section 4.2 claims reweighting moves the agentic share by at most 1.1
-    points. That number is generated, and must stay small enough to support the
-    sentence it appears in."""
+def test_composition_adjustment_reports_sensitivity_without_a_smallness_assumption():
+    """Reannotation may change sensitivity; prose must report it rather than cap it."""
+    from taxonomy_trends import build as build_trends, build_shares
+
+    # Two sources have fixed within-source shares 1 and 0. Swapping their
+    # 24:8 mixture moves the crude share from .75 to .25; both standardize to .5.
+    rows = []
+    for day, counts in [("2023-01-01", (24, 8)), ("2023-07-01", (8, 24))]:
+        for source, count in zip(("a", "b"), counts):
+            for i in range(count):
+                rows.append({"key": f"{day}-{source}-{i}", "release_date": day,
+                             "source": source, "l1": "math_logic", "modality": [],
+                             "operational": [],
+                             "interaction": ["agentic"] if source == "a" else ["static"]})
+    assert build_shares(rows)["mix_adjustment"] == 25.0
     macros = (PAPER / "taxonomy-trend-data.tex").read_text()
     value = float(macros.split("TaxonomyMixAdjustment}}{")[1].split("}")[0]
                   if "TaxonomyMixAdjustment}}{" in macros
                   else macros.split("\\TaxonomyMixAdjustment}{")[1].split("}")[0])
-    assert value <= 3.0, f"composition adjustment is {value} points; the claim no longer holds"
+    assert value == build_trends()["shares"]["mix_adjustment"]
+    assert "source reweighting alone does not explain" not in (PAPER / "main.tex").read_text()

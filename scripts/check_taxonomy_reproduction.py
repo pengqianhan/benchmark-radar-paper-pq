@@ -18,9 +18,10 @@ from importlib.metadata import version
 from pathlib import Path
 
 PAPER = Path(__file__).resolve().parents[1]
-SCRIPTS = ("classify_benchmarks.py", "supplement_taxonomy_dates.py",
+SCRIPTS = ("classify_benchmarks.py", "match_library_dates.py", "supplement_taxonomy_dates.py",
            "taxonomy_trends.py", "plot_taxonomy.py")
 DATA_OUTPUTS = (
+    "evidence/library-date-matches.json", "evidence/library-date-matches.csv",
     "evidence/benchmark-taxonomy.jsonl", "evidence/benchmark-taxonomy-summary.json",
     "taxonomy-data.tex", "evidence/benchmark-taxonomy-dated.jsonl",
     "evidence/taxonomy-release-date-supplements.json",
@@ -38,7 +39,8 @@ def rebuild(root, seed):
     (root / "evidence").mkdir()
     for name in (*SCRIPTS, "taxonomy.py"):
         shutil.copyfile(PAPER / "scripts" / name, root / "scripts" / name)
-    for name in ("catalog-findings.json", "156_from_xiaoke_all_passed_en.json"):
+    for name in ("catalog-findings.json", "156_from_xiaoke_all_passed_en.json",
+                 "library-reviewed-dates.json", "library-date-match-reviews.json"):
         shutil.copyfile(PAPER / "evidence" / name, root / "evidence" / name)
     shutil.copytree(PAPER / "evidence/taxonomy-inputs", root / "evidence/taxonomy-inputs")
     shutil.copytree(PAPER / "assets/fonts", root / "assets/fonts")

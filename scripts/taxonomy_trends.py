@@ -206,8 +206,8 @@ def build_shares(rows, period=TREND_PERIOD):
 
     # The same reweighting the year series reports, over the periods drawn here:
     # each reported period's agentic share recomputed at the pooled source mix of
-    # those periods, which is what lets the prose say the rise is not a change of
-    # catalogue. Reported in percentage points.
+    # those periods. This is a sensitivity measure, not proof that catalogue
+    # composition has negligible influence. Reported in percentage points.
     reference = {
         source: sum(sources[key].get(source, 0) for key in reported) / base_reported
         for source, base_reported in
@@ -325,7 +325,8 @@ def build():
         "input_sha256": {str(path.relative_to(PAPER)): sha256(path)
                          for path in (ROWS, SUPPLEMENTS)},
         "date_coverage": {key: supplement[key] for key in
-                          ("baseline_dated", "baseline_undated", "supplemented")},
+                          ("baseline_dated", "baseline_undated", "supplemented",
+                           "library_reviewed_records")},
         "definitions": {
             "population": "Every row in benchmark-taxonomy-dated.jsonl, dated and undated.",
             "dated": "Frozen census dates plus reviewed release or first introduction dates for previously undated records. Retrospective evidence does not extend the discovery cutoff.",
@@ -404,6 +405,7 @@ def main():
         f"\\newcommand{{\\TaxonomyTrendDated}}{{{data['dated']}}}",
         f"\\newcommand{{\\TaxonomyTrendUndated}}{{{data['undated']}}}",
         f"\\newcommand{{\\TaxonomySupplementedDates}}{{{data['date_coverage']['supplemented']}}}",
+        f"\\newcommand{{\\TaxonomyLibraryReviewedDates}}{{{data['date_coverage']['library_reviewed_records']}}}",
         f"\\newcommand{{\\TaxonomySharePeriod}}{{{shares['noun']}}}",
         f"\\newcommand{{\\TaxonomyReportedPeriods}}{{{tex_period(reported[0])}--"
         f"{tex_period(reported[-1])}}}",

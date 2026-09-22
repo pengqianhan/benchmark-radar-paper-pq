@@ -123,35 +123,49 @@ evidence, even when the PDFs already exist. The stages are:
 
 1. `scripts/classify_benchmarks.py` classifies every frozen source record using
    `evidence/catalog-findings.json` and the vendored `evidence/taxonomy-inputs/`.
-2. `scripts/supplement_taxonomy_dates.py` reads
-   `evidence/156_from_xiaoke_all_passed_en.json`, fills missing dates by
-   `verification.catalogKey`, and writes the full drawing input
-   `evidence/benchmark-taxonomy-dated.jsonl` plus the auditable
+2. `scripts/match_library_dates.py` matches the **original 668 undated records**
+   against the fixed **1,107-record** `evidence/library-reviewed-dates.json`.
+   It writes a complete JSON/CSV audit, using exact source IDs or explicit
+   identity reviews and checking whether each date applies to the named version.
+3. `scripts/supplement_taxonomy_dates.py` applies only accepted matches and writes
+   `evidence/benchmark-taxonomy-dated.jsonl` and the source-linked
    `evidence/taxonomy-release-date-supplements.json` manifest.
-3. `scripts/taxonomy_trends.py` computes counts, eligible periods and selected
-   series in `evidence/benchmark-taxonomy-trends.json`, and exports
-   `taxonomy-trend-data.tex` for the manuscript.
-4. `scripts/plot_taxonomy.py` draws `figures/taxonomy-trends.pdf` and
-   `figures/taxonomy-sankey.pdf` from that same enriched population.
+4. `scripts/taxonomy_trends.py` recomputes eligible periods and selected series in
+   `evidence/benchmark-taxonomy-trends.json`, and exports `taxonomy-trend-data.tex`.
+5. `scripts/plot_taxonomy.py` draws both taxonomy PDFs from that complete population.
 
-The supplement takes `nextVerification` when present, otherwise `verification`,
-requires `status: passed`, and uses `releaseDate` or `verifiedDate`. The historical
-top-level `date` is not authoritative. It preserves month/day precision, sources,
-event scope and review history; duplicate legacy IDs across different source
-records are retained. Unknown keys, duplicate keys, existing dates and dates
-beyond the cutoff cause a visible error instead of a silent overwrite.
+The reviewed snapshot is extracted from the supplied local `library_index.json`
+(SHA-256 `e95cb671b15d3bd89d9abe44cb0ebd42c278a6609288d0eae6904ca1e219c99d`).
+It contains all records with `releaseEvidence`, preserving their complete date
+evidence, identity fields, input positions and original record hashes. Builds
+use this committed snapshot, require no live Library access, and never import
+new records from it. The contributor's date verification is distinguished from
+this paper's subsequent identity and event-scope review.
 
-This is a retrospective date annotation of the existing v0.11.0 population,
-not an extension of discovery beyond 2026-09-07. All 1,283 records remain:
-615 originally dated + 156 supplements = 771 dated, leaving 512 undated.
-The frozen census still records 615 dated and 668 undated, and its released
-hashes remain unchanged. An introductory paper or named-version introduction
-is not necessarily a downloadable dataset release; each supplement retains its
-verified event type. The review dates are later than the discovery cutoff.
+**437 dates are adopted: 615 originally dated + 437 = 1,052 dated, leaving 231
+undated.** Of those remaining, 202 have candidate dates that do not establish
+the target's release/introduction, 2 have unresolved identity/version issues,
+and 27 have no match in the reviewed snapshot. Source IDs alone are insufficient
+when evidence only dates a parent dataset or a later result disclosure.
+Explicit component-introduction evidence can support a component's date without
+counting it as an independent benchmark-family release.
+
+The previous 156-record annotation remains as historical comparison evidence;
+it is not a fallback date donor. The new matching starts from all 668 original
+missing records. It supports 140 previously annotated records and 297 additional
+records; 16 previously annotated records are now withheld. Every accepted date
+comes unchanged from Library `releaseEvidence.date`, preserving day/month
+precision and event scope. See the [matching report](evidence/library-date-matching.md)
+and [complete audit table](evidence/library-date-matches.csv).
+
+This is a retrospective annotation of the existing v0.11.0 population with the
+same 2026-09-07 discovery cutoff. All 1,283 source records, the original census
+(615 dated / 668 undated), classifications, scores and released hashes remain
+unchanged. Review dates can follow the cutoff; accepted benchmark dates cannot.
 
 `make check-taxonomy` runs two fresh, isolated builds with different hash seeds,
-time zones and caller timestamps. All nine artifacts must be byte-identical
-between runs; generated JSON/JSONL/TeX must also match the checked-in files.
+time zones and caller timestamps. All eleven artifacts must be byte-identical
+between runs; generated JSON/JSONL/CSV/TeX must also match the checked-in files.
 It records hashes and environment versions in
 `build/taxonomy-reproduction-check.json`. PDF metadata use the discovery cutoff
 as a deterministic timestamp (not the annotation or build date), and the figures

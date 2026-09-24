@@ -499,13 +499,12 @@ def draw_trends(rows, trends, path_stem, order, period=PANEL_A_PERIOD):
     # Recent dated periods and the undated column share the top row. Earlier
     # records are accounted for above, without reserving a visible column.
     fig = plt.figure(figsize=(FIG_WIDTH_IN, 5.7))
-    # Explicit margins: tight_layout cannot handle a hand-built gridspec whose
-    # columns carry different scales, and warns rather than laying it out.
+    # Explicit margins keep the hand-built gridspec layout stable.
     grid = fig.add_gridspec(2, 2, height_ratios=[1.2, 1.0], width_ratios=[12.5, 1.5],
                             hspace=1.05, wspace=0.07,
                             left=0.095, right=0.955, top=0.945, bottom=0.175)
     ax_top = fig.add_subplot(grid[0, 0])
-    ax_undated = fig.add_subplot(grid[0, 1])
+    ax_undated = fig.add_subplot(grid[0, 1], sharey=ax_top)
     ax_mid = fig.add_subplot(grid[1, :])
 
     # Panel A: dates from 2023 plus unknown dates, all stacked by Level 1.
@@ -523,7 +522,7 @@ def draw_trends(rows, trends, path_stem, order, period=PANEL_A_PERIOD):
                        color=L1_COLOR[l1], width=0.72, edgecolor="white",
                        linewidth=0.4, hatch="//")
         undated_bottom += undated.get(l1, 0)
-    peak = max(bottom)
+    peak = max(max(bottom), undated_bottom)
     for x, value in zip(xs, bottom):
         if value:
             ax_top.text(x, value + peak * 0.02, str(int(value)), ha="center", va="bottom",
@@ -551,18 +550,13 @@ def draw_trends(rows, trends, path_stem, order, period=PANEL_A_PERIOD):
         fontsize=FS_PANEL, fontweight="normal", loc="left", pad=6,
     )
 
-    ax_undated.text(0, undated_bottom * 1.02, str(trends["undated"]), ha="center", va="bottom",
+    ax_undated.text(0, undated_bottom + peak * 0.02, str(trends["undated"]), ha="center", va="bottom",
                     fontsize=7.5, color="#333333", fontweight="normal")
     ax_undated.set_xticks([0])
     ax_undated.set_xticklabels(["no release\ndate"], fontsize=FS_TICK)
     ax_undated.set_xlim(-0.62, 0.62)
-    ax_undated.set_ylim(0, undated_bottom * 1.12)
     ax_undated.yaxis.tick_right()
     ax_undated.tick_params(axis="y", labelsize=6.0)
-    # Said above the column, not as a y-label: a right-side y-label lands between
-    # the bar and its own tick labels and was clipped off the page entirely when
-    # the column sat at the figure edge.
-    ax_undated.set_title("own scale", fontsize=6.5, color="#B71C1C", style="italic", pad=3)
     ax_undated.spines[["top", "left"]].set_visible(False)
     ax_undated.grid(axis="y", alpha=0.25, linewidth=0.6)
     ax_undated.set_axisbelow(True)

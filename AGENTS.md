@@ -15,7 +15,9 @@
 - Keep `references.bib`, all required images, native figure sources, and dated
   `figure-data.tex` in this repository so it builds without the software checkout.
 - Run `make` after manuscript or figure changes. Visually inspect the resulting
-  PDF and commit `main.pdf` plus any rebuilt figure PDFs with their sources.
+  PDF and commit `main.pdf` plus any rebuilt figure PDFs. Keep the full figure
+  sources on `benchmark_class`; upstream Figure 6 PRs follow the minimal-file
+  submission rules below.
 - Run `make arxiv` and compile the extracted archive before a submission.
 - Do not infer current corpus counts from the paper. Before changing quantitative
   claims, run and audit the software repository's six-step clean-checkout CI
@@ -32,6 +34,47 @@
   Do not add submodules or symlinks here: this repository must be importable by
   Overleaf.
 - Merge pull requests with a merge commit; never squash-merge.
+
+## Minimal Figure 6 submissions
+
+- Keep the complete work for `figures/taxonomy-trends.pdf` in
+  `pengqianhan/benchmark-radar-paper-pq` on `benchmark_class`: plotting code,
+  evidence, generated data, audits, fonts, dependencies, tests, and documentation.
+  This development branch is not the branch to submit wholesale to upstream.
+- Before every upstream submission, including each update to an existing PR,
+  pull the latest upstream `main` state with `git fetch upstream main`, where
+  `upstream` is `https://github.com/ktwu01/benchmark-radar-paper.git`. Prepare or
+  refresh a separate submission branch from that latest `upstream/main`, then
+  apply only the necessary Figure 6 changes. If upstream advances before the
+  next submission, refresh the base and rebuild again. Do not use a stale local
+  `main` or the full `benchmark_class` history as the submission base.
+- Choose the submission scope by comparing the new figure with the manuscript
+  on the latest upstream `main`:
+  1. **Figure presentation only; no prose change needed:** leave `main.tex`
+     byte-for-byte unchanged. Submit exactly `figures/taxonomy-trends.pdf` and
+     the newly compiled `main.pdf`.
+  2. **The new figure requires corresponding prose changes:** make only the
+     necessary edits to its explanation, caption, or directly affected claims
+     in `main.tex`. Submit exactly `main.tex`, `main.pdf`, and
+     `figures/taxonomy-trends.pdf`.
+- Minimize the diff. Preserve all unrelated prose, author information,
+  contributions, references, figures, formatting, and build configuration.
+  Do not include plotting scripts, evidence, generated TeX/data files, fonts,
+  dependencies, tests, documentation, or this `AGENTS.md` in the upstream
+  Figure 6 PR. These remain on the fork's `benchmark_class` branch.
+- Compile `main.pdf` from the actual submission branch with the new figure and
+  its own `main.tex`; do not copy a manuscript PDF built from the development
+  branch's older manuscript. The submission must build with upstream's existing
+  assets and only the two or three submitted files, without depending on
+  additional files from `benchmark_class`.
+- Complete the required frozen-data checks, regression tests, `make`, visual
+  review, and submission-package checks described in this file before pushing.
+  The minimal file scope does not waive evidence verification or change the
+  frozen cutoff.
+- Before committing and pushing, inspect the **entire PR diff against the latest
+  upstream `main`**, not just the last commit. It must contain exactly the two
+  or three files for the selected case. Verify the same file list on GitHub
+  after pushing, and keep the PR description consistent with that scope.
 
 ## Full-catalog findings
 

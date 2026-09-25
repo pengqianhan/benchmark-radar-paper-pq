@@ -146,7 +146,7 @@ python scripts/match_library_dates.py --freeze-source evidence/library_index.jso
 - 从 2023 H1 开始按半年分桶，最后一个桶只到发现截止日。
 - 不绘制原来的 2010–2022 汇总列：该时期的收集不完整，图中聚焦近期趋势。
 - 132 条早期记录仍保留在完整 census、日期输入和统计审计中，不从数据集中删除。
-- 无日期记录放在右侧独立刻度的一列，仍按主分类堆叠。
+- 无日期记录放在右侧单独一列，与有日期记录共用纵轴刻度，仍按主分类堆叠。
 - 图例只计入实际展示的记录：936 条 2023 年起的有日期记录 + 215 条无日期记录 = 1,151 条。
 - `benchmark-taxonomy-trends.json` 的 `panel_a` 保存展示范围、排除数量及各类图例计数。
 
@@ -234,7 +234,12 @@ make PYTHON=build/figure-venv/bin/python
 | 字体、字号、颜色、图例和布局 | `plot_taxonomy.py` 及随仓库保存的字体 |
 | 论文图注和解释 | `main.tex`；数量宏由脚本生成，不手改生成的 TeX |
 
-通常顺序是：修改源文件 → 完整重建 → 检查复现和测试 → `make` → 目视检查 → 提交相关源码、证据、生成的 JSON／TeX、两张图及更新后的 `main.pdf`。
+完整的绘图代码、证据、生成数据和复现材料保留在 `pengqianhan/benchmark-radar-paper-pq` 的 `benchmark_class` 分支。向上游论文仓库提交 Figure 6 更新时，只提交必要的论文产物：
+
+- 仅图片形式变化、不需要改正文：提交新的 `figures/taxonomy-trends.pdf` 和用它重新编译的 `main.pdf`。
+- 图片变化需要同步文字：只修改 `main.tex` 中对应的必要文字，重新编译后提交 `main.tex`、`main.pdf` 和新的 `figures/taxonomy-trends.pdf`。
+
+上游 PR 不包含绘图脚本、证据、字体、依赖或构建配置；这些完整改动继续提交到 fork 的 `benchmark_class`。提交前运行相关检查和 `make`，并目视检查新图及论文。
 `build/` 是临时目录，不能作为唯一的长期证据来源；需长期保存的输入和字体应随仓库提交。
 
 改变总体、冻结来源或发现截止日时，遵循 [AGENTS.md](../AGENTS.md) 和 [根目录 README](../README.md) 的软件审计与版本规则。

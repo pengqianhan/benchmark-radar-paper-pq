@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "validated_on": "2026-09-23",
+  "base_commit": "63e030755d8b30c2f3ea122df3854a981d9e34f4",
+  "source_branch_commit": "36758e9",
+  "software_commit": "8f46bbfa91f5d9900c8b08a5d552c3df5c9597b0",
+  "discovery_cutoff": "2026-09-07",
+  "scope": "Port Figure 6 and its reproducible inputs onto current upstream main; preserve all other manuscript text and published figures.",
+  "counts": {
+    "population": 1283,
+    "original_undated": 668,
+    "library_reviewed": 1107,
+    "library_added": 437,
+    "legacy_added": 16,
+    "supplemented": 453,
+    "dated": 1068,
+    "undated": 215,
+    "panel_a_recent_dated": 936,
+    "panel_a_shown": 1151,
+    "panel_a_earlier_omitted": 132
+  },
+  "checks": {
+    "regression_tests": {
+      "passed": 95,
+      "skipped": 1,
+      "skip_reason": "LaTeXML unavailable locally; upstream CI requires converted author-affiliation checks."
+    },
+    "catalog_check": "passed",
+    "findings_check": "passed",
+    "frozen_archive_and_exports": "passed",
+    "ruff_E4_E7_E9_F": "passed",
+    "make": "passed",
+    "make_arxiv": "passed",
+    "extracted_archive_two_pdflatex_passes": "passed",
+    "extracted_archive_page_text_matches": "passed",
+    "git_diff_check": {
+      "authored_files": "passed",
+      "vendored_files": "Original CSV line endings and font AUTHORS/LICENSE whitespace preserved byte-for-byte; excluded from authored-file whitespace check to retain recorded input hashes."
+    }
+  },
+  "software_audit": {
+    "mode": "Reuse the previously passed six-step audit for the unchanged frozen software inputs; run the current upstream frozen-archive verifier and both audit --check commands.",
+    "previous_record": "evidence/library-date-validation.json",
+    "previous_tests_passed": 1314
+  },
+  "reproducibility": {
+    "font_sha256": {
+      "assets/fonts/liberation-sans/LiberationSans-Italic.ttf": "e5bae5c4cde31f22142753855f4f8fb86da6ff39955ed3c0a11248b0d16948b0",
+      "assets/fonts/liberation-sans/LiberationSans-Regular.ttf": "76d04c18ea243f426b7de1f3ad208e927008f961dc5945e5aad352d0dfde8ee8"
+    },
+    "method": "Two fresh builds with different hash seeds, time zones and caller timestamps; all output bytes agree. Machine-readable outputs also match the working tree.",
+    "output_sha256": {
+      "evidence/benchmark-taxonomy-dated.jsonl": "8902af51fb34aa16fe928e12ce8b0081a8662cb224f2198971bf4923ef9cf1d6",
+      "evidence/benchmark-taxonomy-summary.json": "d8ebb1deb383fae7e134187618f043070c072f833af190ea8f6544fda03c8e97",
+      "evidence/benchmark-taxonomy-trends.json": "85d2010f1954a38c1479f60442a5e0105c370297d3ba7904bc0bd7620b5e1f51",
+      "evidence/benchmark-taxonomy.jsonl": "a36e311a7b5a1198ebe2cba76deba267220fd39473d3adc303ec618ad36f9e39",
+      "evidence/library-date-matches.csv": "effd50e2d00037c9fdc44276772d6d34aa9e69b01ed5303eea14798b57a74c89",
+      "evidence/library-date-matches.json": "39fc0300343ac91af685b64bc15df6531fef6b217dcba0d23fc08d0567512c6f",
+      "evidence/release-date-matches.csv": "740d94b5c9e19cd1d78290849e5c95f1d0a7ef7241e7125560b24f70581a1911",
+      "evidence/release-date-matches.json": "cd805b6ff2ca4ef72bcbbd4d6766b75f5782fe7790a97173f1f5d67a857f048f",
+      "evidence/taxonomy-release-date-supplements.json": "3e374555b150fb9320ef7139805b0cfdb2bdf10090ad888f8c9cd17738f4baf5",
+      "figures/taxonomy-trends.pdf": "7e72be98b405a71a333a78db85f9529b1fe0c083276c35bcc9f67f79510ce740",
+      "taxonomy-data.tex": "fc51913655afaa382ada4047705d40348b6cb3ac8d22664d8907b47bc1adcb5e",
+      "taxonomy-trend-data.tex": "bc056ea88ae5acb11fe666ef36f8781cb54c1c59ec7d94fad461af3891667377"
+    },
+    "packages": {
+      "PyYAML": "6.0.1",
+      "fonttools": "4.65.0",
+      "matplotlib": "3.9.0",
+      "numpy": "1.26.4",
+      "pillow": "12.3.0",
+      "pypdf": "6.13.3"
+    },
+    "python": "3.12.14 (main, Aug 12 2026, 13:57:54) [Clang 21.0.0 (clang-2100.1.1.101)]",
+    "result": "passed",
+    "working_tree_pdf_matches": {
+      "figures/taxonomy-trends.pdf": true
+    }
+  },
+  "pdf_review": {
+    "pages": 30,
+    "all_page_overviews_inspected": true,
+    "detailed_pages": [
+      1,
+      7,
+      8,
+      10,
+      20
+    ],
+    "overfull_warnings": 0,
+    "underfull_warnings": 2,
+    "underfull_note": "Existing census-input paragraph in Appendix F; no new overflow.",
+    "result": "passed"
+  },
+  "small_number_scan": {
+    "pages": 30,
+    "warning_count": 1592,
+    "methods": [
+      "pdftotext",
+      "ocr"
+    ],
+    "review": "Reviewed page/context warnings and visual layout. Counts below 100 include dates, labels, percentages, citations and page numbers; evidence was not changed to suppress them."
+  },
+  "output_sha256": {
+    "evidence/benchmark-taxonomy-dated.jsonl": "8902af51fb34aa16fe928e12ce8b0081a8662cb224f2198971bf4923ef9cf1d6",
+    "evidence/benchmark-taxonomy-summary.json": "d8ebb1deb383fae7e134187618f043070c072f833af190ea8f6544fda03c8e97",
+    "evidence/benchmark-taxonomy-trends.json": "85d2010f1954a38c1479f60442a5e0105c370297d3ba7904bc0bd7620b5e1f51",
+    "evidence/benchmark-taxonomy.jsonl": "a36e311a7b5a1198ebe2cba76deba267220fd39473d3adc303ec618ad36f9e39",
+    "evidence/library-date-matches.csv": "effd50e2d00037c9fdc44276772d6d34aa9e69b01ed5303eea14798b57a74c89",
+    "evidence/library-date-matches.json": "39fc0300343ac91af685b64bc15df6531fef6b217dcba0d23fc08d0567512c6f",
+    "evidence/release-date-matches.csv": "740d94b5c9e19cd1d78290849e5c95f1d0a7ef7241e7125560b24f70581a1911",
+    "evidence/release-date-matches.json": "cd805b6ff2ca4ef72bcbbd4d6766b75f5782fe7790a97173f1f5d67a857f048f",
+    "evidence/taxonomy-release-date-supplements.json": "3e374555b150fb9320ef7139805b0cfdb2bdf10090ad888f8c9cd17738f4baf5",
+    "figures/taxonomy-trends.pdf": "7e72be98b405a71a333a78db85f9529b1fe0c083276c35bcc9f67f79510ce740",
+    "taxonomy-data.tex": "fc51913655afaa382ada4047705d40348b6cb3ac8d22664d8907b47bc1adcb5e",
+    "taxonomy-trend-data.tex": "bc056ea88ae5acb11fe666ef36f8781cb54c1c59ec7d94fad461af3891667377",
+    "main.pdf": "95d50d53431a6f9cfb3c753b50a4bf2e75de0a1f3ce2c6e6265cb136dee9b66a"
+  },
+  "log_note": "Logs under ignored build/pr-review are local diagnostics; this record preserves final outcomes."
+}

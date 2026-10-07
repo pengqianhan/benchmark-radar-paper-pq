@@ -135,6 +135,20 @@ python scripts/match_library_dates.py --freeze-source evidence/library_index.jso
 
 此命令只提取快照；新的快照若改变哈希，既有身份/事件审查会失败，不能自动沿用。
 
+### 与最新软件数据对照
+
+[software-release-date-gaps.md](../evidence/software-release-date-gaps.md) 记录图中日期与最新软件 catalog 的逐条对照。
+两边都有日期时必须一致，以软件数据为准；只有论文补充层有日期、软件没有日期的 453 条，
+连同日期、精度、事件、证据来源、URL 和匹配理由写入同名 JSON／CSV。
+软件 checkout 须先依次运行 `normalize-catalog`、`classify`、`build-data-release`：
+
+```bash
+python scripts/audit_software_release_dates.py /path/to/benchmark-radar
+python scripts/audit_software_release_dates.py /path/to/benchmark-radar --check
+```
+
+该记录不改变绘图输入；若软件出现与图中不同的日期，脚本会报错并要求先审核。
+
 ### 趋势统计与绘图
 
 **Sankey 图**使用全部 1,283 条记录的主分类。

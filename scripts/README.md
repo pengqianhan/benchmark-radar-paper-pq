@@ -254,6 +254,20 @@ make PYTHON=build/figure-venv/bin/python
 - 图片变化需要同步文字：只修改 `main.tex` 中对应的必要文字，重新编译后提交 `main.tex`、`main.pdf` 和新的 `figures/taxonomy-trends.pdf`。
 
 上游 PR 不包含绘图脚本、证据、字体、依赖或构建配置；这些完整改动继续提交到 fork 的 `benchmark_class`。提交前运行相关检查和 `make`，并目视检查新图及论文。
+
+### 仅用冻结日期的上游提交图（PR #59 方案 B）
+
+上游维护者要求 PR #59 只使用 v0.11.0 冻结 catalog 中的 615 条发布日期和上游已有的宏。补充日期另开后续 PR。对应的图由 [plot_taxonomy_frozen.py](plot_taxonomy_frozen.py) 生成：
+
+```bash
+build/figure-venv/bin/python scripts/plot_taxonomy_frozen.py --check
+```
+
+- 输入是 `evidence/benchmark-taxonomy.jsonl`，不读取补充日期。脚本要求 1,283 条记录、615 条有日期、668 条无日期。
+- 版式与上游现有 Figure 6 相同（按年分组，Panel B 的年份规则和曲线不变）。唯一改动是无日期柱与有日期柱共用纵轴。
+- `--check` 用同一规则重算 `\TaxonomyMinYearRecords`、`\TaxonomyExcludedFromShares` 和 `\TaxonomyMixAdjustment`，结果必须与上游 `taxonomy-trend-data.tex` 相同。
+- 输出写到 `submission/figure6/taxonomy-trends.pdf`，不覆盖开发版的 `figures/taxonomy-trends.pdf`。提交分支把它放到 `figures/taxonomy-trends.pdf`。
+- 回归测试在 `tests/test_taxonomy_frozen.py`。
 `build/` 是临时目录，不能作为唯一的长期证据来源；需长期保存的输入和字体应随仓库提交。
 
 改变总体、冻结来源或发现截止日时，遵循 [AGENTS.md](../AGENTS.md) 和 [根目录 README](../README.md) 的软件审计与版本规则。
